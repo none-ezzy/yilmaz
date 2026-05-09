@@ -4,514 +4,664 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>YILMAZ REDUKTOR — O'zbekiston</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--y:#f5b800;--bg:#0a0a0b;--s:#111114;--b:#1a1a1f;--t:#e8e8ee;--m:#888;--r:16px}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);overflow-x:hidden}
-h1,h2,h3,.num{font-family:'Barlow Condensed',sans-serif;letter-spacing:-.5px}
-a{color:inherit;text-decoration:none}
-.y{color:var(--y)}
+:root{--bl:#0057B7;--bl2:#007ACC;--bl3:#e8f2ff;--bl4:#cce0ff;--bg:#fff;--s:#f4f8ff;--t:#0d1f3c;--m:#5a7399;--r:14px;--sh:0 4px 24px rgba(0,87,183,.10);--sh2:0 8px 40px rgba(0,87,183,.16)}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--t);overflow-x:hidden}
+h1,h2,h3,.num{font-family:'Syne',sans-serif}
+button{font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer}
 
-/* NAV */
-nav{position:fixed;top:0;width:100%;z-index:99;background:rgba(10,10,11,.92);backdrop-filter:blur(20px);border-bottom:1px solid #ffffff0f;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:64px}
-.logo{display:flex;align-items:center;gap:10px;cursor:pointer}
-.logo-box{width:38px;height:38px;background:var(--y);border-radius:10px;display:grid;place-items:center;font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:#000}
-.logo span{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700}
-.nav-links{display:flex;gap:28px;font-size:13.5px;font-weight:500}
-.nav-links a{color:var(--m);transition:.2s;cursor:pointer}
-.nav-links a:hover{color:var(--y)}
-.nav-btn{background:var(--y);color:#000;border:none;padding:9px 20px;border-radius:10px;font-weight:600;font-size:13px;cursor:pointer;transition:.2s}
-.nav-btn:hover{background:#ffd040}
-.ham{display:none;background:none;border:none;color:var(--t);font-size:20px;cursor:pointer}
+nav{position:fixed;top:0;width:100%;z-index:99;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-bottom:1px solid #ddeaff;box-shadow:0 1px 12px rgba(0,87,183,.06);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px}
+.logo{display:flex;align-items:center;gap:11px;cursor:pointer}
+.logo-box{width:40px;height:40px;background:linear-gradient(135deg,var(--bl),var(--bl2));border-radius:11px;display:grid;place-items:center;font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff;box-shadow:0 4px 12px rgba(0,87,183,.3)}
+.logo-text{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--t)}
+.logo-text span{color:var(--bl)}
+.nav-links{display:flex;gap:28px;font-size:14px;font-weight:600}
+.nav-links a{color:var(--m);transition:.2s;cursor:pointer;padding:4px 0;border-bottom:2px solid transparent}
+.nav-links a:hover,.nav-links a.active{color:var(--bl);border-color:var(--bl)}
+.nav-btn{background:linear-gradient(135deg,var(--bl),var(--bl2));color:#fff;border:none;padding:10px 22px;border-radius:10px;font-weight:700;font-size:13px;transition:.2s;box-shadow:0 4px 14px rgba(0,87,183,.25)}
+.nav-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,87,183,.35)}
+.ham{display:none;background:none;border:none;color:var(--t);font-size:20px}
+.mob-menu{display:none;position:fixed;top:68px;width:100%;background:#fff;border-bottom:1px solid #ddeaff;padding:20px 5vw;flex-direction:column;gap:16px;z-index:98;box-shadow:var(--sh)}
+.mob-menu a{font-size:16px;font-weight:600;color:var(--m);cursor:pointer}
 
-/* PAGES */
-.page{display:none;min-height:100vh;padding-top:64px}
+.page{display:none;min-height:100vh;padding-top:68px}
 .page.active{display:block}
 
 /* HERO */
-#home{position:relative;height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:0}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a0a0b 40%,#1a1200 100%)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(245,184,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(245,184,0,.04) 1px,transparent 1px);background-size:60px 60px}
-.hero-glow{position:absolute;right:-200px;top:50%;transform:translateY(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(245,184,0,.12) 0%,transparent 70%);pointer-events:none}
-.hero-content{position:relative;max-width:1200px;margin:0 auto;padding:0 5vw;width:100%}
-.badge{display:inline-flex;align-items:center;gap:8px;background:#ffffff0d;border:1px solid #ffffff18;border-radius:100px;padding:6px 14px;font-size:12px;color:var(--m);margin-bottom:24px}
+.hero{background:linear-gradient(155deg,#f0f6ff 0%,#e8f2ff 50%,#f7faff 100%);min-height:calc(100vh - 68px);display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,#0057b722 1px,transparent 1px);background-size:36px 36px;pointer-events:none}
+.hero-blob{position:absolute;right:-100px;top:-80px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,122,204,.13) 0%,transparent 65%);pointer-events:none}
+.hero-inner{position:relative;max-width:1200px;margin:0 auto;padding:60px 5vw;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #cce0ff;border-radius:100px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--bl);margin-bottom:20px;box-shadow:var(--sh)}
 .badge-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-h1.hero-title{font-size:clamp(64px,9vw,120px);line-height:.9;font-weight:800;text-transform:uppercase;margin-bottom:20px}
-.hero-sub{color:var(--m);font-size:16px;max-width:420px;line-height:1.7;margin-bottom:36px}
+h1.ht{font-size:clamp(40px,5.5vw,68px);line-height:1.05;font-weight:800;color:var(--t);margin-bottom:18px}
+h1.ht span{color:var(--bl)}
+.hero-sub{color:var(--m);font-size:15px;line-height:1.8;margin-bottom:32px;max-width:420px}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn-primary{background:var(--y);color:#000;border:none;padding:14px 28px;border-radius:12px;font-weight:700;font-size:14px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:8px}
-.btn-primary:hover{background:#ffd040;transform:translateY(-2px)}
-.btn-ghost{background:transparent;color:var(--t);border:1.5px solid #ffffff28;padding:14px 28px;border-radius:12px;font-weight:600;font-size:14px;cursor:pointer;transition:.2s}
-.btn-ghost:hover{border-color:var(--y);color:var(--y)}
-.hero-stats{display:flex;gap:48px;margin-top:56px;padding-top:40px;border-top:1px solid #ffffff0f}
-.stat .num{font-size:44px;font-weight:700;color:var(--y);line-height:1}
-.stat p{font-size:12px;color:var(--m);margin-top:4px}
+.btn-p{background:linear-gradient(135deg,var(--bl),var(--bl2));color:#fff;border:none;padding:13px 26px;border-radius:12px;font-weight:700;font-size:14px;transition:.2s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(0,87,183,.28)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,87,183,.38)}
+.btn-g{background:#fff;color:var(--bl);border:2px solid #cce0ff;padding:13px 26px;border-radius:12px;font-weight:700;font-size:14px;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-g:hover{border-color:var(--bl);background:var(--bl3)}
+.hero-stats{display:flex;gap:28px;margin-top:36px;padding-top:28px;border-top:1px solid #cce0ff;flex-wrap:wrap}
+.stat .num{font-size:34px;font-weight:800;color:var(--bl);line-height:1}
+.stat p{font-size:12px;color:var(--m);margin-top:3px;font-weight:500}
+.hero-card{background:#fff;border-radius:20px;padding:24px;box-shadow:var(--sh2);border:1px solid #e0edff}
+.hero-card img{width:100%;border-radius:12px;object-fit:contain;max-height:240px}
+.hc-lbl{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--bl);margin-top:14px;margin-bottom:3px}
+.hc-title{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;color:var(--t)}
+.hbf{position:absolute;bottom:-14px;left:-18px;background:#fff;border-radius:14px;padding:12px 16px;box-shadow:var(--sh2);border:1px solid #e0edff;display:flex;align-items:center;gap:10px}
+.hbf-ic{width:36px;height:36px;background:var(--bl3);border-radius:10px;display:grid;place-items:center;color:var(--bl);font-size:15px}
+.hbf-v{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--t);line-height:1}
+.hbf-l{font-size:11px;color:var(--m)}
 
 /* SECTIONS */
-section.sect{padding:80px 5vw;max-width:1200px;margin:0 auto}
-.sect-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--y);margin-bottom:12px}
-.sect-title{font-size:clamp(36px,5vw,56px);font-weight:800;text-transform:uppercase;line-height:1}
-.sect-sub{color:var(--m);margin-top:12px;max-width:480px;line-height:1.7}
+.sw{padding:72px 5vw}
+.sw-inner{max-width:1200px;margin:0 auto}
+.sw-gray{background:var(--s)}
+.sect-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--bl);margin-bottom:10px}
+.sect-title{font-size:clamp(30px,4vw,46px);font-weight:800;color:var(--t);line-height:1.1}
+.sect-sub{color:var(--m);margin-top:10px;max-width:480px;line-height:1.8;font-size:15px}
+
+/* CATEGORIES */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;margin-top:36px}
+.cat-card{background:#fff;border:1.5px solid #ddeaff;border-radius:var(--r);padding:26px;cursor:pointer;transition:.3s;position:relative;overflow:hidden}
+.cat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--bl),var(--bl2));transform:scaleX(0);transform-origin:left;transition:.3s}
+.cat-card:hover::after{transform:scaleX(1)}
+.cat-card:hover{border-color:#99c2f0;box-shadow:var(--sh2);transform:translateY(-4px)}
+.cat-icon{width:50px;height:50px;background:var(--bl3);border-radius:14px;display:grid;place-items:center;margin-bottom:14px;font-size:22px;transition:.3s}
+.cat-card:hover .cat-icon{background:var(--bl);filter:brightness(0) invert(1)}
+.cat-card h3{font-size:16px;font-weight:800;color:var(--t);margin-bottom:6px}
+.cat-card p{font-size:13px;color:var(--m);line-height:1.6}
+.cat-count{display:inline-block;margin-top:12px;font-size:12px;font-weight:700;color:var(--bl);background:var(--bl3);padding:3px 10px;border-radius:100px}
+.cat-arr{position:absolute;top:22px;right:22px;width:28px;height:28px;background:var(--bl3);border-radius:8px;display:grid;place-items:center;color:var(--bl);font-size:12px;transition:.3s}
+.cat-card:hover .cat-arr{background:var(--bl);color:#fff}
+
+/* PRODUCTS */
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--m);flex-wrap:wrap;margin-bottom:20px}
+.breadcrumb span{cursor:pointer;transition:.2s}
+.breadcrumb span:hover{color:var(--bl)}
+.breadcrumb .sep{color:#ccc}
+.breadcrumb .cur{color:var(--t);font-weight:600;cursor:default}
+.prods-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.prod-card{background:#fff;border:1.5px solid #ddeaff;border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.3s}
+.prod-card:hover{border-color:#99c2f0;box-shadow:var(--sh2);transform:translateY(-4px)}
+.prod-img-wrap{height:170px;background:var(--s);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.prod-img-wrap img{width:100%;height:100%;object-fit:contain;padding:14px;transition:.3s}
+.prod-card:hover .prod-img-wrap img{transform:scale(1.06)}
+.prod-img-ph{font-size:44px;color:#cce0ff}
+.prod-body{padding:18px}
+.prod-series{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--bl);margin-bottom:3px}
+.prod-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--t);margin-bottom:5px}
+.prod-desc{font-size:13px;color:var(--m);line-height:1.6;margin-bottom:12px}
+.prod-torque{display:flex;justify-content:space-between;padding-top:10px;border-top:1px solid #eef4ff;font-size:12px}
+.prod-torque span:first-child{color:var(--m);font-weight:500}
+.prod-torque span:last-child{font-weight:700;color:var(--bl)}
+.view-btn{margin:14px 18px 18px;display:block;padding:10px;background:var(--bl3);color:var(--bl);border:none;border-radius:10px;font-size:13px;font-weight:700;text-align:center;transition:.2s;width:calc(100% - 36px)}
+.view-btn:hover{background:var(--bl);color:#fff}
+
+/* DETAIL */
+.back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--m);font-size:14px;font-weight:600;border:1.5px solid #ddeaff;background:none;margin-bottom:24px;transition:.2s;padding:8px 16px;border-radius:10px}
+.back-btn:hover{color:var(--bl);border-color:var(--bl);background:var(--bl3)}
+.detail-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:36px;align-items:start}
+.detail-img-box{background:var(--s);border-radius:20px;padding:28px;border:1.5px solid #ddeaff;text-align:center;position:sticky;top:88px}
+.detail-img-box img{max-width:100%;max-height:260px;object-fit:contain}
+.detail-img-ph{height:260px;display:grid;place-items:center;font-size:72px;color:#cce0ff}
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.spec-box{background:var(--bl3);border-radius:10px;padding:12px 14px;border:1px solid #cce0ff}
+.spec-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--bl);margin-bottom:3px}
+.spec-val{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--t)}
+.detail-series-tag{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--bl);margin-bottom:7px}
+.detail-title{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,42px);font-weight:800;color:var(--t);line-height:1;margin-bottom:8px}
+.detail-sub{font-size:15px;font-weight:600;color:var(--bl);margin-bottom:10px}
+.detail-desc{color:var(--m);line-height:1.8;margin-bottom:22px;font-size:14px}
+.blk-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--m);margin-bottom:9px}
+.subtype-list{display:flex;flex-direction:column;gap:7px;margin-bottom:22px}
+.subtype-item{background:#fff;border:1.5px solid #ddeaff;border-radius:10px;padding:11px 14px;font-size:13px;display:flex;gap:10px}
+.subtype-item strong{color:var(--bl);min-width:34px}
+.feat-list{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:22px}
+.feat-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--m);background:var(--s);padding:8px 11px;border-radius:8px}
+.feat-item i{color:var(--bl);font-size:11px;flex-shrink:0}
+.detail-btns{display:flex;gap:10px;flex-wrap:wrap}
+.detail-btns button{flex:1;min-width:120px}
 
 /* ABOUT */
-#about-wrap{background:var(--s)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:48px}
-.about-card{background:var(--b);border:1px solid #ffffff0a;border-radius:var(--r);padding:28px}
-.about-row{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px}
-.about-row:last-child{margin-bottom:0}
-.about-icon{width:36px;height:36px;border-radius:10px;background:#f5b80015;display:grid;place-items:center;flex-shrink:0;color:var(--y)}
-.about-label{font-size:11px;color:var(--m);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
-.about-val{font-size:14px;font-weight:500}
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:40px}
+.about-vis{background:linear-gradient(135deg,var(--bl3),#ddeaff);border-radius:24px;height:360px;display:grid;place-items:center;border:1.5px solid #cce0ff;position:relative;overflow:hidden}
+.about-stats-float{position:absolute;bottom:18px;left:18px;right:18px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.asf{background:rgba(255,255,255,.96);border-radius:12px;padding:12px 14px;border:1px solid #ddeaff;box-shadow:var(--sh)}
+.asf-num{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--bl);line-height:1}
+.asf-lbl{font-size:11px;color:var(--m);margin-top:2px}
+.check-list{display:flex;flex-direction:column;gap:12px;margin:22px 0}
+.ci{display:flex;gap:12px;align-items:flex-start}
+.ci-ic{width:30px;height:30px;background:var(--bl3);border-radius:9px;display:grid;place-items:center;flex-shrink:0;margin-top:2px}
+.ci-ic i{color:var(--bl);font-size:12px}
+.ci-t{font-weight:700;font-size:14px;color:var(--t);margin-bottom:2px}
+.ci-d{font-size:13px;color:var(--m);line-height:1.6}
 
-/* PRODUCTS GRID */
-#products-wrap{background:var(--bg)}
-.cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:32px 0}
-.tab{padding:8px 18px;border-radius:100px;border:1px solid #ffffff14;font-size:13px;font-weight:500;cursor:pointer;transition:.2s;background:transparent;color:var(--m)}
-.tab.active,.tab:hover{background:var(--y);color:#000;border-color:var(--y)}
-.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-.prod-card{background:var(--s);border:1px solid #ffffff0a;border-radius:var(--r);padding:24px;cursor:pointer;transition:.3s;position:relative;overflow:hidden}
-.prod-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--y);transform:scaleX(0);transform-origin:left;transition:.3s}
-.prod-card:hover::before{transform:scaleX(1)}
-.prod-card:hover{border-color:#f5b80030;transform:translateY(-4px)}
-.prod-img{width:100%;height:160px;object-fit:contain;margin-bottom:16px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4))}
-.prod-img-placeholder{width:100%;height:160px;background:var(--b);border-radius:10px;display:grid;place-items:center;margin-bottom:16px;font-size:40px;color:#ffffff0a}
-.prod-series{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--y);margin-bottom:6px}
-.prod-name{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;margin-bottom:6px}
-.prod-desc{font-size:13px;color:var(--m);line-height:1.6;margin-bottom:16px}
-.prod-torque{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid #ffffff08;font-size:12px}
-.prod-torque span:first-child{color:var(--m)}
-.prod-torque span:last-child{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:600;color:var(--t)}
-.detail-btn{margin-top:14px;width:100%;padding:10px;background:transparent;border:1px solid #ffffff14;border-radius:10px;color:var(--m);font-size:13px;cursor:pointer;transition:.2s}
-.detail-btn:hover{border-color:var(--y);color:var(--y)}
-
-/* PRODUCT DETAIL PAGE */
-#prod-detail{background:var(--bg)}
-.back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--m);font-size:14px;cursor:pointer;margin-bottom:32px;transition:.2s;border:none;background:none}
-.back-btn:hover{color:var(--y)}
-.detail-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-.detail-img-wrap{background:var(--s);border-radius:20px;padding:32px;border:1px solid #ffffff0a;text-align:center}
-.detail-img{max-width:100%;max-height:300px;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,.5))}
-.detail-img-ph{height:300px;display:grid;place-items:center;font-size:80px;color:#ffffff08}
-.detail-series-tag{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--y);margin-bottom:8px}
-.detail-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,5vw,56px);font-weight:800;text-transform:uppercase;line-height:1;margin-bottom:16px}
-.detail-desc{color:var(--m);line-height:1.8;margin-bottom:28px}
-.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
-.spec-box{background:var(--s);border-radius:12px;padding:16px;border:1px solid #ffffff08}
-.spec-label{font-size:11px;color:var(--m);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-.spec-val{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700}
-.subtypes{margin-bottom:28px}
-.subtypes h4{font-size:13px;color:var(--m);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
-.subtype-list{display:flex;flex-direction:column;gap:8px}
-.subtype-item{background:var(--s);border-radius:10px;padding:12px 16px;border:1px solid #ffffff08;font-size:13px}
-.subtype-item strong{color:var(--y);margin-right:8px}
-.features{margin-bottom:28px}
-.features h4{font-size:13px;color:var(--m);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
-.feat-list{display:flex;flex-direction:column;gap:8px}
-.feat-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--m)}
-.feat-item i{color:var(--y);font-size:12px}
-
-/* ADVANTAGES */
-#adv-wrap{background:var(--s)}
-.adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
-.adv-card{background:var(--b);border:1px solid #ffffff08;border-radius:var(--r);padding:28px;transition:.3s}
-.adv-card:hover{border-color:#f5b80025;transform:translateY(-4px)}
-.adv-icon{font-size:28px;color:var(--y);margin-bottom:16px}
-.adv-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+/* ADV */
+.adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.adv-card{background:#fff;border:1.5px solid #ddeaff;border-radius:var(--r);padding:26px;transition:.3s}
+.adv-card:hover{border-color:#99c2f0;box-shadow:var(--sh);transform:translateY(-3px)}
+.adv-ic{width:46px;height:46px;background:var(--bl3);border-radius:13px;display:grid;place-items:center;margin-bottom:14px;font-size:20px;color:var(--bl)}
+.adv-card h3{font-size:15px;font-weight:800;color:var(--t);margin-bottom:7px}
 .adv-card p{font-size:13px;color:var(--m);line-height:1.7}
 
-/* APPLICATIONS */
-#app-wrap{background:var(--bg)}
-.app-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;margin-top:48px}
-.app-item{background:var(--s);border:1px solid #ffffff08;border-radius:var(--r);padding:20px;text-align:center;transition:.3s}
-.app-item:hover{border-color:#f5b80030;background:var(--b)}
-.app-item .icon{font-size:28px;margin-bottom:10px}
-.app-item p{font-size:13px;font-weight:500}
+/* PARTNERS */
+.partners-strip{display:flex;overflow:hidden;margin-top:36px;border:1.5px solid #ddeaff;border-radius:var(--r)}
+.partner-item{flex:1;padding:22px;text-align:center;font-weight:700;color:var(--m);font-size:14px;border-right:1px solid #ddeaff;transition:.2s;background:#fff}
+.partner-item:last-child{border-right:none}
+.partner-item:hover{background:var(--bl3);color:var(--bl)}
+.partner-item i{display:block;font-size:20px;margin-bottom:5px;color:var(--bl)}
+
+/* NEWS */
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;margin-top:36px}
+.news-card{background:#fff;border:1.5px solid #ddeaff;border-radius:var(--r);overflow:hidden;transition:.3s}
+.news-card:hover{box-shadow:var(--sh2);transform:translateY(-3px)}
+.news-img{height:150px;background:linear-gradient(135deg,var(--bl3),#cce0ff);display:grid;place-items:center;font-size:32px}
+.news-body{padding:18px}
+.news-date{font-size:11px;font-weight:600;color:var(--bl);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px}
+.news-title{font-weight:700;font-size:15px;color:var(--t);margin-bottom:7px;line-height:1.4}
+.news-desc{font-size:13px;color:var(--m);line-height:1.6}
+
+/* APP */
+.app-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:13px;margin-top:36px}
+.app-item{background:#fff;border:1.5px solid #ddeaff;border-radius:var(--r);padding:18px;text-align:center;transition:.3s}
+.app-item:hover{box-shadow:var(--sh);border-color:#99c2f0;transform:translateY(-2px)}
+.app-item .icon{font-size:28px;margin-bottom:7px}
+.app-item p{font-size:13px;font-weight:600;color:var(--t)}
 
 /* CONTACT */
-#contact-wrap{background:var(--s)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px}
-.contact-form{display:flex;flex-direction:column;gap:14px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-input,textarea,select{width:100%;background:var(--b);border:1px solid #ffffff0f;border-radius:12px;padding:14px 16px;color:var(--t);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:.2s}
-input:focus,textarea:focus{border-color:var(--y)}
-textarea{resize:none;height:120px}
-.submit-btn{background:var(--y);color:#000;border:none;padding:15px;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;transition:.2s}
-.submit-btn:hover{background:#ffd040}
-.contact-info{display:flex;flex-direction:column;gap:24px}
-.info-item{display:flex;gap:16px;align-items:flex-start}
-.info-icon{width:44px;height:44px;background:#f5b80015;border-radius:12px;display:grid;place-items:center;color:var(--y);flex-shrink:0}
-.info-label{font-size:11px;color:var(--m);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-.info-val{font-size:14px;font-weight:500}
-.map-ph{background:var(--b);border-radius:16px;height:180px;display:grid;place-items:center;border:1px dashed #ffffff12;text-align:center;color:var(--m);font-size:13px;margin-top:16px}
+.contact-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;margin-top:40px}
+.contact-form-wrap{background:#fff;border-radius:20px;padding:32px;box-shadow:var(--sh2);border:1.5px solid #ddeaff}
+.contact-form-wrap h3{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:22px;color:var(--t)}
+.cf{display:flex;flex-direction:column;gap:13px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+label{font-size:12px;font-weight:700;color:var(--m);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px}
+input,textarea,select{width:100%;background:var(--s);border:1.5px solid #ddeaff;border-radius:10px;padding:11px 13px;color:var(--t);font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:.2s}
+input:focus,textarea:focus,select:focus{border-color:var(--bl);background:#fff;box-shadow:0 0 0 3px rgba(0,87,183,.08)}
+textarea{resize:none;height:100px}
+.submit-btn{background:linear-gradient(135deg,var(--bl),var(--bl2));color:#fff;border:none;padding:14px;border-radius:12px;font-weight:700;font-size:14px;transition:.2s;width:100%;box-shadow:0 4px 14px rgba(0,87,183,.25)}
+.submit-btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,87,183,.35)}
+.contact-info{display:flex;flex-direction:column;gap:14px}
+.info-card{background:#fff;border:1.5px solid #ddeaff;border-radius:var(--r);padding:18px;display:flex;gap:13px;align-items:flex-start;transition:.3s}
+.info-card:hover{box-shadow:var(--sh);border-color:#99c2f0}
+.info-ic{width:42px;height:42px;background:var(--bl3);border-radius:12px;display:grid;place-items:center;flex-shrink:0;color:var(--bl);font-size:17px}
+.info-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--m);margin-bottom:3px}
+.info-val{font-size:14px;font-weight:600;color:var(--t)}
+.info-sub{font-size:12px;color:var(--m);margin-top:2px}
+.map-box{background:var(--s);border-radius:14px;height:140px;display:grid;place-items:center;border:1.5px dashed #cce0ff;text-align:center;color:var(--m);font-size:13px}
+.map-box i{font-size:26px;color:var(--bl);margin-bottom:7px;display:block}
 
 /* FOOTER */
-footer{background:#000;border-top:1px solid #ffffff08;padding:40px 5vw}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap}
-.footer-copy{font-size:12px;color:var(--m)}
-.footer-links{display:flex;gap:20px}
-.footer-links a{font-size:12px;color:var(--m);transition:.2s}
-.footer-links a:hover{color:var(--y)}
+footer{background:var(--t);color:#a8bfdb;padding:48px 5vw 24px}
+.footer-top{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand p{font-size:13px;line-height:1.8;margin-top:10px;color:#7a9abf}
+.footer-col h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#fff;margin-bottom:14px}
+.footer-col a{display:block;font-size:13px;color:#7a9abf;margin-bottom:8px;transition:.2s;cursor:pointer}
+.footer-col a:hover{color:#60a5fa}
+.footer-bottom{max-width:1200px;margin:22px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px;color:#4a6a8a}
+.footer-logo-box{width:34px;height:34px;background:linear-gradient(135deg,var(--bl),var(--bl2));border-radius:9px;display:grid;place-items:center;font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#fff}
+.footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.footer-logo span{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#fff}
+.socials{display:flex;gap:9px;margin-top:14px}
+.socials a{width:32px;height:32px;background:rgba(255,255,255,.07);border-radius:8px;display:grid;place-items:center;color:#7a9abf;transition:.2s;font-size:13px;text-decoration:none}
+.socials a:hover{background:var(--bl);color:#fff}
 
 /* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);z-index:200;display:none;place-items:center;padding:20px}
-.modal-overlay.open{display:grid}
-.modal{background:var(--s);border-radius:20px;padding:32px;max-width:480px;width:100%;border:1px solid #ffffff0f;position:relative}
-.modal-close{position:absolute;top:16px;right:16px;background:var(--b);border:none;color:var(--m);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:16px;transition:.2s}
-.modal-close:hover{color:var(--t)}
-.modal h3{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:700;margin-bottom:20px}
-.modal-form{display:flex;flex-direction:column;gap:12px}
-.modal .submit-btn{margin-top:4px}
+.modal-bg{position:fixed;inset:0;background:rgba(13,31,60,.5);backdrop-filter:blur(8px);z-index:200;display:none;place-items:center;padding:20px}
+.modal-bg.open{display:grid}
+.modal{background:#fff;border-radius:20px;padding:32px;max-width:460px;width:100%;position:relative;box-shadow:0 24px 64px rgba(0,87,183,.2)}
+.modal-close{position:absolute;top:14px;right:14px;background:var(--s);border:1.5px solid #ddeaff;color:var(--m);width:30px;height:30px;border-radius:8px;font-size:15px;transition:.2s}
+.modal-close:hover{background:var(--bl3);color:var(--bl)}
+.modal h3{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--t);margin-bottom:18px}
+.mf{display:flex;flex-direction:column;gap:11px}
 
-/* TOAST */
-.toast{position:fixed;bottom:24px;right:24px;background:#22c55e;color:#000;padding:12px 20px;border-radius:12px;font-weight:600;font-size:14px;z-index:300;transform:translateY(100px);opacity:0;transition:.3s}
+.toast{position:fixed;bottom:22px;right:22px;background:var(--bl);color:#fff;padding:12px 20px;border-radius:12px;font-weight:600;font-size:14px;z-index:300;transform:translateY(80px);opacity:0;transition:.35s;box-shadow:0 8px 24px rgba(0,87,183,.3)}
 .toast.show{transform:translateY(0);opacity:1}
 
-/* RESPONSIVE */
-@media(max-width:768px){
-  .nav-links{display:none}
-  .ham{display:block}
-  .mobile-menu{display:flex;flex-direction:column;gap:16px;padding:20px 5vw;background:var(--s);border-bottom:1px solid #ffffff08;position:fixed;top:64px;width:100%;z-index:98}
-  .mobile-menu a{font-size:16px;font-weight:600;cursor:pointer}
-  .about-grid,.detail-layout,.contact-grid{grid-template-columns:1fr}
+@media(max-width:900px){
+  .nav-links{display:none}.ham{display:block}
+  .hero-inner,.about-layout,.detail-layout,.contact-layout{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
   .adv-grid{grid-template-columns:1fr}
-  .hero-stats{gap:24px}
-  .spec-grid{grid-template-columns:1fr 1fr}
-  .form-row{grid-template-columns:1fr}
+  .feat-list{grid-template-columns:1fr}
+  .partners-strip{flex-wrap:wrap}
+  .partner-item{flex:calc(50% - 1px)}
+}
+@media(max-width:500px){
+  .spec-grid,.form-row{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo" onclick="nav('home')">
+  <div class="logo" onclick="go('home')">
     <div class="logo-box">Y</div>
-    <span>YILMAZ <span class="y">REDUKTOR</span></span>
+    <div class="logo-text">YILMAZ <span>REDUKTOR</span></div>
   </div>
   <div class="nav-links">
-    <a onclick="nav('home')">Bosh sahifa</a>
-    <a onclick="nav('about')">Biz haqimizda</a>
-    <a onclick="nav('products')">Mahsulotlar</a>
-    <a onclick="nav('contact')">Kontakt</a>
+    <a onclick="go('home')" id="nl-home">Bosh sahifa</a>
+    <a onclick="go('catalog')" id="nl-catalog">Katalog</a>
+    <a onclick="go('about')" id="nl-about">Biz haqimizda</a>
+    <a onclick="go('news')" id="nl-news">Yangiliklar</a>
+    <a onclick="go('contact')" id="nl-contact">Kontakt</a>
   </div>
   <button class="nav-btn" onclick="openModal()"><i class="fa fa-bolt"></i> Tez so'rov</button>
-  <button class="ham" onclick="toggleMobile()"><i class="fa fa-bars"></i></button>
+  <button class="ham" onclick="toggleMob()"><i class="fa fa-bars"></i></button>
 </nav>
-
-<div id="mobile-menu" class="mobile-menu" style="display:none">
-  <a onclick="nav('home');toggleMobile()">Bosh sahifa</a>
-  <a onclick="nav('about');toggleMobile()">Biz haqimizda</a>
-  <a onclick="nav('products');toggleMobile()">Mahsulotlar</a>
-  <a onclick="nav('contact');toggleMobile()">Kontakt</a>
+<div class="mob-menu" id="mob-menu">
+  <a onclick="go('home');toggleMob()">Bosh sahifa</a>
+  <a onclick="go('catalog');toggleMob()">Katalog</a>
+  <a onclick="go('about');toggleMob()">Biz haqimizda</a>
+  <a onclick="go('news');toggleMob()">Yangiliklar</a>
+  <a onclick="go('contact');toggleMob()">Kontakt</a>
 </div>
 
 <!-- HOME -->
 <div id="page-home" class="page active">
-  <section id="home" style="position:relative;height:100vh;display:flex;align-items:center;overflow:hidden">
-    <div class="hero-bg"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-glow"></div>
-    <div class="hero-content">
-      <div class="badge"><span class="badge-dot"></span>Turkiya ishlab chiqarishi — 1958 yildan beri</div>
-      <h1 class="hero-title">SANOAT<br><span class="y">REDUKTOR</span><br>LARI</h1>
-      <p class="hero-sub">Yilmaz Reduktor — yillik 330,000 dona ishlab chiqarish quvvati bilan jahonning yetakchi reduktor ishlab chiqaruvchilaridan biri.</p>
-      <div class="hero-btns">
-        <button class="btn-primary" onclick="openModal()">BUYURTMA BERISH <i class="fa fa-arrow-right"></i></button>
-        <button class="btn-ghost" onclick="nav('products')">MAHSULOTLAR</button>
+  <div class="hero">
+    <div class="hero-dots"></div><div class="hero-blob"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge"><span class="badge-dot"></span>Turkiya ishlab chiqarishi — 1958 yildan beri</div>
+        <h1 class="ht">Ishonchli<br><span>Sanoat</span><br>Reduktorlari</h1>
+        <p class="hero-sub">Yilmaz Reduktor — yillik 330,000 dona ishlab chiqarish quvvati bilan dunyoning yetakchi reduktor ishlab chiqaruvchilaridan biri. O'zbekistonda rasmiy vakillik.</p>
+        <div class="hero-btns">
+          <button class="btn-p" onclick="go('catalog')">KATALOGNI KO'RISH <i class="fa fa-arrow-right"></i></button>
+          <button class="btn-g" onclick="openModal()">BUYURTMA BERISH</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><div class="num">330K+</div><p>Yillik ishlab chiqarish</p></div>
+          <div class="stat"><div class="num">11</div><p>Mahsulot seriyasi</p></div>
+          <div class="stat"><div class="num">60+</div><p>Yillik tajriba</p></div>
+          <div class="stat"><div class="num">80+</div><p>Eksport mamlakatlari</p></div>
+        </div>
       </div>
-      <div class="hero-stats">
-        <div class="stat"><div class="num">330K</div><p>Yillik ishlab chiqarish</p></div>
-        <div class="stat"><div class="num">11</div><p>Mahsulot seriyasi</p></div>
-        <div class="stat"><div class="num">60+</div><p>Yillik tajriba</p></div>
-        <div class="stat"><div class="num">7</div><p>Qit'aga eksport</p></div>
+      <div style="position:relative">
+        <div class="hero-card">
+          <img src="https://yreduktor.eu/wp-content/uploads/2019/03/MR-Helical-Inline-1.jpg" alt="Reduktor" onerror="this.style.display='none'">
+          <div class="hc-lbl">M SERIYASI</div>
+          <div class="hc-title">Helisel Motor-Reduktorlar</div>
+        </div>
+        <div class="hbf">
+          <div class="hbf-ic"><i class="fa fa-shield-halved"></i></div>
+          <div><div class="hbf-v">DIN & Niemann</div><div class="hbf-l">Standartlari</div></div>
+        </div>
       </div>
     </div>
-  </section>
-</div>
+  </div>
 
-<!-- ABOUT -->
-<div id="page-about" class="page">
-  <div id="about-wrap">
-    <section class="sect">
-      <div class="sect-tag">1958 — DAN BERI</div>
-      <h2 class="sect-title">BIZ HAQIMIZDA</h2>
-      <p class="sect-sub">Yilmaz Reduktor — Turkiyaning eng yirik va dunyodagi yetakchi reduktor ishlab chiqaruvchilaridan biri. Har yili 330,000 dona yuqori sifatli mahsulot yetkazib beramiz.</p>
-      <div class="about-grid">
-        <div>
-          <p style="color:var(--m);line-height:1.9;margin-bottom:20px">1958-yilda Mesut Yilmaz tomonidan asos solingan kompaniya bugungi kunda Istanbul, Cerkezkoy va Toshkent ofislarida faoliyat yuritadi. Umumiy ishlab chiqarish maydoni 100,000 m².</p>
-          <p style="color:var(--m);line-height:1.9;margin-bottom:28px">Bizning mahsulotlarimiz SEW, Flender, Bonfiglioli va David Brown bilan to'liq almashtiriladi. DIN va Niemann standartlariga to'liq mos keladi.</p>
-          <button class="btn-primary" onclick="nav('products')">MAHSULOTLARNI KO'RISH <i class="fa fa-arrow-right"></i></button>
-        </div>
-        <div class="about-card">
-          <div class="about-row"><div class="about-icon"><i class="fa fa-industry"></i></div><div><div class="about-label">Ishlab chiqarish quvvati</div><div class="about-val">Yiliga 330,000 dona — top-6 dunyo ishlab chiqaruvchisi</div></div></div>
-          <div class="about-row"><div class="about-icon"><i class="fa fa-shield-halved"></i></div><div><div class="about-label">Sifat standarti</div><div class="about-val">DIN va Niemann — Monoblok korpus, cho'yan GG20/GG22</div></div></div>
-          <div class="about-row"><div class="about-icon"><i class="fa fa-globe"></i></div><div><div class="about-label">Eksport</div><div class="about-val">7 qit'a, 80+ mamlakatga yetkazib berish</div></div></div>
-          <div class="about-row"><div class="about-icon"><i class="fa fa-bolt"></i></div><div><div class="about-label">To'liq yechim</div><div class="about-val">Reduktor + Motor + Tezlik boshqaruvi — yagona brendda</div></div></div>
-        </div>
-      </div>
-    </section>
+  <div class="sw sw-gray">
+    <div class="sw-inner">
+      <div class="sect-tag">MAHSULOT KATALOGI</div>
+      <h2 class="sect-title">Kategoriyalar</h2>
+      <p class="sect-sub">Sanoatning har qanday talabi uchun — kompakt, industriyal va maxsus yechimlar.</p>
+      <div class="cat-grid" id="home-cats"></div>
+    </div>
   </div>
-  <div id="adv-wrap">
-    <section class="sect">
+
+  <div class="sw">
+    <div class="sw-inner">
       <div class="sect-tag">NIMA UCHUN YILMAZ?</div>
-      <h2 class="sect-title">AFZALLIKLAR</h2>
+      <h2 class="sect-title">Afzalliklar</h2>
       <div class="adv-grid">
-        <div class="adv-card"><div class="adv-icon"><i class="fa fa-cogs"></i></div><h3>Monoblok Korpus</h3><p>Yuqori qattiqlik, shovqinsiz ishlash va yog' oqmasligi. GG20/GG22 cho'yan asosida ishlab chiqarilgan.</p></div>
-        <div class="adv-card"><div class="adv-icon"><i class="fa fa-recycle"></i></div><h3>To'liq Almashtiriladigan</h3><p>SEW, Flender, David Brown, Bonfiglioli bilan o'lcham va bog'lanish jihatidan to'liq mos keladi.</p></div>
-        <div class="adv-card"><div class="adv-icon"><i class="fa fa-sliders"></i></div><h3>Modulli Dizayn</h3><p>Har qanday sanoat vazifasi uchun moslashtiriladigan konfiguratsiya. Elektromagnit tormoz, encoder va boshqalar.</p></div>
-        <div class="adv-card"><div class="adv-icon"><i class="fa fa-temperature-half"></i></div><h3>Ilg'or Sovutish</h3><p>Tashqi isitish almashinuvchisi, ichki sovutish spirali, majburiy yog'lash tizimlari mavjud.</p></div>
-        <div class="adv-card"><div class="adv-icon"><i class="fa fa-certificate"></i></div><h3>Sertifikatlangan</h3><p>IE2, IE3, IE4 energiya samaradorligi sinflari. C5 korroziyaga qarshi himoya mavjud.</p></div>
-        <div class="adv-card"><div class="adv-icon"><i class="fa fa-headset"></i></div><h3>Mahalliy Qo'llab-quvvatlash</h3><p>Toshkentda rasmiy vakillik. Tez yetkazib berish va texnik xizmat ko'rsatish garantiyasi.</p></div>
+        <div class="adv-card"><div class="adv-ic"><i class="fa fa-industry"></i></div><h3>Dunyoning Top-6 Ishlab Chiqaruvchisi</h3><p>Yiliga 330,000 dona — Turkiyaning eng katta reduktor zavodi, 100,000 m² ishlab chiqarish maydoni.</p></div>
+        <div class="adv-card"><div class="adv-ic"><i class="fa fa-recycle"></i></div><h3>To'liq Almashtiriladi</h3><p>SEW, Flender, David Brown, Bonfiglioli bilan o'lcham va bog'lanish jihatidan to'liq mos keladi.</p></div>
+        <div class="adv-card"><div class="adv-ic"><i class="fa fa-certificate"></i></div><h3>DIN & Niemann Standartlari</h3><p>GG20/GG22 cho'yan monoblok korpus. 58-62 HRc tishli g'ildiraklar. IE2, IE3, IE4 sertifikatlari.</p></div>
       </div>
-    </section>
+    </div>
   </div>
-  <div id="app-wrap">
-    <section class="sect">
+
+  <div class="sw sw-gray">
+    <div class="sw-inner">
+      <div class="sect-tag">HAMKORLAR</div>
+      <h2 class="sect-title">Bizning Hamkorlar</h2>
+      <div class="partners-strip">
+        <div class="partner-item"><i class="fa fa-building"></i>ABB Group</div>
+        <div class="partner-item"><i class="fa fa-building"></i>Siemens</div>
+        <div class="partner-item"><i class="fa fa-building"></i>Schneider Electric</div>
+        <div class="partner-item"><i class="fa fa-building"></i>SEW-Eurodrive</div>
+        <div class="partner-item"><i class="fa fa-building"></i>Flender</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sw">
+    <div class="sw-inner">
       <div class="sect-tag">QO'LLANISH SOHALARI</div>
-      <h2 class="sect-title">QAYERDA ISHLATILADI</h2>
+      <h2 class="sect-title">Qayerda Ishlatiladi</h2>
       <div class="app-grid">
-        <div class="app-item"><div class="icon">🏗️</div><p>Qurilish jihozlari</p></div>
+        <div class="app-item"><div class="icon">🏗️</div><p>Qurilish</p></div>
         <div class="app-item"><div class="icon">🏭</div><p>Sement zavodi</p></div>
         <div class="app-item"><div class="icon">⛏️</div><p>Kon sanoati</p></div>
         <div class="app-item"><div class="icon">🚢</div><p>Kran va lift</p></div>
-        <div class="app-item"><div class="icon">🌾</div><p>Oziq-ovqat sanoati</p></div>
-        <div class="app-item"><div class="icon">♻️</div><p>Qog'oz ishlab chiqarish</p></div>
-        <div class="app-item"><div class="icon">⚙️</div><p>Konveyer tizimlari</p></div>
-        <div class="app-item"><div class="icon">🛢️</div><p>Neft va gaz</p></div>
+        <div class="app-item"><div class="icon">🌾</div><p>Oziq-ovqat</p></div>
+        <div class="app-item"><div class="icon">♻️</div><p>Qog'oz sanoati</p></div>
+        <div class="app-item"><div class="icon">⚙️</div><p>Konveyerlar</p></div>
+        <div class="app-item"><div class="icon">🛢️</div><p>Neft & gaz</p></div>
         <div class="app-item"><div class="icon">🌊</div><p>Suv tozalash</p></div>
         <div class="app-item"><div class="icon">🔩</div><p>Metallurgiya</p></div>
       </div>
-    </section>
+    </div>
   </div>
 </div>
 
-<!-- PRODUCTS -->
-<div id="page-products" class="page">
-  <div id="products-wrap">
-    <section class="sect">
+<!-- CATALOG -->
+<div id="page-catalog" class="page">
+  <div class="sw">
+    <div class="sw-inner">
       <div class="sect-tag">KATALOG</div>
-      <h2 class="sect-title">MAHSULOTLAR</h2>
-      <p class="sect-sub">11 ta seriya — har qanday sanoat talabi uchun yechim.</p>
-      <div class="cat-tabs">
-        <button class="tab active" onclick="filterCat('all',this)">Barchasi</button>
-        <button class="tab" onclick="filterCat('compact',this)">Kompakt</button>
-        <button class="tab" onclick="filterCat('industrial',this)">Industriyal</button>
-        <button class="tab" onclick="filterCat('special',this)">Maxsus</button>
-      </div>
-      <div class="products-grid" id="prod-grid"></div>
-    </section>
+      <h2 class="sect-title">Mahsulot Kategoriyalari</h2>
+      <p class="sect-sub">Kategoriyani tanlang — kerakli reduktor seriyasini oson toping.</p>
+      <div class="cat-grid" id="catalog-cats"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS LIST -->
+<div id="page-products" class="page">
+  <div class="sw">
+    <div class="sw-inner">
+      <div id="prod-list-header"></div>
+      <div class="prods-grid" id="prod-list-grid"></div>
+    </div>
   </div>
 </div>
 
 <!-- PRODUCT DETAIL -->
-<div id="page-prod-detail" class="page">
-  <section class="sect" id="detail-content"></section>
+<div id="page-detail" class="page">
+  <div class="sw">
+    <div class="sw-inner" id="prod-detail-content"></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="page-about" class="page">
+  <div class="sw sw-gray">
+    <div class="sw-inner">
+      <div class="sect-tag">1958 — DAN BERI</div>
+      <h2 class="sect-title">Biz Haqimizda</h2>
+      <div class="about-layout">
+        <div class="about-vis">
+          <div style="font-size:80px;opacity:.15">⚙️</div>
+          <div class="about-stats-float">
+            <div class="asf"><div class="asf-num">330K</div><div class="asf-lbl">Yillik ishlab chiqarish</div></div>
+            <div class="asf"><div class="asf-num">100K m²</div><div class="asf-lbl">Zavod maydoni</div></div>
+            <div class="asf"><div class="asf-num">60+</div><div class="asf-lbl">Yillik tajriba</div></div>
+            <div class="asf"><div class="asf-num">80+</div><div class="asf-lbl">Eksport mamlakati</div></div>
+          </div>
+        </div>
+        <div>
+          <p style="color:var(--m);line-height:1.9;font-size:15px;margin-bottom:18px">1958-yilda Mesut Yilmaz tomonidan asos solingan kompaniya bugungi kunda Istanbul, Cerkezkoy va Toshkentda faoliyat yuritadi. Mahsulotlarimiz dunyoning 7 qit'asiga, 80 dan ortiq mamlakatga eksport qilinadi.</p>
+          <p style="color:var(--m);line-height:1.9;font-size:15px;margin-bottom:22px">2017-yilda tezlik boshqaruv drayverlari qo'shilishi bilan Yilmaz — Turkiyada yagona brend ostida reduktor, motor va tezlik boshqaruvini taqdim etadigan birinchi kompaniyaga aylandi.</p>
+          <div class="check-list">
+            <div class="ci"><div class="ci-ic"><i class="fa fa-check"></i></div><div><div class="ci-t">Monoblok Korpus</div><div class="ci-d">GG20/GG22 cho'yan — qattiqlik, shovqinsizlik, yog' oqmasligi</div></div></div>
+            <div class="ci"><div class="ci-ic"><i class="fa fa-check"></i></div><div><div class="ci-t">To'liq Almashtiriladigan</div><div class="ci-d">SEW, Flender, David Brown, Bonfiglioli bilan to'liq mos</div></div></div>
+            <div class="ci"><div class="ci-ic"><i class="fa fa-check"></i></div><div><div class="ci-t">Yagona To'liq Yechim</div><div class="ci-d">Reduktor + Motor + Tezlik boshqaruvi — bitta brendda</div></div></div>
+            <div class="ci"><div class="ci-ic"><i class="fa fa-check"></i></div><div><div class="ci-t">Mahalliy Qo'llab-quvvatlash</div><div class="ci-d">Toshkentda rasmiy vakillik, tez yetkazib berish va texnik xizmat</div></div></div>
+          </div>
+          <button class="btn-p" onclick="go('catalog')">KATALOGNI KO'RISH <i class="fa fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sw">
+    <div class="sw-inner">
+      <div class="sect-tag">SERTIFIKATLAR</div>
+      <h2 class="sect-title">Standartlar</h2>
+      <div class="adv-grid" style="margin-top:28px">
+        <div class="adv-card"><div class="adv-ic"><i class="fa fa-award"></i></div><h3>DIN & Niemann</h3><p>Barcha reduktorlar xalqaro DIN va Niemann standartlariga muvofiq ishlab chiqariladi.</p></div>
+        <div class="adv-card"><div class="adv-ic"><i class="fa fa-bolt"></i></div><h3>IE2 / IE3 / IE4</h3><p>Elektr motorlari eng yuqori energiya samaradorligi sinflariga to'liq sertifikatlangan.</p></div>
+        <div class="adv-card"><div class="adv-ic"><i class="fa fa-shield-halved"></i></div><h3>C5 Korroziya Himoyasi</h3><p>Qattiq muhit sharoitlari uchun maxsus C5 korroziyaga qarshi himoya qoplamasi mavjud.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS -->
+<div id="page-news" class="page">
+  <div class="sw sw-gray">
+    <div class="sw-inner">
+      <div class="sect-tag">YANGILIKLAR</div>
+      <h2 class="sect-title">So'nggi Yangiliklar</h2>
+      <div class="news-grid">
+        <div class="news-card"><div class="news-img">⚙️</div><div class="news-body"><div class="news-date">Mart 2025</div><div class="news-title">Yilmaz Reduktor O'zbekistonda yangi omborxona ochdi</div><div class="news-desc">Toshkentdagi yangi omborxona 500 dan ortiq model turini zaxirada ushlab turish imkonini beradi.</div></div></div>
+        <div class="news-card"><div class="news-img">🏭</div><div class="news-body"><div class="news-date">Yanvar 2025</div><div class="news-title">IE4 samaradorlik sinfi — yangi elektr motor seriyasi</div><div class="news-desc">Eng yuqori IE4 samaradorlik sinfidagi yangi ELK motor seriyasi mahsulot qatoriga qo'shildi.</div></div></div>
+        <div class="news-card"><div class="news-img">🌍</div><div class="news-body"><div class="news-date">Noyabr 2024</div><div class="news-title">Hannover Messe 2024 — yangi industrial yechimlar</div><div class="news-desc">Hannover ko'rgazmasida Yilmaz 470,000 Nm gacha bo'lgan yangi industriyal seriyani namoyish etdi.</div></div></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- CONTACT -->
 <div id="page-contact" class="page">
-  <div id="contact-wrap">
-    <section class="sect">
+  <div class="sw sw-gray">
+    <div class="sw-inner">
       <div class="sect-tag">BOG'LANING</div>
-      <h2 class="sect-title">KONTAKT</h2>
-      <div class="contact-grid">
-        <div>
-          <form class="contact-form" onsubmit="submitForm(event)">
+      <h2 class="sect-title">Kontakt</h2>
+      <div class="contact-layout">
+        <div class="contact-form-wrap">
+          <h3>So'rov Yuborish</h3>
+          <form class="cf" onsubmit="submitForm(event)">
             <div class="form-row">
-              <input type="text" placeholder="Ism va familiya" required>
-              <input type="tel" placeholder="Telefon raqami" required>
+              <div><label>Ism va familiya</label><input type="text" placeholder="Abdullayev Jasur" required></div>
+              <div><label>Telefon</label><input type="tel" placeholder="+998 90 000 00 00" required></div>
             </div>
-            <input type="email" placeholder="Email manzil">
-            <select>
-              <option value="">Mahsulot turi</option>
-              <option>M Seriyasi — Oyoqli Helisel</option>
-              <option>N Seriyasi — Flanjli Helisel</option>
-              <option>E Seriyasi — Chervyakli</option>
-              <option>D Seriyasi — Kovak vallli</option>
-              <option>K Seriyasi — Konik-Helisel</option>
-              <option>Y/H/B Seriyasi — Industriyal</option>
-              <option>P/R Seriyasi — Planetar</option>
-              <option>T Seriyasi — Konveyer</option>
-            </select>
-            <textarea placeholder="Qo'shimcha talablar (quvvat kW, moment Nm, nisbat...)"></textarea>
+            <div><label>Email</label><input type="email" placeholder="jasur@company.uz"></div>
+            <div><label>Mahsulot turi</label>
+              <select>
+                <option value="">Kategoriyani tanlang</option>
+                <option>Kompakt Reduktorlar (M, N, E, D, K)</option>
+                <option>Industriyal Reduktorlar (Y, H, B)</option>
+                <option>Maxsus Reduktorlar (P, R, T)</option>
+                <option>Elektr Motorlar (ELK seriyasi)</option>
+                <option>Tezlik boshqaruv drayverlari</option>
+              </select>
+            </div>
+            <div><label>Texnik talablar</label><textarea placeholder="Quvvat (kW), moment (Nm), nisbat, qo'llanish sohasi..."></textarea></div>
             <button type="submit" class="submit-btn">YUBORISH <i class="fa fa-paper-plane"></i></button>
           </form>
         </div>
         <div class="contact-info">
-          <div class="info-item"><div class="info-icon"><i class="fa fa-phone"></i></div><div><div class="info-label">Telefon</div><div class="info-val">+998 90 000 00 00</div><div class="info-val" style="color:var(--m);font-size:13px">+7 (495) 543-37-54 (Rossiya)</div></div></div>
-          <div class="info-item"><div class="info-icon"><i class="fa fa-envelope"></i></div><div><div class="info-label">Email</div><div class="info-val">info@yilmazreduktor.uz</div></div></div>
-          <div class="info-item"><div class="info-icon"><i class="fa fa-location-dot"></i></div><div><div class="info-label">Manzil</div><div class="info-val">Toshkent, O'zbekiston</div><div class="info-val" style="color:var(--m);font-size:13px">Yangi Sergeli tumani, Sanoat ko'chasi 45</div></div></div>
-          <div class="info-item"><div class="info-icon"><i class="fa fa-clock"></i></div><div><div class="info-label">Ish vaqti</div><div class="info-val">Dushanba — Juma: 09:00 — 18:00</div></div></div>
-          <div class="map-ph"><div><i class="fa fa-map-location-dot" style="font-size:28px;margin-bottom:8px;color:var(--y)"></i><br>Google Maps integratsiyasi</div></div>
+          <div class="info-card"><div class="info-ic"><i class="fa fa-phone"></i></div><div><div class="info-lbl">Telefon</div><div class="info-val">+998 90 000 00 00</div><div class="info-sub">+7 (495) 543-37-54 (Rossiya)</div></div></div>
+          <div class="info-card"><div class="info-ic"><i class="fa fa-envelope"></i></div><div><div class="info-lbl">Email</div><div class="info-val">info@yilmazreduktor.uz</div></div></div>
+          <div class="info-card"><div class="info-ic"><i class="fa fa-location-dot"></i></div><div><div class="info-lbl">Manzil</div><div class="info-val">Toshkent, O'zbekiston</div><div class="info-sub">Yangi Sergeli tumani, Sanoat ko'chasi 45</div></div></div>
+          <div class="info-card"><div class="info-ic"><i class="fa fa-clock"></i></div><div><div class="info-lbl">Ish vaqti</div><div class="info-val">Dushanba — Juma</div><div class="info-sub">09:00 — 18:00</div></div></div>
+          <div class="map-box"><div><i class="fa fa-map-location-dot"></i>Google Maps integratsiyasi<br><small style="opacity:.6">qo'shish mumkin</small></div></div>
         </div>
       </div>
-    </section>
+    </div>
   </div>
 </div>
 
 <footer>
-  <div class="footer-inner" style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
-    <div class="logo" onclick="nav('home')" style="cursor:pointer">
-      <div class="logo-box">Y</div>
-      <span>YILMAZ <span class="y">REDUKTOR</span></span>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo"><div class="footer-logo-box">Y</div><span>YILMAZ REDUKTOR</span></div>
+      <p>O'zbekistonda Yilmaz Reduktorning rasmiy vakili. Yuqori sifatli sanoat reduktorlari, motorlar va tezlik boshqaruv yechimlari.</p>
+      <div class="socials">
+        <a href="#"><i class="fa-brands fa-telegram"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+      </div>
     </div>
-    <div class="footer-copy">© 2026 Yilmaz Reduktor O'zbekiston. Barcha huquqlar himoyalangan.</div>
-    <div class="footer-links">
-      <a onclick="nav('products')">Mahsulotlar</a>
-      <a onclick="nav('about')">Biz haqimizda</a>
-      <a onclick="nav('contact')">Kontakt</a>
+    <div class="footer-col">
+      <h4>Katalog</h4>
+      <a onclick="showCat('compact')">Kompakt Reduktorlar</a>
+      <a onclick="showCat('industrial')">Industriyal Reduktorlar</a>
+      <a onclick="showCat('special')">Maxsus Reduktorlar</a>
+      <a onclick="showCat('motors')">Elektr Motorlar</a>
     </div>
+    <div class="footer-col">
+      <h4>Kompaniya</h4>
+      <a onclick="go('about')">Biz haqimizda</a>
+      <a onclick="go('news')">Yangiliklar</a>
+      <a href="#">Sertifikatlar</a>
+      <a href="#">Karyera</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <a>+998 90 000 00 00</a>
+      <a>info@yilmazreduktor.uz</a>
+      <a>Toshkent, O'zbekiston</a>
+      <a onclick="go('contact')">So'rov yuborish</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Yilmaz Reduktor O'zbekiston. Barcha huquqlar himoyalangan.</span>
+    <span>Maxfiylik siyosati · Foydalanish shartlari</span>
   </div>
 </footer>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modal" onclick="closeModalOut(event)">
+<div class="modal-bg" id="modal" onclick="closeModalOut(event)">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
-    <h3>REDUKTOR BUYURTMA</h3>
-    <div class="modal-form">
-      <input type="text" id="m-name" placeholder="Ismingiz" required>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <input type="tel" id="m-phone" placeholder="Telefon">
-        <input type="text" id="m-power" placeholder="Quvvat (kW)">
+    <h3>Tez So'rov</h3>
+    <div class="mf">
+      <div><label>Ismingiz</label><input id="mn" type="text" placeholder="Abdullayev Jasur"></div>
+      <div class="form-row">
+        <div><label>Telefon</label><input id="mp" type="tel" placeholder="+998 90..."></div>
+        <div><label>Quvvat (kW)</label><input id="mw" type="text" placeholder="7.5 kW"></div>
       </div>
-      <textarea id="m-desc" placeholder="Moment, nisbat, qo'llanish sohasi..."></textarea>
-      <button class="submit-btn" onclick="submitModal()">YUBORISH</button>
+      <div><label>Qo'shimcha ma'lumot</label><textarea id="md" placeholder="Moment, nisbat, seriya..."></textarea></div>
+      <button class="submit-btn" onclick="submitModal()">YUBORISH <i class="fa fa-paper-plane"></i></button>
     </div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
 
 <script>
-const IMGS = {
-  M:'https://yreduktor.eu/wp-content/uploads/2019/03/MR-Helical-Inline-1.jpg',
-  N:'https://yreduktor.eu/wp-content/uploads/2019/03/NV-Helical-Inline.jpg',
-  E:'https://yreduktor.eu/wp-content/uploads/2019/03/EV-Series-Worm-Gear.jpg',
-  D:'https://yreduktor.eu/wp-content/uploads/2019/03/DR-Parallel-Shaft.jpg',
-  K:'https://yreduktor.eu/wp-content/uploads/2019/03/KV-Bevel-Helical.jpg',
-  Y:'https://yreduktor.eu/wp-content/uploads/2019/03/cropped-Y-Series-Heavy-Duty-2.jpg',
-  H:'https://yreduktor.eu/wp-content/uploads/2019/03/cropped-H-Series-Heavy-Duty.jpg',
-  B:'https://yreduktor.eu/wp-content/uploads/2019/03/cropped-B-Series-Heavy-Duty-Bevel-Helical.jpg'
-};
+const IMGS={M:'https://yreduktor.eu/wp-content/uploads/2019/03/MR-Helical-Inline-1.jpg',N:'https://yreduktor.eu/wp-content/uploads/2019/03/NV-Helical-Inline.jpg',E:'https://yreduktor.eu/wp-content/uploads/2019/03/EV-Series-Worm-Gear.jpg',D:'https://yreduktor.eu/wp-content/uploads/2019/03/DR-Parallel-Shaft.jpg',K:'https://yreduktor.eu/wp-content/uploads/2019/03/KV-Bevel-Helical.jpg',Y:'https://yreduktor.eu/wp-content/uploads/2019/03/cropped-Y-Series-Heavy-Duty-2.jpg',H:'https://yreduktor.eu/wp-content/uploads/2019/03/cropped-H-Series-Heavy-Duty.jpg',B:'https://yreduktor.eu/wp-content/uploads/2019/03/cropped-B-Series-Heavy-Duty-Bevel-Helical.jpg'};
 
-const PRODUCTS = [
-  {id:'M',cat:'compact',name:'M Seriyasi',sub:'Oyoqli Helisel Reduktorlar',desc:'Oyoqli montaj, monoblok korpus. Standart va og\'ir yuklar uchun.',torque:'50 — 18,000 Nm',speed:'0.1 — 500 min⁻¹',sizes:'13 o\'lcham',subtypes:[{c:'MR',d:'Helisel motor-reduktor, oyoqli'},{c:'MV',d:'IEC B5/B14 flanji bilan, oyoqli'},{c:'MN',d:'IEC B5/B14 flanji bilan, reduktor'},{c:'MT',d:'Qattiq kirish valli bilan'}],feats:['Cho\'yan monoblok korpus','58-62 HRc tishli g\'ildiraklar','2 yoki 3 bosqich bir korpusda','Chiqish flanji va val variantlari']},
-  {id:'N',cat:'compact',name:'N Seriyasi',sub:'Flanjli Helisel Reduktorlar',desc:'Flanjli montaj, kompakt o\'lcham. Vertikal va gorizontal o\'rnatish.',torque:'50 — 18,000 Nm',speed:'0.1 — 500 min⁻¹',sizes:'13 o\'lcham',subtypes:[{c:'NR',d:'Helisel motor-reduktor, flanjli'},{c:'NV',d:'IEC B5/B14 flanji bilan, flanjli'},{c:'NN',d:'IEC B5/B14 flanji bilan, reduktor'},{c:'NT',d:'Qattiq kirish valli bilan'}],feats:['Monoblok cho\'yan korpus','Uzun umrli podshipniklar','Har tomonlama montaj imkoniyati','Tezlik va moment moslashtirish']},
-  {id:'E',cat:'compact',name:'E Seriyasi',sub:'Chervyakli (Worm) Reduktorlar',desc:'Ixcham va jim ishlaydigan. Yuqori nisbat, kichik o\'lcham.',torque:'5 — 1,000 Nm',speed:'0.1 — 400 min⁻¹',sizes:'8 o\'lcham',subtypes:[{c:'EV',d:'Chervyakli motor-reduktor'},{c:'EN',d:'IEC B5/B14 flanji bilan'},{c:'ET',d:'Qattiq kirish valli bilan'}],feats:['7.5 dan 100 gacha nisbat bitta bosqichda','Juft reduktor bilan yuqori nisbat','Chiqish flanji variantlari','Jim va tejamkor ishlash']},
-  {id:'D',cat:'compact',name:'D Seriyasi',sub:'Kovak Valli Helisel Reduktorlar',desc:'To\'g\'ridan-to\'g\'ri val bog\'lanish. Konveyer va aralashtiruvchilar uchun ideal.',torque:'130 — 18,000 Nm',speed:'0.1 — 350 min⁻¹',sizes:'10 o\'lcham',subtypes:[{c:'DR',d:'To\'g\'ridan-to\'g\'ri flanjli motor-reduktor'},{c:'DV',d:'IEC B5/B14 flanji bilan'},{c:'DN',d:'IEC B5/B14 flanji bilan, reduktor'},{c:'DT',d:'Qattiq kirish valli bilan'}],feats:['Kovak chiqish valli','Monoblok korpus','Flans va val variantlari','Har qanday montaj o\'rni']},
-  {id:'K',cat:'compact',name:'K Seriyasi',sub:'Konik-Helisel Reduktorlar',desc:'90° burchak ostida uzatish. Og\'ir yuklar va murakkab geometriya uchun.',torque:'80 — 15,000 Nm',speed:'0.1 — 400 min⁻¹',sizes:'10 o\'lcham',subtypes:[{c:'KR',d:'Konik motor-reduktor, to\'g\'ridan flanjli'},{c:'KV',d:'IEC B5/B14 flanji bilan'},{c:'KN',d:'IEC B5/B14 flanji, reduktor'},{c:'KT',d:'Qattiq kirish valli bilan'}],feats:['90° burchakli uzatish','Monoblok korpus','Yuqori moment zichligi','Har tomonlama montaj']},
-  {id:'Y',cat:'industrial',name:'Y Seriyasi',sub:'Gorizontal Industriyal Reduktorlar',desc:'Og\'ir sanoat uchun. Sement, kon, metallurgiya sohalarida qo\'llaniladi.',torque:'1,200 — 43,000 Nm',speed:'2.6 — 990 min⁻¹',sizes:'25 o\'lcham',subtypes:[{c:'YRM',d:'Qattiq chiqish valli, gorizontal'},{c:'YRD',d:'Kovak chiqish valli, gorizontal'},{c:'YRE',d:'Ekstruder chiqish varianti'}],feats:['GGG40 nodul po\'lat korpus','Tashqi issiqlik almashinuvchisi','Majburiy yog\'lash tizimlari','Qisqich disk (shrink disk) varianti']},
-  {id:'H',cat:'industrial',name:'H Seriyasi',sub:'Industriyal Helisel Reduktorlar',desc:'14 o\'lcham, 2,500 dan 165,000 Nm gacha. Eng og\'ir sanoat uchun.',torque:'2,500 — 165,000 Nm',speed:'0.1 — 250 min⁻¹',sizes:'14 o\'lcham',subtypes:[{c:'HT',d:'Qattiq kirish valli'},{c:'HK',d:'IEC B5 kirish flanji'},{c:'HTE',d:'Qattiq kirish valli, ekstruder chiqish'},{c:'BYT',d:'Qo\'shimcha haydovchi bilan'}],feats:['Har tomondan montaj','Majburiy yog\'lash','Tashqi va ichki sovutish','Qisqich disk varianti']},
-  {id:'B',cat:'industrial',name:'B Seriyasi',sub:'Industriyal Helisel-Konik Reduktorlar',desc:'Yuqori quvvat zichligi. 90° burchak, og\'ir yuk, ishonchli ishlash.',torque:'2,500 — 165,000 Nm',speed:'0.1 — 115 min⁻¹',sizes:'14 o\'lcham',subtypes:[{c:'BT',d:'Qattiq kirish valli'},{c:'BK',d:'IEC B5 kirish flanji'},{c:'BTE',d:'Ekstruder chiqish varianti'}],feats:['Barcha yuzadan montaj','Tashqi sovutish almashinuvchisi','Yuqori moment zichligi','Shrink disk varianti']},
-  {id:'P',cat:'special',name:'P & R Seriyasi',sub:'Planetar Reduktorlar',desc:'Ixcham o\'lchamda yuqori moment. Mobil va maxsus ilovalar uchun.',torque:'1,000 — 50,000 Nm',speed:'0.1 — 300 min⁻¹',sizes:'Bir necha o\'lcham',subtypes:[{c:'PR',d:'Planetar motor-reduktor'},{c:'PN',d:'Planetar reduktor, flanji bilan'}],feats:['Yuqori moment zichligi','Modulli konstruktsiya','Quyosh, planet va ichki tishli','Mobil ilovalar uchun ideal']},
-  {id:'T',cat:'special',name:'T Seriyasi',sub:'Konveyer va Maxsus Reduktorlar',desc:'Vertikal va maxsus o\'rnatish. Konveyer tizimlari uchun optimallashtirilgan.',torque:'200 — 18,000 Nm',speed:'0.1 — 200 min⁻¹',sizes:'Bir necha o\'lcham',subtypes:[{c:'TR',d:'Konveyer motor-reduktor'},{c:'TN',d:'Konveyer reduktor'}],feats:['Vertikal o\'rnatish','Konveyer tizimlari uchun','Maxsus qo\'llanishlar','Oziq-ovqat yog\'lari varianti']}
+const CATS=[
+  {id:'compact',icon:'⚙️',name:'Kompakt Reduktorlar',desc:'Oyoqli, flanjli, kovak valli va chervyakli reduktorlar. Kichik va o\'rta yuklar uchun.',count:5},
+  {id:'industrial',icon:'🏭',name:'Industriyal Reduktorlar',desc:'Og\'ir sanoat uchun — sement, kon, metallurgiya. 165,000 Nm gacha.',count:3},
+  {id:'special',icon:'🔩',name:'Maxsus Reduktorlar',desc:'Planetar va konveyer reduktorlari. Maxsus ilovalar va mobil texnika.',count:2},
+  {id:'motors',icon:'⚡',name:'Elektr Motorlar',desc:'IE2, IE3, IE4 sinfidagi asinxron AC motorlar. ELK seriyasi, 315 ramkagacha.',count:1},
 ];
 
-let currentCat = 'all';
+const PRODS=[
+  {id:'M',cat:'compact',name:'M Seriyasi',sub:'Oyoqli Helisel Reduktorlar',desc:'Oyoqli montaj, monoblok cho\'yan korpus. Standart va og\'ir yuklar uchun universal yechim.',torque:'50 — 18,000 Nm',speed:'0.1 — 500 min⁻¹',sizes:'13',subtypes:[{c:'MR',d:'Helisel motor-reduktor, oyoqli montaj'},{c:'MV',d:'IEC B5/B14 flanji bilan, oyoqli'},{c:'MN',d:'IEC B5/B14 flanji bilan, reduktor'},{c:'MT',d:'Qattiq kirish valli bilan'}],feats:['GG20/GG22 cho\'yan monoblok korpus','58-62 HRc tishli g\'ildiraklar','2 yoki 3 bosqich bir korpusda','Chiqish flanji va val variantlari','Elektromagnit tormoz varianti','Encoder varianti']},
+  {id:'N',cat:'compact',name:'N Seriyasi',sub:'Flanjli Helisel Reduktorlar',desc:'Flanjli montaj, kompakt o\'lcham. Vertikal va gorizontal o\'rnatish imkoniyati.',torque:'50 — 18,000 Nm',speed:'0.1 — 500 min⁻¹',sizes:'13',subtypes:[{c:'NR',d:'Helisel motor-reduktor, flanjli'},{c:'NV',d:'IEC B5/B14 flanji bilan, flanjli'},{c:'NN',d:'IEC B5/B14 flanji bilan, reduktor'},{c:'NT',d:'Qattiq kirish valli bilan'}],feats:['Monoblok cho\'yan korpus','Uzun umrli podshipniklar','Har tomonlama montaj','Tezlik va moment moslashtirish','Majburiy sovutish varianti','Oziq-ovqat sanoati yog\'lari']},
+  {id:'E',cat:'compact',name:'E Seriyasi',sub:'Chervyakli (Worm) Reduktorlar',desc:'Ixcham va jim ishlaydigan. Yuqori nisbat, kichik o\'lcham, past shovqin.',torque:'5 — 1,000 Nm',speed:'0.1 — 400 min⁻¹',sizes:'8',subtypes:[{c:'EV',d:'Chervyakli motor-reduktor, IEC flanji'},{c:'EN',d:'IEC B5/B14 flanji bilan, reduktor'},{c:'ET',d:'Qattiq kirish valli bilan'}],feats:['7.5 dan 100 gacha nisbat','Yuqori o\'z-o\'zidan tormozlanish','Chiqish flanji variantlari','Jim va tejamkor ishlash','Juft reduktor bilan yuqori nisbat','Ixcham o\'lcham']},
+  {id:'D',cat:'compact',name:'D Seriyasi',sub:'Kovak Valli Helisel Reduktorlar',desc:'To\'g\'ridan-to\'g\'ri val bog\'lanish. Konveyer va aralashtiruvchilar uchun ideal.',torque:'130 — 18,000 Nm',speed:'0.1 — 350 min⁻¹',sizes:'10',subtypes:[{c:'DR',d:'To\'g\'ridan-to\'g\'ri flanjli motor-reduktor'},{c:'DV',d:'IEC B5/B14 flanji bilan motor-reduktor'},{c:'DN',d:'IEC B5/B14 flanji bilan, reduktor'},{c:'DT',d:'Qattiq kirish valli bilan'}],feats:['Kovak chiqish valli','Monoblok korpus dizayn','Flans va val variantlari','Har qanday montaj o\'rni','Shrink disk varianti','Torque arm varianti']},
+  {id:'K',cat:'compact',name:'K Seriyasi',sub:'Konik-Helisel Reduktorlar',desc:'90° burchak ostida uzatish. Og\'ir yuklar va murakkab geometriya uchun optimal.',torque:'80 — 15,000 Nm',speed:'0.1 — 400 min⁻¹',sizes:'10',subtypes:[{c:'KR',d:'Konik motor-reduktor, to\'g\'ridan flanjli'},{c:'KV',d:'IEC B5/B14 flanji bilan motor-reduktor'},{c:'KN',d:'IEC B5/B14 flanji bilan, reduktor'},{c:'KT',d:'Qattiq kirish valli bilan'}],feats:['90° burchakli uzatish','Monoblok korpus','Yuqori moment zichligi','Har tomonlama montaj','Tishli g\'ildiraklar grindlangan','2 yoki 3 bosqich']},
+  {id:'Y',cat:'industrial',name:'Y Seriyasi',sub:'Gorizontal Industriyal Reduktorlar',desc:'Og\'ir sanoat uchun. Sement, kon, metallurgiya sohalarida ishonchli ishlash.',torque:'1,200 — 43,000 Nm',speed:'2.6 — 990 min⁻¹',sizes:'25',subtypes:[{c:'YRM',d:'Qattiq chiqish valli, gorizontal tip'},{c:'YRD',d:'Kovak chiqish valli, gorizontal tip'},{c:'YRE',d:'Ekstruder chiqish varianti'}],feats:['GGG40 nodul po\'lat korpus','Tashqi issiqlik almashinuvchisi','Ichki sovutish spirali','Majburiy yog\'lash tizimlari','Shrink disk varianti','Har tomondan montaj']},
+  {id:'H',cat:'industrial',name:'H Seriyasi',sub:'Industriyal Helisel Reduktorlar',desc:'14 o\'lcham, 2,500 dan 165,000 Nm gacha. Eng og\'ir sanoat ilovalar uchun.',torque:'2,500 — 165,000 Nm',speed:'0.1 — 250 min⁻¹',sizes:'14',subtypes:[{c:'HT',d:'Qattiq kirish valli'},{c:'HK',d:'IEC B5 kirish flanji'},{c:'HTE',d:'Qattiq kirish valli, ekstruder chiqish'},{c:'BYT',d:'Qo\'shimcha haydovchi bilan'}],feats:['Har tomondan montaj mumkin','Majburiy yog\'lash','Tashqi va ichki sovutish','Shrink disk varianti','Katta moment zichligi','Grindlangan tishli g\'ildiraklar']},
+  {id:'B',cat:'industrial',name:'B Seriyasi',sub:'Industriyal Helisel-Konik Reduktorlar',desc:'Yuqori quvvat zichligi. 90° burchak, og\'ir yuk, ishonchli uzoq muddatli ishlash.',torque:'2,500 — 165,000 Nm',speed:'0.1 — 115 min⁻¹',sizes:'14',subtypes:[{c:'BT',d:'Qattiq kirish valli'},{c:'BK',d:'IEC B5 kirish flanji'},{c:'BTE',d:'Ekstruder chiqish varianti'}],feats:['Barcha yuzadan montaj','Tashqi sovutish almashinuvchisi','Yuqori moment zichligi','Shrink disk varianti','Majburiy yog\'lash','Grindlangan tishli g\'ildiraklar']},
+  {id:'P',cat:'special',name:'P & R Seriyasi',sub:'Planetar Reduktorlar',desc:'Ixcham o\'lchamda yuqori moment. Mobil va maxsus ilovalar uchun ideal.',torque:'1,000 — 50,000 Nm',speed:'0.1 — 300 min⁻¹',sizes:'Bir necha',subtypes:[{c:'PR',d:'Planetar motor-reduktor'},{c:'PN',d:'Planetar reduktor, flanji bilan'},{c:'PT',d:'Qattiq kirish valli bilan'}],feats:['Yuqori moment zichligi','Modulli konstruktsiya','Quyosh, planet va ichki tishli','Mobil ilovalar uchun ideal','Ixcham va engil','Katta nisbat diapazoni']},
+  {id:'T',cat:'special',name:'T Seriyasi',sub:'Konveyer va Maxsus Reduktorlar',desc:'Vertikal va maxsus o\'rnatish. Konveyer tizimlari uchun optimallashtirilgan dizayn.',torque:'200 — 18,000 Nm',speed:'0.1 — 200 min⁻¹',sizes:'Bir necha',subtypes:[{c:'TR',d:'Konveyer motor-reduktor'},{c:'TN',d:'Konveyer reduktor, flanji bilan'},{c:'TS',d:'Maxsus ilovalar uchun'}],feats:['Vertikal o\'rnatish','Konveyer tizimlari uchun','Oziq-ovqat sanoati yog\'lari','Maxsus qo\'llanishlar','Engil konstruksiya','Kompakt o\'lcham']},
+];
 
-function nav(page){
+function go(page){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+page).classList.add('active');
-  window.scrollTo(0,0);
-  if(page==='products') renderProducts(currentCat);
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const nl=document.getElementById('nl-'+page);if(nl)nl.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function filterCat(cat,btn){
-  currentCat=cat;
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  renderProducts(cat);
-}
-
-function renderProducts(cat){
-  const g=document.getElementById('prod-grid');
-  const list=cat==='all'?PRODUCTS:PRODUCTS.filter(p=>p.cat===cat);
-  g.innerHTML=list.map(p=>`
-    <div class="prod-card" onclick="showDetail('${p.id}')">
-      ${IMGS[p.id]?`<img class="prod-img" src="${IMGS[p.id]}" alt="${p.name}" onerror="this.style.display='none'">`:'<div class="prod-img-placeholder">⚙️</div>'}
-      <div class="prod-series">${p.id} SERIYASI</div>
-      <div class="prod-name">${p.name}</div>
-      <div class="prod-desc">${p.sub}</div>
-      <div class="prod-torque"><span>MOMENT</span><span>${p.torque}</span></div>
-      <button class="detail-btn">Batafsil ko'rish →</button>
+function renderCats(id){
+  document.getElementById(id).innerHTML=CATS.map(c=>`
+    <div class="cat-card" onclick="showCat('${c.id}')">
+      <div class="cat-arr"><i class="fa fa-arrow-right"></i></div>
+      <div class="cat-icon">${c.icon}</div>
+      <h3>${c.name}</h3>
+      <p>${c.desc}</p>
+      <span class="cat-count">${c.count} seriya</span>
     </div>`).join('');
 }
 
-function showDetail(id){
-  const p=PRODUCTS.find(x=>x.id===id);
-  if(!p)return;
-  document.getElementById('detail-content').innerHTML=`
-    <button class="back-btn" onclick="nav('products')"><i class="fa fa-arrow-left"></i> Mahsulotlarga qaytish</button>
+function showCat(catId){
+  const cat=CATS.find(c=>c.id===catId)||{name:'Mahsulotlar',desc:''};
+  const prods=PRODS.filter(p=>p.cat===catId);
+  document.getElementById('prod-list-header').innerHTML=`
+    <div class="breadcrumb">
+      <span onclick="go('catalog')">Katalog</span>
+      <span class="sep">/</span><span class="cur">${cat.name}</span>
+    </div>
+    <div class="sect-tag">KATALOG</div>
+    <h2 class="sect-title" style="margin-bottom:6px">${cat.name}</h2>
+    <p class="sect-sub" style="margin-bottom:28px">${cat.desc}</p>`;
+  document.getElementById('prod-list-grid').innerHTML=prods.map(p=>`
+    <div class="prod-card" onclick="showDetail('${p.id}','${catId}')">
+      <div class="prod-img-wrap">${IMGS[p.id]?`<img src="${IMGS[p.id]}" alt="${p.name}" onerror="this.outerHTML='<div class=\\'prod-img-ph\\'>⚙️</div>'">`:'<div class="prod-img-ph">⚙️</div>'}</div>
+      <div class="prod-body">
+        <div class="prod-series">${p.id} SERIYASI</div>
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-desc">${p.sub}</div>
+        <div class="prod-torque"><span>Moment diapazoni</span><span>${p.torque}</span></div>
+      </div>
+      <button class="view-btn">Batafsil ko'rish →</button>
+    </div>`).join('');
+  go('products');
+}
+
+function showDetail(pid,cid){
+  const p=PRODS.find(x=>x.id===pid);
+  const cat=CATS.find(c=>c.id===cid)||CATS.find(c=>c.id===p.cat);
+  document.getElementById('prod-detail-content').innerHTML=`
+    <div class="breadcrumb">
+      <span onclick="go('catalog')">Katalog</span><span class="sep">/</span>
+      <span onclick="showCat('${p.cat}')">${cat.name}</span><span class="sep">/</span>
+      <span class="cur">${p.name}</span>
+    </div>
+    <button class="back-btn" onclick="showCat('${p.cat}')"><i class="fa fa-arrow-left"></i> ${cat.name}ga qaytish</button>
     <div class="detail-layout">
       <div>
-        <div class="detail-img-wrap">
-          ${IMGS[p.id]?`<img class="detail-img" src="${IMGS[p.id]}" alt="${p.name}" onerror="this.parentNode.innerHTML='<div class=\\'detail-img-ph\\'>⚙️</div>'">`:'<div class="detail-img-ph">⚙️</div>'}
+        <div class="detail-img-box">
+          ${IMGS[p.id]?`<img src="${IMGS[p.id]}" alt="${p.name}" onerror="this.outerHTML='<div class=\\'detail-img-ph\\'>⚙️</div>'">`:'<div class="detail-img-ph">⚙️</div>'}
         </div>
-        <div class="spec-grid" style="margin-top:20px">
-          <div class="spec-box"><div class="spec-label">Moment diapazoni</div><div class="spec-val">${p.torque}</div></div>
-          <div class="spec-box"><div class="spec-label">Tezlik</div><div class="spec-val">${p.speed}</div></div>
-          <div class="spec-box"><div class="spec-label">O'lchamlar</div><div class="spec-val">${p.sizes}</div></div>
-          <div class="spec-box"><div class="spec-label">Kategoriya</div><div class="spec-val">${p.cat==='compact'?'Kompakt':p.cat==='industrial'?'Industriyal':'Maxsus'}</div></div>
+        <div class="spec-grid">
+          <div class="spec-box"><div class="spec-lbl">Moment</div><div class="spec-val">${p.torque}</div></div>
+          <div class="spec-box"><div class="spec-lbl">Tezlik</div><div class="spec-val">${p.speed}</div></div>
+          <div class="spec-box"><div class="spec-lbl">O'lchamlar</div><div class="spec-val">${p.sizes} ta</div></div>
+          <div class="spec-box"><div class="spec-lbl">Kategoriya</div><div class="spec-val">${cat.name.split(' ')[0]}</div></div>
         </div>
       </div>
       <div>
         <div class="detail-series-tag">${p.id} SERIYASI</div>
         <div class="detail-title">${p.name}</div>
-        <p class="detail-desc">${p.sub}<br><br>${p.desc}</p>
-        <div class="subtypes">
-          <h4>Model variantlari</h4>
-          <div class="subtype-list">${p.subtypes.map(s=>`<div class="subtype-item"><strong>${s.c}</strong>${s.d}</div>`).join('')}</div>
-        </div>
-        <div class="features">
-          <h4>Asosiy xususiyatlar</h4>
-          <div class="feat-list">${p.feats.map(f=>`<div class="feat-item"><i class="fa fa-circle-check"></i>${f}</div>`).join('')}</div>
-        </div>
-        <div style="display:flex;gap:12px">
-          <button class="btn-primary" onclick="openModal()" style="flex:1">SO'ROV YUBORISH <i class="fa fa-bolt"></i></button>
-          <button class="btn-ghost" onclick="nav('contact')" style="flex:1">KONTAKT</button>
+        <div class="detail-sub">${p.sub}</div>
+        <p class="detail-desc">${p.desc}</p>
+        <div class="blk-title">Model variantlari</div>
+        <div class="subtype-list">${p.subtypes.map(s=>`<div class="subtype-item"><strong>${s.c}</strong><span>${s.d}</span></div>`).join('')}</div>
+        <div class="blk-title">Asosiy xususiyatlar</div>
+        <div class="feat-list">${p.feats.map(f=>`<div class="feat-item"><i class="fa fa-circle-check"></i>${f}</div>`).join('')}</div>
+        <div class="detail-btns">
+          <button class="btn-p" onclick="openModal()">SO'ROV YUBORISH <i class="fa fa-bolt"></i></button>
+          <button class="btn-g" onclick="go('contact')">KONTAKT</button>
         </div>
       </div>
     </div>`;
-  nav('prod-detail');
+  go('detail');
 }
 
 function openModal(){document.getElementById('modal').classList.add('open')}
 function closeModal(){document.getElementById('modal').classList.remove('open')}
 function closeModalOut(e){if(e.target.id==='modal')closeModal()}
-
 function submitModal(){
-  const n=document.getElementById('m-name').value.trim();
+  const n=document.getElementById('mn').value.trim();
   if(!n){alert('Ismingizni kiriting!');return;}
-  closeModal();
-  showToast('Rahmat '+n+'! So\'rovingiz qabul qilindi.');
-  document.getElementById('m-name').value='';
-  document.getElementById('m-phone').value='';
-  document.getElementById('m-power').value='';
-  document.getElementById('m-desc').value='';
+  closeModal();toast('Rahmat, '+n+'! So\'rovingiz qabul qilindi.');
+  ['mn','mp','mw','md'].forEach(i=>document.getElementById(i).value='');
 }
+function submitForm(e){e.preventDefault();toast('Xabaringiz muvaffaqiyatli yuborildi!');e.target.reset()}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500)}
+function toggleMob(){const m=document.getElementById('mob-menu');m.style.display=m.style.display==='flex'?'none':'flex'}
 
-function submitForm(e){
-  e.preventDefault();
-  showToast('Xabaringiz muvaffaqiyatli yuborildi!');
-  e.target.reset();
-}
-
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3500);
-}
-
-function toggleMobile(){
-  const m=document.getElementById('mobile-menu');
-  m.style.display=m.style.display==='none'?'flex':'none';
-}
-
-renderProducts('all');
+renderCats('home-cats');
+renderCats('catalog-cats');
+</script>
+</body>
+</html>('all');
 </script>
 </body>
 </html>
