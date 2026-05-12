@@ -1,1135 +1,794 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Yilmaz Reduktor — O'zbekistonda rasmiy vakillik. Sanoat reduktorlari, elektr motorlar va tezlik boshqaruv yechimlari.">
-<title>Yilmaz Reduktor — O'zbekiston</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bl:#0046A6;--bl2:#0066CC;--bll:#e6f0ff;--blll:#f0f6ff;
-  --bg:#fff;--s:#f7faff;--t:#060F24;--m:#5a6e8a;
-  --r:12px;--sh:0 2px 20px rgba(0,70,166,.08);--sh2:0 8px 40px rgba(0,70,166,.14)
-}
-html{scroll-behavior:smooth}
-body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--t);overflow-x:hidden}
-button{font-family:'Outfit',sans-serif;cursor:pointer}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Yilmaz Reduktor — O'zbekistonda rasmiy vakillik. Sanoat reduktorlari, elektr motorlar va tezlik boshqaruv yechimlari.">
+    <title>Yilmaz Reduktor | O'zbekiston | Sanoat yechimlari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* NAV */
-nav{position:fixed;top:0;width:100%;z-index:100;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,70,166,.08)}
-.logo{display:flex;align-items:center;gap:10px;cursor:pointer}
-.logo-mark{width:36px;height:36px;background:var(--bl);border-radius:9px;display:grid;place-items:center;flex-shrink:0}
-.logo-mark svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round}
-.logo-name{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--t)}
-.logo-name span{color:var(--bl)}
-.nav-links{display:flex;gap:2px}
-.nav-links a{padding:7px 14px;border-radius:8px;font-size:13.5px;font-weight:500;color:var(--m);cursor:pointer;transition:.2s;white-space:nowrap}
-.nav-links a:hover,.nav-links a.on{background:var(--bll);color:var(--bl);font-weight:600}
-.nav-cta{background:var(--bl);color:#fff;border:none;padding:9px 20px;border-radius:9px;font-size:13px;font-weight:700;transition:.2s}
-.nav-cta:hover{background:var(--bl2);transform:translateY(-1px)}
-.ham{display:none;background:none;border:none;font-size:22px;color:var(--t)}
-.mob{display:none;position:fixed;top:64px;left:0;width:100%;background:#fff;border-bottom:1px solid var(--bll);padding:16px 5vw 20px;flex-direction:column;gap:4px;z-index:99;box-shadow:var(--sh2)}
-.mob a{padding:10px 12px;border-radius:8px;font-size:15px;font-weight:500;color:var(--m);cursor:pointer;display:block}
-.mob a:hover{background:var(--bll);color:var(--bl)}
+        :root {
+            --primary: #0A3D8F;
+            --primary-dark: #062A63;
+            --primary-light: #EEF3FB;
+            --accent: #00A3E0;
+            --gray-50: #F8FAFE;
+            --gray-100: #F1F4F9;
+            --gray-200: #E2E8F0;
+            --gray-600: #64748B;
+            --gray-800: #1E293B;
+            --gray-900: #0F172A;
+            --white: #FFFFFF;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.03);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.02);
+            --radius: 20px;
+            --radius-sm: 12px;
+        }
 
-/* PAGES */
-.page{display:none;padding-top:64px;min-height:100vh}
-.page.on{display:block}
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            overflow-x: hidden;
+        }
 
-/* HERO */
-.hero{min-height:calc(100vh - 64px);display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative}
-.hero-left{display:flex;flex-direction:column;justify-content:center;padding:72px 5vw 72px 7vw;position:relative;z-index:2}
-.hero-right{position:relative;background:var(--blll);display:flex;align-items:center;justify-content:center;overflow:hidden}
-.hero-right::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(0,70,166,.07) 0%,transparent 70%)}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--bl);margin-bottom:24px}
-.hero-eyebrow::before{content:'';width:28px;height:2px;background:var(--bl);border-radius:2px}
-h1{font-family:'DM Serif Display',serif;font-size:clamp(44px,5.5vw,72px);line-height:1.0;color:var(--t);margin-bottom:20px;font-weight:400}
-h1 em{font-style:italic;color:var(--bl)}
-.hero-p{font-size:15.5px;color:var(--m);line-height:1.75;max-width:400px;margin-bottom:36px}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-.btn-solid{background:var(--bl);color:#fff;border:none;padding:13px 26px;border-radius:10px;font-size:14px;font-weight:700;transition:.25s;display:inline-flex;align-items:center;gap:8px}
-.btn-solid:hover{background:var(--bl2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,70,166,.3)}
-.btn-solid svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.btn-outline{background:transparent;color:var(--bl);border:1.5px solid rgba(0,70,166,.3);padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;transition:.25s}
-.btn-outline:hover{border-color:var(--bl);background:var(--bll)}
-.hero-stats{display:flex;gap:36px;margin-top:48px;padding-top:36px;border-top:1px solid rgba(0,70,166,.1);flex-wrap:wrap}
-.hstat-num{font-family:'DM Serif Display',serif;font-size:40px;color:var(--bl);line-height:1}
-.hstat-lbl{font-size:12px;color:var(--m);font-weight:500;margin-top:2px}
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-/* HERO SCENE */
-.hero-scene{width:90%;max-width:480px;position:relative}
-.hero-scene svg{width:100%;height:auto;overflow:visible}
+        @keyframes fadeLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
-/* SVG DRAW ANIMATION — path-only, no rect/line issues */
-/* All animatable elements use <path> converted shapes */
-.draw-path{
-  fill:none;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  stroke-dasharray:1000;
-  stroke-dashoffset:1000;
-}
-.draw-path.go{animation:draw-in 1.6s cubic-bezier(.4,0,.2,1) forwards}
-.draw-path.d1{animation-delay:.05s}
-.draw-path.d2{animation-delay:.3s}
-.draw-path.d3{animation-delay:.5s}
-.draw-path.d4{animation-delay:.7s}
-.draw-path.d5{animation-delay:.9s}
-.draw-path.d6{animation-delay:1.05s}
-.draw-path.d7{animation-delay:1.2s}
-.draw-path.d8{animation-delay:1.35s}
-@keyframes draw-in{to{stroke-dashoffset:0}}
+        @keyframes fadeRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
-/* Floating card */
-.hero-card{position:absolute;bottom:32px;left:-20px;background:#fff;border-radius:14px;padding:16px 20px;box-shadow:var(--sh2);border:1px solid var(--bll);min-width:180px;animation:float 4s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.hcard-icon{width:36px;height:36px;background:var(--bll);border-radius:9px;display:grid;place-items:center;margin-bottom:8px}
-.hcard-icon svg{width:18px;height:18px;stroke:var(--bl);fill:none;stroke-width:2;stroke-linecap:round}
-.hcard-val{font-family:'DM Serif Display',serif;font-size:22px;color:var(--t);line-height:1}
-.hcard-lbl{font-size:11px;color:var(--m);font-weight:500;margin-top:2px}
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
-/* SECTIONS */
-.sw{padding:88px 5vw}
-.sw-inner{max-width:1200px;margin:0 auto}
-.sw-gray{background:var(--s)}
-.sw-dark{background:var(--t)}
-.tag{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--bl);margin-bottom:12px}
-.tag-w{color:rgba(255,255,255,.5)}
-h2{font-family:'DM Serif Display',serif;font-size:clamp(32px,4vw,50px);font-weight:400;color:var(--t);line-height:1.1}
-h2.w{color:#fff}
-.sub{color:var(--m);font-size:15px;line-height:1.8;margin-top:10px;max-width:480px}
-.sub-w{color:rgba(255,255,255,.55)}
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
 
-/* SCROLL REVEAL */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
-.reveal.visible{opacity:1;transform:none}
-.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity .65s ease,transform .65s ease}
-.reveal-l.visible{opacity:1;transform:none}
-.reveal-r{opacity:0;transform:translateX(28px);transition:opacity .65s ease,transform .65s ease}
-.reveal-r.visible{opacity:1;transform:none}
-.d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}.d4{transition-delay:.38s}
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
 
-/* CATEGORIES */
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;margin-top:40px}
-.cat-card{background:#fff;border:1.5px solid rgba(0,70,166,.1);border-radius:var(--r);padding:28px;cursor:pointer;transition:.3s;position:relative;overflow:hidden}
-.cat-card::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:3px;background:var(--bl);transform:scaleX(0);transform-origin:left;transition:.35s}
-.cat-card:hover{box-shadow:var(--sh2);transform:translateY(-5px);border-color:rgba(0,70,166,.2)}
-.cat-card:hover::after{transform:scaleX(1)}
-.cat-icon-wrap{width:52px;height:52px;background:var(--bll);border-radius:14px;display:grid;place-items:center;margin-bottom:16px;transition:.3s;flex-shrink:0}
-.cat-icon-wrap svg{width:26px;height:26px;stroke:var(--bl);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:.3s}
-.cat-card:hover .cat-icon-wrap{background:var(--bl)}
-.cat-card:hover .cat-icon-wrap svg{stroke:#fff}
-.cat-arrow{position:absolute;top:22px;right:22px;width:28px;height:28px;border-radius:8px;background:var(--blll);display:grid;place-items:center;transition:.3s}
-.cat-arrow svg{width:13px;height:13px;stroke:var(--bl);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:.2s}
-.cat-card:hover .cat-arrow{background:var(--bl)}
-.cat-card:hover .cat-arrow svg{stroke:#fff;transform:translateX(2px)}
-.cat-title{font-size:16px;font-weight:700;color:var(--t);margin-bottom:6px}
-.cat-desc{font-size:13px;color:var(--m);line-height:1.65}
-.cat-badge{display:inline-block;margin-top:14px;font-size:11px;font-weight:700;color:var(--bl);background:var(--bll);padding:4px 10px;border-radius:100px}
+        .animate-up {
+            animation: fadeUp 0.7s ease forwards;
+        }
 
-/* PRODUCTS LIST */
-.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;margin-bottom:24px;flex-wrap:wrap}
-.breadcrumb span{color:var(--m);cursor:pointer;transition:.2s}
-.breadcrumb span:hover{color:var(--bl)}
-.bc-sep{color:#ddd;cursor:default!important}
-.bc-cur{color:var(--t)!important;font-weight:600;cursor:default!important}
-.prods-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
-.prod-card{background:#fff;border:1.5px solid rgba(0,70,166,.1);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.3s}
-.prod-card:hover{box-shadow:var(--sh2);transform:translateY(-5px);border-color:rgba(0,70,166,.2)}
-.prod-img-area{height:175px;background:var(--s);display:flex;align-items:center;justify-content:center;overflow:hidden}
-.prod-img-area img{width:100%;height:100%;object-fit:contain;padding:16px;transition:.4s}
-.prod-card:hover .prod-img-area img{transform:scale(1.06)}
-.prod-img-ph{font-size:52px;opacity:.12;user-select:none}
-.prod-body{padding:20px}
-.prod-series{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--bl);margin-bottom:4px}
-.prod-name{font-size:17px;font-weight:700;color:var(--t);margin-bottom:5px}
-.prod-desc-text{font-size:13px;color:var(--m);line-height:1.65;margin-bottom:12px}
-.prod-spec{display:flex;justify-content:space-between;padding-top:12px;border-top:1px solid var(--blll);font-size:12px}
-.prod-spec span:first-child{color:var(--m)}
-.prod-spec span:last-child{font-weight:700;color:var(--bl)}
-.view-btn{display:block;margin:14px 20px 20px;padding:10px;text-align:center;background:var(--blll);color:var(--bl);border:none;border-radius:9px;font-size:13px;font-weight:600;transition:.25s;width:calc(100% - 40px)}
-.view-btn:hover{background:var(--bl);color:#fff}
+        .animate-left {
+            animation: fadeLeft 0.7s ease forwards;
+        }
 
-/* DETAIL */
-.back-btn{display:inline-flex;align-items:center;gap:7px;border:1.5px solid rgba(0,70,166,.15);background:none;color:var(--m);padding:8px 16px;border-radius:9px;font-size:13px;font-weight:600;margin-bottom:28px;transition:.25s}
-.back-btn:hover{border-color:var(--bl);color:var(--bl);background:var(--bll)}
-.back-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.detail-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:40px;align-items:start}
-.detail-vis{background:var(--s);border-radius:16px;padding:32px;border:1.5px solid rgba(0,70,166,.1);position:sticky;top:84px;text-align:center}
-.detail-vis img{max-width:100%;max-height:280px;object-fit:contain}
-.detail-vis-ph{height:280px;display:grid;place-items:center;font-size:72px;opacity:.08;user-select:none}
-.specs-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
-.spec-box{background:#fff;border:1.5px solid rgba(0,70,166,.1);border-radius:10px;padding:13px 15px}
-.spec-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--bl);margin-bottom:4px}
-.spec-val{font-size:16px;font-weight:700;color:var(--t);line-height:1.3}
-.detail-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--bl);margin-bottom:8px}
-.detail-h{font-family:'DM Serif Display',serif;font-size:clamp(26px,4vw,42px);font-weight:400;color:var(--t);line-height:1.05;margin-bottom:8px}
-.detail-sub{font-size:15px;font-weight:600;color:var(--bl);margin-bottom:12px}
-.detail-p{font-size:14px;color:var(--m);line-height:1.8;margin-bottom:24px}
-.blk-lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--m);margin-bottom:10px;display:block}
-.subtypes{display:flex;flex-direction:column;gap:7px;margin-bottom:24px}
-.subtype{background:#fff;border:1.5px solid rgba(0,70,166,.1);border-radius:9px;padding:11px 15px;font-size:13px;display:flex;gap:10px}
-.subtype strong{color:var(--bl);min-width:36px;font-weight:700}
-.feats{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:24px}
-.feat{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--m);background:var(--s);padding:9px 12px;border-radius:8px}
-.feat svg{width:12px;height:12px;stroke:var(--bl);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
-.detail-btns{display:flex;gap:10px;flex-wrap:wrap}
-.detail-btns button{flex:1;min-width:130px}
+        .animate-right {
+            animation: fadeRight 0.7s ease forwards;
+        }
 
-/* DELIVERY SECTION */
-.delivery-wrap{padding:88px 5vw;background:var(--t);overflow:hidden}
-.delivery-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.delivery-text .tag-w{margin-bottom:12px}
-.del-list{display:flex;flex-direction:column;gap:14px;margin:28px 0}
-.del-item{display:flex;align-items:center;gap:14px}
-.del-ic{width:36px;height:36px;background:rgba(255,255,255,.08);border-radius:9px;display:grid;place-items:center;flex-shrink:0}
-.del-ic svg{width:16px;height:16px;stroke:rgba(255,255,255,.6);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.del-txt{font-size:14px;color:rgba(255,255,255,.6)}
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 0.9rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
 
-/* TRUCK SVG SCENE */
-.truck-scene{position:relative;width:100%}
-.truck-scene svg{width:100%;height:auto;overflow:visible}
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 1.35rem;
+            letter-spacing: -0.5px;
+            color: var(--gray-900);
+        }
 
-/* Road dashes scroll */
-.road-dash{stroke-dasharray:24 16;animation:road-scroll 1s linear infinite}
-@keyframes road-scroll{to{stroke-dashoffset:-40}}
+        .logo span {
+            color: var(--primary);
+        }
 
-/* Truck slides in once */
-.truck-grp{transform:translateX(-140px);opacity:0;animation:truck-in 1.4s cubic-bezier(.25,.46,.45,.94) 0.3s forwards}
-@keyframes truck-in{0%{transform:translateX(-140px);opacity:0}20%{opacity:1}100%{transform:translateX(0);opacity:1}}
+        .logo-icon {
+            background: var(--primary);
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
 
-/* Wheels spin — using transform-box so % origin works correctly */
-.wheel-svg{transform-box:fill-box;transform-origin:50% 50%;animation:wspin 1.2s linear infinite}
-@keyframes wspin{to{transform:rotate(360deg)}}
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+        }
 
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:48px}
-.about-vis{background:linear-gradient(135deg,var(--blll),var(--bll));border-radius:20px;height:380px;position:relative;overflow:hidden;border:1.5px solid rgba(0,70,166,.1);display:flex;align-items:center;justify-content:center}
-.about-vis-svg{width:80%;height:80%}
-.about-vis-svg svg{width:100%;height:100%;overflow:visible}
-.about-stats{position:absolute;bottom:18px;left:18px;right:18px;display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.astat{background:rgba(255,255,255,.95);border-radius:11px;padding:12px 14px;border:1px solid rgba(0,70,166,.1);box-shadow:var(--sh)}
-.astat-n{font-family:'DM Serif Display',serif;font-size:22px;color:var(--bl);line-height:1}
-.astat-l{font-size:11px;color:var(--m);margin-top:2px}
-.checks{display:flex;flex-direction:column;gap:14px;margin:22px 0}
-.check-item{display:flex;gap:12px;align-items:flex-start}
-.check-ic{width:30px;height:30px;background:var(--bll);border-radius:8px;display:grid;place-items:center;flex-shrink:0;margin-top:2px}
-.check-ic svg{width:13px;height:13px;stroke:var(--bl);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.check-t{font-size:14px;font-weight:700;color:var(--t);margin-bottom:2px}
-.check-d{font-size:13px;color:var(--m);line-height:1.65}
+        .nav-links a {
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--gray-600);
+            text-decoration: none;
+        }
 
-/* ADV */
-.adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
-.adv-card{background:#fff;border:1.5px solid rgba(0,70,166,.1);border-radius:var(--r);padding:28px;transition:.3s}
-.adv-card:hover{box-shadow:var(--sh2);transform:translateY(-4px);border-color:rgba(0,70,166,.2)}
-.adv-ic{width:46px;height:46px;background:var(--bll);border-radius:12px;display:grid;place-items:center;margin-bottom:16px}
-.adv-ic svg{width:22px;height:22px;stroke:var(--bl);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.adv-card h3{font-size:15px;font-weight:700;color:var(--t);margin-bottom:7px}
-.adv-card p{font-size:13px;color:var(--m);line-height:1.7}
+        .nav-links a:hover, .nav-links a.active {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
 
-/* PARTNERS */
-.partners-row{display:flex;border:1.5px solid rgba(0,70,166,.1);border-radius:var(--r);overflow:hidden;margin-top:40px}
-.partner{flex:1;padding:22px 16px;text-align:center;font-weight:700;font-size:13px;color:var(--m);border-right:1px solid rgba(0,70,166,.08);transition:.25s;background:#fff}
-.partner:last-child{border-right:none}
-.partner:hover{background:var(--bll);color:var(--bl)}
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.2s;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
 
-/* APP AREAS */
-.apps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-top:40px}
-.app-tile{background:#fff;border:1.5px solid rgba(0,70,166,.1);border-radius:var(--r);padding:20px 14px;text-align:center;transition:.3s}
-.app-tile:hover{box-shadow:var(--sh);border-color:rgba(0,70,166,.2);transform:translateY(-3px)}
-.app-tile .icon{font-size:28px;margin-bottom:8px;display:block}
-.app-tile p{font-size:13px;font-weight:600;color:var(--t)}
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(10, 61, 143, 0.25);
+        }
 
-/* NEWS */
-.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;margin-top:40px}
-.news-card{background:#fff;border:1.5px solid rgba(0,70,166,.1);border-radius:var(--r);overflow:hidden;transition:.3s}
-.news-card:hover{box-shadow:var(--sh2);transform:translateY(-4px)}
-.news-img{height:148px;background:linear-gradient(135deg,var(--blll),var(--bll));display:flex;align-items:center;justify-content:center}
-.news-img svg{opacity:.25}
-.news-body{padding:20px}
-.news-date{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--bl);margin-bottom:8px}
-.news-title{font-size:15px;font-weight:700;color:var(--t);margin-bottom:7px;line-height:1.45}
-.news-desc{font-size:13px;color:var(--m);line-height:1.65}
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+            padding: 0.55rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.2s;
+            cursor: pointer;
+        }
 
-/* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;margin-top:48px}
-.cform-wrap{background:#fff;border-radius:18px;padding:32px;box-shadow:var(--sh2);border:1.5px solid rgba(0,70,166,.1)}
-.cform-wrap h3{font-family:'DM Serif Display',serif;font-size:24px;font-weight:400;color:var(--t);margin-bottom:22px}
-.cform{display:flex;flex-direction:column;gap:13px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--m);display:block;margin-bottom:5px}
-input,textarea,select{width:100%;background:var(--s);border:1.5px solid rgba(0,70,166,.12);border-radius:9px;padding:11px 14px;color:var(--t);font-size:14px;font-family:'Outfit',sans-serif;outline:none;transition:.2s;appearance:none}
-input:focus,textarea:focus,select:focus{border-color:var(--bl);background:#fff;box-shadow:0 0 0 3px rgba(0,70,166,.07)}
-textarea{resize:none;height:100px}
-.sub-btn{background:var(--bl);color:#fff;border:none;padding:14px;border-radius:10px;font-size:14px;font-weight:700;width:100%;transition:.25s}
-.sub-btn:hover{background:var(--bl2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,70,166,.28)}
-.cinfo{display:flex;flex-direction:column;gap:13px}
-.cinfo-card{background:#fff;border:1.5px solid rgba(0,70,166,.1);border-radius:var(--r);padding:16px 18px;display:flex;gap:14px;align-items:flex-start;transition:.3s}
-.cinfo-card:hover{box-shadow:var(--sh);border-color:rgba(0,70,166,.2)}
-.cinfo-ic{width:40px;height:40px;background:var(--bll);border-radius:10px;display:grid;place-items:center;flex-shrink:0}
-.cinfo-ic svg{width:18px;height:18px;stroke:var(--bl);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.cinfo-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--m);margin-bottom:3px}
-.cinfo-val{font-size:14px;font-weight:600;color:var(--t)}
-.cinfo-sub{font-size:12px;color:var(--m);margin-top:2px}
-.map-ph{background:var(--s);border-radius:12px;height:130px;display:grid;place-items:center;border:1.5px dashed rgba(0,70,166,.2);text-align:center;color:var(--m);font-size:13px}
-.map-ph svg{opacity:.3;margin-bottom:6px}
+        .btn-outline:hover {
+            background: var(--primary-light);
+        }
 
-/* FOOTER */
-footer{background:#03091A;padding:56px 5vw 24px}
-.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06)}
-.footer-brand p{font-size:13px;color:rgba(255,255,255,.35);line-height:1.8;margin-top:12px}
-.f-logo{display:flex;align-items:center;gap:10px}
-.f-logo-box{width:34px;height:34px;background:var(--bl);border-radius:8px;display:grid;place-items:center}
-.f-logo-box svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round}
-.f-logo-name{font-size:15px;font-weight:800;color:#fff}
-.footer-col h4{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px}
-.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:9px;cursor:pointer;transition:.2s}
-.footer-col a:hover{color:#fff}
-.socials{display:flex;gap:8px;margin-top:16px}
-.socials a{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.06);display:grid;place-items:center;color:rgba(255,255,255,.4);transition:.2s;font-size:13px;font-weight:700;text-decoration:none}
-.socials a:hover{background:var(--bl);color:#fff}
-.footer-bottom{max-width:1200px;margin:24px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:rgba(255,255,255,.2)}
+        .mobile-menu {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
 
-/* MODAL */
-.modal-bg{position:fixed;inset:0;background:rgba(3,9,26,.65);backdrop-filter:blur(10px);z-index:200;display:none;place-items:center;padding:20px}
-.modal-bg.on{display:grid}
-.modal{background:#fff;border-radius:18px;padding:32px;max-width:460px;width:100%;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.25)}
-.modal-x{position:absolute;top:14px;right:14px;background:var(--s);border:1.5px solid rgba(0,70,166,.1);color:var(--m);width:30px;height:30px;border-radius:8px;font-size:15px;line-height:30px;text-align:center;transition:.2s}
-.modal-x:hover{background:var(--bll);color:var(--bl)}
-.modal h3{font-family:'DM Serif Display',serif;font-size:26px;font-weight:400;color:var(--t);margin-bottom:20px}
-.mf{display:flex;flex-direction:column;gap:12px}
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background: white;
+            z-index: 1100;
+            transition: 0.3s;
+            padding: 2rem;
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
 
-/* TOAST */
-.toast{position:fixed;bottom:24px;right:24px;background:var(--bl);color:#fff;padding:12px 20px;border-radius:10px;font-weight:600;font-size:14px;z-index:300;transform:translateY(60px);opacity:0;transition:.3s;box-shadow:0 8px 24px rgba(0,70,166,.3)}
-.toast.on{transform:none;opacity:1}
+        .sidebar.open {
+            left: 0;
+        }
 
-/* RESPONSIVE */
-@media(max-width:960px){
-  .nav-links{display:none}.ham{display:block}
-  .hero{grid-template-columns:1fr;min-height:auto}
-  .hero-right{min-height:300px;padding:40px 5vw}
-  .hero-left{padding:48px 5vw}
-  .about-grid,.detail-grid,.contact-grid,.delivery-inner{grid-template-columns:1fr}
-  .adv-grid{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
-  .feats{grid-template-columns:1fr}
-  .partners-row{flex-wrap:wrap}
-  .partner{flex:50%;border-bottom:1px solid rgba(0,70,166,.08)}
-}
-@media(max-width:560px){
-  .adv-grid,.footer-grid{grid-template-columns:1fr}
-  .specs-row,.form-row{grid-template-columns:1fr}
-}
-</style>
+        .sidebar a {
+            padding: 0.8rem 0;
+            cursor: pointer;
+            font-weight: 500;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(3px);
+            z-index: 1050;
+            display: none;
+        }
+
+        .overlay.open {
+            display: block;
+        }
+
+        /* Pages */
+        .page {
+            display: none;
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 3rem 5% 4rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            background: var(--primary-light);
+            color: var(--primary);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            line-height: 1.2;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 i {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .hero p {
+            color: var(--gray-600);
+            max-width: 500px;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .hero-visual {
+            background: linear-gradient(135deg, var(--primary-light), white);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            aspect-ratio: 1 / 0.9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-gear svg {
+            width: 80%;
+            max-width: 280px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .spinning-inner {
+            transform-origin: center;
+            animation: spin 12s linear infinite;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 5%;
+        }
+
+        .section-bg {
+            background: var(--gray-50);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-sub {
+            color: var(--gray-600);
+            margin-bottom: 2.5rem;
+        }
+
+        /* Cards */
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cat-card {
+            background: white;
+            border-radius: var(--radius-sm);
+            padding: 1.8rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .cat-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cat-icon {
+            background: var(--primary-light);
+            width: 55px;
+            height: 55px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            font-size: 1.8rem;
+        }
+
+        .cat-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-count {
+            margin-top: 1rem;
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: var(--primary-light);
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            color: var(--primary);
+        }
+
+        /* Product Grid */
+        .prods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .prod-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .prod-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary);
+        }
+
+        .prod-img {
+            height: 150px;
+            background: linear-gradient(135deg, var(--primary-light), var(--gray-100));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .prod-body {
+            padding: 1.2rem;
+        }
+
+        .prod-specs {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.8rem 0;
+            font-size: 0.75rem;
+            color: var(--gray-600);
+        }
+
+        /* Delivery Animation */
+        .delivery-hero {
+            background: var(--gray-900);
+            color: white;
+            border-radius: 28px;
+            margin: 2rem 5% 0;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .truck-svg svg {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .road-line {
+            stroke-dasharray: 20 30;
+            animation: dashMove 0.8s linear infinite;
+        }
+
+        @keyframes dashMove {
+            to { stroke-dashoffset: -40; }
+        }
+
+        .wheel-moving {
+            transform-origin: center;
+            animation: wheelRotate 0.8s linear infinite;
+        }
+
+        @keyframes wheelRotate {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 460px;
+            width: 90%;
+            border-radius: 28px;
+            padding: 2rem;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.25s;
+            z-index: 2100;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(10,61,143,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        .breadcrumb span {
+            cursor: pointer;
+        }
+
+        .breadcrumb span:hover {
+            color: var(--primary);
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        footer {
+            background: var(--gray-900);
+            color: #94a3b8;
+            padding: 3rem 5% 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 780px) {
+            .hero { grid-template-columns: 1fr; }
+            .nav-links, .navbar .btn-primary { display: none; }
+            .mobile-menu { display: block; }
+            .delivery-hero { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="logo" onclick="go('home')">
-    <div class="logo-mark"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.93 4.93l1.41 1.41M13.66 13.66l1.41 1.41M4.93 15.07l1.41-1.41M13.66 6.34l1.41-1.41"/></svg></div>
-    <div class="logo-name">Yilmaz <span>Reduktor</span></div>
-  </div>
-  <div class="nav-links">
-    <a onclick="go('home')" id="nl-home">Bosh sahifa</a>
-    <a onclick="go('catalog')" id="nl-catalog">Katalog</a>
-    <a onclick="go('about')" id="nl-about">Biz haqimizda</a>
-    <a onclick="go('news')" id="nl-news">Yangiliklar</a>
-    <a onclick="go('contact')" id="nl-contact">Kontakt</a>
-  </div>
-  <button class="nav-cta" onclick="openModal()">So'rov yuborish</button>
-  <button class="ham" onclick="toggleMob()">☰</button>
+<nav class="navbar">
+    <div class="logo" onclick="navigateTo('home')">
+        <div class="logo-icon">Y</div>
+        <div>Yilmaz <span>Reduktor</span></div>
+    </div>
+    <div class="nav-links">
+        <a class="nav-link active" data-page="home">Bosh sahifa</a>
+        <a class="nav-link" data-page="catalog">Katalog</a>
+        <a class="nav-link" data-page="about">Biz haqimizda</a>
+        <a class="nav-link" data-page="news">Yangiliklar</a>
+        <a class="nav-link" data-page="contact">Kontakt</a>
+    </div>
+    <button class="btn-primary" onclick="openModal()">So'rov yuborish</button>
+    <div class="mobile-menu" onclick="toggleSidebar()">☰</div>
 </nav>
-<div class="mob" id="mob">
-  <a onclick="go('home')">Bosh sahifa</a>
-  <a onclick="go('catalog')">Katalog</a>
-  <a onclick="go('about')">Biz haqimizda</a>
-  <a onclick="go('news')">Yangiliklar</a>
-  <a onclick="go('contact')">Kontakt</a>
-</div>
 
-<!-- ════════════ HOME ════════════ -->
-<div id="page-home" class="page on">
-  <div class="hero">
-    <div class="hero-left">
-      <div class="hero-eyebrow">Turkiya ishlab chiqarishi — 1958</div>
-      <h1>Sanoat uchun<br><em>ishonchli</em><br>reduktorlar</h1>
-      <p class="hero-p">Yilmaz Reduktor — yillik 330,000 dona ishlab chiqarish quvvati bilan dunyoning yetakchi reduktor ishlab chiqaruvchisi. O'zbekistonda rasmiy vakillik.</p>
-      <div class="hero-actions">
-        <button class="btn-solid" onclick="go('catalog')">Katalogni ko'rish <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-        <button class="btn-outline" onclick="openModal()">Buyurtma berish</button>
-      </div>
-      <div class="hero-stats">
-        <div><div class="hstat-num">330K+</div><div class="hstat-lbl">Yillik ishlab chiqarish</div></div>
-        <div><div class="hstat-num">60+</div><div class="hstat-lbl">Yillik tajriba</div></div>
-        <div><div class="hstat-num">80+</div><div class="hstat-lbl">Eksport mamlakatlari</div></div>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-scene">
-        <!-- All shapes use <path> so getTotalLength() works on every browser -->
-        <svg id="hero-svg" viewBox="0 0 460 340" xmlns="http://www.w3.org/2000/svg">
-          <!-- Grid lines as paths -->
-          <path class="draw-path d1" stroke="rgba(0,70,166,.18)" stroke-width="1" d="M0,60 H460"/>
-          <path class="draw-path d1" stroke="rgba(0,70,166,.18)" stroke-width="1" d="M0,140 H460"/>
-          <path class="draw-path d1" stroke="rgba(0,70,166,.18)" stroke-width="1" d="M0,220 H460"/>
-          <path class="draw-path d1" stroke="rgba(0,70,166,.18)" stroke-width="1" d="M80,0 V340"/>
-          <path class="draw-path d1" stroke="rgba(0,70,166,.18)" stroke-width="1" d="M220,0 V340"/>
-          <path class="draw-path d1" stroke="rgba(0,70,166,.18)" stroke-width="1" d="M360,0 V340"/>
-          <!-- Gearbox body -->
-          <path class="draw-path d2" stroke="var(--bl)" stroke-width="2.5" d="M152,90 H308 Q320,90 320,102 V238 Q320,250 308,250 H152 Q140,250 140,238 V102 Q140,90 152,90 Z"/>
-          <!-- Inner horizontal lines -->
-          <path class="draw-path d3" stroke="rgba(0,70,166,.25)" stroke-width="1.5" d="M140,130 H320"/>
-          <path class="draw-path d3" stroke="rgba(0,70,166,.25)" stroke-width="1.5" d="M140,210 H320"/>
-          <!-- Input shaft -->
-          <path class="draw-path d3" stroke="var(--bl)" stroke-width="2" d="M80,155 H140 M80,155 V185 H140"/>
-          <!-- Output shaft -->
-          <path class="draw-path d3" stroke="var(--bl)" stroke-width="2" d="M320,155 H380 M380,155 V185 H320"/>
-          <!-- Shaft ends -->
-          <path class="draw-path d4" stroke="var(--t)" stroke-width="3" d="M58,170 H80"/>
-          <path class="draw-path d4" stroke="var(--t)" stroke-width="3" d="M380,170 H402"/>
-          <!-- Large gear circle -->
-          <path class="draw-path d4" stroke="var(--bl)" stroke-width="2" d="M242,170 A42,42 0 1,0 241.9,170 Z"/>
-          <!-- Large gear inner ring -->
-          <path class="draw-path d5" stroke="rgba(0,70,166,.3)" stroke-width="1.5" d="M228,170 A28,28 0 1,0 227.9,170 Z"/>
-          <!-- Large gear hub -->
-          <path class="draw-path d5" stroke="var(--bl)" stroke-width="2.5" d="M210,170 A10,10 0 1,0 209.9,170 Z"/>
-          <!-- Gear spokes -->
-          <path class="draw-path d5" stroke="var(--bl)" stroke-width="2" d="M200,160 V128"/>
-          <path class="draw-path d5" stroke="var(--bl)" stroke-width="2" d="M200,180 V212"/>
-          <path class="draw-path d5" stroke="var(--bl)" stroke-width="2" d="M190,170 H158"/>
-          <path class="draw-path d5" stroke="var(--bl)" stroke-width="2" d="M210,170 H242"/>
-          <path class="draw-path d5" stroke="var(--bl)" stroke-width="2" d="M193,163 L170,140"/>
-          <path class="draw-path d5" stroke="var(--bl)" stroke-width="2" d="M207,177 L230,200"/>
-          <!-- Gear teeth stubs -->
-          <path class="draw-path d5" stroke="var(--bl)" stroke-width="2" d="M196,128 L193,119 M204,128 L207,119"/>
-          <path class="draw-path d5" stroke="var(--bl)" stroke-width="2" d="M196,212 L193,221 M204,212 L207,221"/>
-          <!-- Small gear -->
-          <path class="draw-path d5" stroke="var(--bl)" stroke-width="2" d="M294,170 A24,24 0 1,0 293.9,170 Z"/>
-          <path class="draw-path d6" stroke="rgba(0,70,166,.3)" stroke-width="1.5" d="M285,170 A15,15 0 1,0 284.9,170 Z"/>
-          <path class="draw-path d6" stroke="var(--bl)" stroke-width="2.5" d="M276,170 A6,6 0 1,0 275.9,170 Z"/>
-          <path class="draw-path d6" stroke="var(--bl)" stroke-width="2" d="M270,157 V146 M270,183 V194 M257,170 H246 M283,170 H294"/>
-          <!-- Mounting feet -->
-          <path class="draw-path d7" stroke="var(--t)" stroke-width="2" d="M150,250 H190 Q193,250 193,253 V262 Q193,265 190,265 H150 Q147,265 147,262 V253 Q147,250 150,250 Z"/>
-          <path class="draw-path d7" stroke="var(--t)" stroke-width="2" d="M270,250 H310 Q313,250 313,253 V262 Q313,265 310,265 H270 Q267,265 267,262 V253 Q267,250 270,250 Z"/>
-          <path class="draw-path d7" stroke="var(--t)" stroke-width="2" d="M158,250 V242 M182,250 V242 M278,250 V242 M302,250 V242"/>
-          <!-- Oil cap -->
-          <path class="draw-path d7" stroke="var(--t)" stroke-width="2" d="M222,95 A8,8 0 1,0 221.9,95 Z M230,87 V81"/>
-          <!-- Dimension lines -->
-          <path class="draw-path d8" stroke="rgba(0,70,166,.2)" stroke-width="1" d="M100,280 H360 M100,274 V286 M360,274 V286"/>
-          <path class="draw-path d8" stroke="rgba(0,70,166,.2)" stroke-width="1" d="M50,90 V250 M44,90 H56 M44,250 H56"/>
-          <!-- Labels -->
-          <text x="200" y="298" text-anchor="middle" font-family="Outfit,sans-serif" font-size="10" fill="rgba(0,70,166,.45)" font-weight="600" opacity="0" id="svg-label1">M SERIYASI  •  50 – 18,000 Nm</text>
-          <text x="62" y="174" text-anchor="middle" font-family="Outfit,sans-serif" font-size="10" fill="rgba(0,70,166,.45)" font-weight="600" transform="rotate(-90,62,174)" opacity="0" id="svg-label2">160 mm</text>
-        </svg>
-        <div class="hero-card">
-          <div class="hcard-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-          <div class="hcard-val">DIN & Niemann</div>
-          <div class="hcard-lbl">Xalqaro standartlar</div>
+<div class="sidebar" id="sidebar">
+    <div style="margin-bottom: 2rem; font-weight: 800; font-size: 1.3rem;">Yilmaz Reduktor</div>
+    <a onclick="navigateTo('home'); closeSidebar()">Bosh sahifa</a>
+    <a onclick="navigateTo('catalog'); closeSidebar()">Katalog</a>
+    <a onclick="navigateTo('about'); closeSidebar()">Biz haqimizda</a>
+    <a onclick="navigateTo('news'); closeSidebar()">Yangiliklar</a>
+    <a onclick="navigateTo('contact'); closeSidebar()">Kontakt</a>
+    <button class="btn-primary" style="margin-top: 1rem;" onclick="openModal(); closeSidebar()">So'rov yuborish</button>
+</div>
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<!-- HOME PAGE -->
+<div id="home-page" class="page active">
+    <div class="hero">
+        <div>
+            <div class="hero-badge">🇹🇷 TURKIYA ISHLAB CHIQARISHI — 1958</div>
+            <h1>Sanoat uchun <i>ishonchli</i> <br>reduktorlar</h1>
+            <p>Yiliga 330.000 dona ishlab chiqarish quvvati va 80 dan ortiq mamlakatga eksport. O'zbekistonda rasmiy vakillik.</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn-primary" onclick="navigateTo('catalog')">Katalogni ko'rish →</button>
+                <button class="btn-outline" onclick="openModal()">Buyurtma berish</button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat"><h3>330K+</h3><span>Yillik ishlab chiqarish</span></div>
+                <div class="stat"><h3>60+</h3><span>Yillik tajriba</span></div>
+                <div class="stat"><h3>80+</h3><span>Eksport mamlakati</span></div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Categories preview -->
-  <div class="sw sw-gray">
-    <div class="sw-inner">
-      <div class="tag reveal">MAHSULOT KATALOGI</div>
-      <h2 class="reveal d1">Kategoriyalar</h2>
-      <p class="sub reveal d2">Har qanday sanoat talabi uchun — kompakt, industriyal va maxsus reduktorlar.</p>
-      <div class="cat-grid" id="home-cats"></div>
-    </div>
-  </div>
-
-  <!-- Delivery animation -->
-  <div class="delivery-wrap">
-    <div class="delivery-inner">
-      <div class="reveal-l delivery-text">
-        <div class="tag tag-w">YETKAZIB BERISH</div>
-        <h2 class="w" style="margin-bottom:14px">Buyurtmadan<br>eshiginizgacha</h2>
-        <p class="sub-w" style="margin-bottom:0">So'rov yuboring — texnik maslahat, narx taklifi va yetkazib berish muddatini 24 soat ichida bilib oling.</p>
-        <div class="del-list">
-          <div class="del-item"><div class="del-ic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.02 1.14 2 2 0 012 .05h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg></div><div class="del-txt">24 soat ichida texnik maslahat</div></div>
-          <div class="del-item"><div class="del-ic"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8zM5.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM19.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg></div><div class="del-txt">Toshkent omboridan tez yetkazib berish</div></div>
-          <div class="del-item"><div class="del-ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="del-txt">Rasmiy garantiya va texnik xizmat</div></div>
+        <div class="hero-visual">
+            <div class="floating-gear">
+                <svg viewBox="0 0 300 300" width="100%">
+                    <circle cx="150" cy="150" r="85" fill="none" stroke="#0A3D8F" stroke-width="3" stroke-dasharray="8 6"/>
+                    <circle cx="150" cy="150" r="65" fill="none" stroke="#0A3D8F" stroke-width="2"/>
+                    <circle cx="150" cy="150" r="28" fill="#0A3D8F10" stroke="#0A3D8F" stroke-width="3"/>
+                    <path d="M150 55 L150 38 M150 245 L150 262 M55 150 L38 150 M245 150 L262 150 M80 80 L68 68 M220 220 L232 232 M80 220 L68 232 M220 80 L232 68" stroke="#0A3D8F" stroke-width="3.5" stroke-linecap="round"/>
+                    <circle cx="150" cy="150" r="105" fill="none" stroke="#00A3E0" stroke-width="1.5" stroke-dasharray="10 10" class="spinning-inner"/>
+                </svg>
+            </div>
         </div>
-        <button class="btn-solid" onclick="openModal()">So'rov yuborish <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-      </div>
-      <div class="reveal-r truck-scene" id="truck-scene-wrap">
-        <svg viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg">
-          <!-- Road base -->
-          <path d="M0,200 H480" stroke="rgba(255,255,255,.07)" stroke-width="4" fill="none"/>
-          <!-- Scrolling dashes -->
-          <path class="road-dash" d="M0,202 H480" stroke="rgba(255,255,255,.14)" stroke-width="2" fill="none" stroke-dasharray="24 16"/>
-
-          <!-- TRUCK GROUP — slides in -->
-          <g class="truck-grp">
-            <!-- Cargo trailer -->
-            <path d="M55,120 H275 Q281,120 281,126 V200 H55 Z" fill="rgba(0,70,166,.28)" stroke="rgba(0,102,204,.55)" stroke-width="1.5"/>
-            <!-- Trailer panels -->
-            <path d="M115,120 V200 M175,120 V200 M235,120 V200" stroke="rgba(0,102,204,.25)" stroke-width="1" fill="none"/>
-            <!-- YILMAZ text -->
-            <text x="168" y="158" text-anchor="middle" font-family="Outfit,sans-serif" font-size="14" font-weight="800" fill="rgba(255,255,255,.45)" letter-spacing="2">YILMAZ</text>
-            <text x="168" y="175" text-anchor="middle" font-family="Outfit,sans-serif" font-size="10" font-weight="500" fill="rgba(255,255,255,.28)" letter-spacing="1">REDUKTOR</text>
-            <!-- Gear icon on trailer -->
-            <circle cx="252" cy="155" r="14" fill="none" stroke="rgba(0,122,204,.45)" stroke-width="1.5"/>
-            <circle cx="252" cy="155" r="6" fill="none" stroke="rgba(0,122,204,.45)" stroke-width="1.5"/>
-            <path d="M252,141 V137 M252,169 V173 M238,155 H234 M266,155 H270" stroke="rgba(0,122,204,.4)" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <!-- Cab -->
-            <path d="M281,145 V200 H375 V158 L353,128 H305 Z" fill="rgba(0,40,100,.55)" stroke="rgba(0,102,204,.65)" stroke-width="1.5"/>
-            <!-- Windshield -->
-            <path d="M287,148 V163 H348 V157 L332,130 H307 Z" fill="rgba(0,122,204,.22)" stroke="rgba(0,122,204,.4)" stroke-width="1"/>
-            <!-- Door line -->
-            <path d="M310,163 V198" stroke="rgba(0,102,204,.25)" stroke-width="1" fill="none"/>
-            <!-- Door handle -->
-            <path d="M292,181 H300 Q302,181 302,183 V184 Q302,186 300,186 H292 Q290,186 290,184 V183 Q290,181 292,181 Z" fill="rgba(255,255,255,.25)"/>
-            <!-- Headlight -->
-            <path d="M368,167 H375 Q377,167 377,169 V179 Q377,181 375,181 H368 Z" fill="rgba(255,255,255,.45)"/>
-            <!-- Bumper -->
-            <path d="M375,190 H388 Q390,190 390,192 V200 H375 Z" fill="rgba(0,70,166,.4)" stroke="rgba(0,102,204,.45)" stroke-width="1"/>
-            <!-- Exhaust -->
-            <path d="M370,128 V114 Q370,112 372,112 H374 Q376,112 376,114 V128 Z" fill="rgba(0,70,166,.3)" stroke="rgba(0,102,204,.35)" stroke-width="1"/>
-
-            <!-- FRONT WHEEL (use transform-box:fill-box) -->
-            <g class="wheel-svg" style="transform-origin:50% 50%">
-              <circle cx="330" cy="204" r="18" fill="#08102a" stroke="rgba(0,102,204,.6)" stroke-width="2"/>
-              <circle cx="330" cy="204" r="10" fill="none" stroke="rgba(0,102,204,.4)" stroke-width="1.5"/>
-              <circle cx="330" cy="204" r="4" fill="rgba(0,102,204,.5)"/>
-              <path d="M330,194 V200 M330,208 V214 M320,204 H326 M334,204 H340" stroke="rgba(0,122,204,.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            </g>
-            <!-- REAR WHEEL 1 -->
-            <g class="wheel-svg">
-              <circle cx="130" cy="204" r="18" fill="#08102a" stroke="rgba(0,102,204,.6)" stroke-width="2"/>
-              <circle cx="130" cy="204" r="10" fill="none" stroke="rgba(0,102,204,.4)" stroke-width="1.5"/>
-              <circle cx="130" cy="204" r="4" fill="rgba(0,102,204,.5)"/>
-              <path d="M130,194 V200 M130,208 V214 M120,204 H126 M134,204 H140" stroke="rgba(0,122,204,.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            </g>
-            <!-- REAR WHEEL 2 -->
-            <g class="wheel-svg">
-              <circle cx="160" cy="204" r="18" fill="#08102a" stroke="rgba(0,102,204,.6)" stroke-width="2"/>
-              <circle cx="160" cy="204" r="10" fill="none" stroke="rgba(0,102,204,.4)" stroke-width="1.5"/>
-              <circle cx="160" cy="204" r="4" fill="rgba(0,102,204,.5)"/>
-              <path d="M160,194 V200 M160,208 V214 M150,204 H156 M164,204 H170" stroke="rgba(0,122,204,.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            </g>
-          </g>
-
-          <!-- Warehouse/destination -->
-          <g opacity=".65">
-            <path d="M415,140 H475 V204 H415 Z" fill="rgba(0,70,166,.15)" stroke="rgba(0,102,204,.4)" stroke-width="1.5"/>
-            <path d="M415,156 H475" stroke="rgba(0,102,204,.25)" stroke-width="1" fill="none"/>
-            <path d="M425,170 H437 V204 H425 Z" fill="rgba(0,102,204,.28)"/>
-            <path d="M446,162 H458 V172 H446 Z M446,178 H458 V188 H446 Z" fill="rgba(0,122,204,.28)"/>
-            <text x="445" y="136" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="rgba(255,255,255,.35)" font-weight="600">OMBOR</text>
-          </g>
-        </svg>
-      </div>
     </div>
-  </div>
 
-  <!-- Advantages -->
-  <div class="sw">
-    <div class="sw-inner">
-      <div class="tag reveal">NIMA UCHUN YILMAZ?</div>
-      <h2 class="reveal d1">Afzalliklar</h2>
-      <div class="adv-grid">
-        <div class="adv-card reveal d1"><div class="adv-ic"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>Top-6 Jahon Ishlab Chiqaruvchisi</h3><p>Yiliga 330,000 dona — Turkiyaning eng katta reduktor zavodi. 100,000 m² ishlab chiqarish maydoni.</p></div>
-        <div class="adv-card reveal d2"><div class="adv-ic"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><h3>To'liq Almashtiriladi</h3><p>SEW, Flender, David Brown, Bonfiglioli bilan o'lcham va bog'lanish jihatidan to'liq mos keladi.</p></div>
-        <div class="adv-card reveal d3"><div class="adv-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div><h3>DIN & Niemann Standartlari</h3><p>GG20/GG22 cho'yan monoblok korpus. 58–62 HRc tishli g'ildiraklar. IE2, IE3, IE4 sertifikatlari.</p></div>
-      </div>
+    <div class="section section-bg">
+        <div class="container">
+            <div><span class="hero-badge">MAHSULOTLAR</span><h2 class="section-title">Kategoriyalar</h2><p class="section-sub">Har qanday sanoat talabi uchun yechimlar</p></div>
+            <div class="cat-grid" id="home-cats"></div>
+        </div>
     </div>
-  </div>
 
-  <!-- Partners -->
-  <div class="sw sw-gray">
-    <div class="sw-inner">
-      <div class="tag reveal">HAMKORLAR</div>
-      <h2 class="reveal d1">Bizning hamkorlar</h2>
-      <div class="partners-row reveal d2">
-        <div class="partner">ABB Group</div>
-        <div class="partner">Siemens</div>
-        <div class="partner">Schneider Electric</div>
-        <div class="partner">SEW-Eurodrive</div>
-        <div class="partner">Flender</div>
-      </div>
-    </div>
-  </div>
-</div><!-- /home -->
-
-<!-- ════════════ CATALOG ════════════ -->
-<div id="page-catalog" class="page">
-  <div class="sw">
-    <div class="sw-inner">
-      <div class="tag">KATALOG</div>
-      <h2>Mahsulot Kategoriyalari</h2>
-      <p class="sub">Kategoriyani tanlang — kerakli reduktor seriyasini oson toping.</p>
-      <div class="cat-grid" id="catalog-cats"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════ PRODUCTS ════════════ -->
-<div id="page-products" class="page">
-  <div class="sw">
-    <div class="sw-inner">
-      <div id="pl-header"></div>
-      <div class="prods-grid" id="pl-grid"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════ DETAIL ════════════ -->
-<div id="page-detail" class="page">
-  <div class="sw">
-    <div class="sw-inner" id="pd-content"></div>
-  </div>
-</div>
-
-<!-- ════════════ ABOUT ════════════ -->
-<div id="page-about" class="page">
-  <div class="sw sw-gray">
-    <div class="sw-inner">
-      <div class="tag reveal">1958 — DAN BERI</div>
-      <h2 class="reveal d1">Biz haqimizda</h2>
-      <div class="about-grid">
-        <div class="about-vis reveal-l">
-          <!-- About SVG — will be animated when page becomes visible via JS -->
-          <div class="about-vis-svg" id="about-svg-wrap">
-            <svg viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg" id="about-svg">
-              <path class="draw-path d2" stroke="var(--bl)" stroke-width="2" d="M130,110 A60,60 0 1,0 129.9,110 Z"/>
-              <path class="draw-path d3" stroke="rgba(0,70,166,.3)" stroke-width="1.5" d="M130,110 A42,42 0 1,0 129.9,110 Z"/>
-              <path class="draw-path d3" stroke="var(--bl)" stroke-width="2.5" d="M130,110 A14,14 0 1,0 129.9,110 Z"/>
-              <path class="draw-path d4" stroke="var(--bl)" stroke-width="2" d="M130,96 V68 M130,124 V152 M116,110 H88 M144,110 H172"/>
-              <path class="draw-path d5" stroke="var(--bl)" stroke-width="2" d="M120,100 L100,80 M140,120 L160,140"/>
-              <!-- Gear teeth -->
-              <path class="draw-path d5" stroke="var(--bl)" stroke-width="2" d="M126,50 L123,41 M134,50 L137,41 M126,170 L123,179 M134,170 L137,179 M70,106 L61,103 M70,114 L61,117 M190,106 L199,103 M190,114 L199,117"/>
-              <!-- Small gear top right -->
-              <path class="draw-path d5" stroke="var(--bl)" stroke-width="2" d="M215,65 A34,34 0 1,0 214.9,65 Z"/>
-              <path class="draw-path d6" stroke="rgba(0,70,166,.3)" stroke-width="1.5" d="M215,65 A22,22 0 1,0 214.9,65 Z"/>
-              <path class="draw-path d6" stroke="var(--bl)" stroke-width="2.5" d="M215,65 A8,8 0 1,0 214.9,65 Z"/>
-              <path class="draw-path d6" stroke="var(--bl)" stroke-width="2" d="M215,57 V43 M215,73 V87 M207,65 H193 M223,65 H237"/>
-              <!-- Connecting shaft -->
-              <path class="draw-path d6" stroke="var(--t)" stroke-width="3" d="M185,95 L162,108"/>
-              <!-- Tiny gear bottom right -->
-              <path class="draw-path d7" stroke="var(--bl)" stroke-width="2" d="M242,175 A22,22 0 1,0 241.9,175 Z"/>
-              <path class="draw-path d7" stroke="rgba(0,70,166,.3)" stroke-width="1.5" d="M242,175 A14,14 0 1,0 241.9,175 Z"/>
-              <path class="draw-path d8" stroke="var(--bl)" stroke-width="2" d="M242,161 V153 M242,189 V197 M228,175 H220 M256,175 H264"/>
+    <div class="delivery-hero">
+        <div>
+            <h2 style="color:white; margin-bottom:1rem;">Buyurtmadan eshigingizgacha</h2>
+            <div style="display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0;">
+                <div>📞 24 soat ichida texnik maslahat</div>
+                <div>🚚 Toshkent omboridan tez yetkazib berish</div>
+                <div>🛡️ Rasmiy garantiya va texnik xizmat</div>
+            </div>
+            <button class="btn-primary" style="background:white; color:var(--primary);" onclick="openModal()">So'rov yuborish →</button>
+        </div>
+        <div class="truck-svg">
+            <svg viewBox="0 0 480 170">
+                <path d="M0 150 L480 150" stroke="#ffffff60" stroke-width="3" class="road-line"/>
+                <path d="M30 140 L30 150 L440 150 L440 140 L410 110 L300 110 L300 70 L200 55 L80 55 L50 75 L40 140 Z" fill="#1E2A4A" stroke="#ffffff40" stroke-width="1.5"/>
+                <text x="195" y="98" fill="#ffffff90" font-size="13" font-weight="bold">YILMAZ</text>
+                <circle cx="90" cy="150" r="14" fill="#111827" stroke="#ffffff70" stroke-width="2.5" class="wheel-moving"/>
+                <circle cx="340" cy="150" r="14" fill="#111827" stroke="#ffffff70" stroke-width="2.5" class="wheel-moving"/>
+                <circle cx="390" cy="150" r="14" fill="#111827" stroke="#ffffff70" stroke-width="2.5" class="wheel-moving"/>
+                <rect x="410" y="120" width="35" height="18" fill="#0A3D8F" rx="4"/>
             </svg>
-          </div>
-          <div class="about-stats">
-            <div class="astat"><div class="astat-n">330K</div><div class="astat-l">Yillik ishlab chiqarish</div></div>
-            <div class="astat"><div class="astat-n">100K m²</div><div class="astat-l">Zavod maydoni</div></div>
-            <div class="astat"><div class="astat-n">60+</div><div class="astat-l">Yillik tajriba</div></div>
-            <div class="astat"><div class="astat-n">80+</div><div class="astat-l">Eksport mamlakati</div></div>
-          </div>
         </div>
-        <div class="reveal-r">
-          <p style="color:var(--m);line-height:1.9;font-size:15px;margin-bottom:18px">1958-yilda Mesut Yilmaz tomonidan asos solingan kompaniya bugungi kunda Istanbul, Cerkezkoy va Toshkentda faoliyat yuritadi. Mahsulotlarimiz 80 dan ortiq mamlakatga eksport qilinadi.</p>
-          <p style="color:var(--m);line-height:1.9;font-size:15px;margin-bottom:24px">2017-yilda tezlik boshqaruv drayverlari qo'shilishi bilan Yilmaz — Turkiyada yagona brend ostida reduktor, motor va tezlik boshqaruvini taqdim etadigan birinchi kompaniyaga aylandi.</p>
-          <div class="checks">
-            <div class="check-item"><div class="check-ic"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="check-t">Monoblok Korpus</div><div class="check-d">GG20/GG22 cho'yan — yuqori qattiqlik, shovqinsizlik, yog' oqmasligi</div></div></div>
-            <div class="check-item"><div class="check-ic"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="check-t">To'liq Almashtiriladigan</div><div class="check-d">SEW, Flender, David Brown, Bonfiglioli bilan to'liq mos</div></div></div>
-            <div class="check-item"><div class="check-ic"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="check-t">Yagona To'liq Yechim</div><div class="check-d">Reduktor + Motor + Tezlik boshqaruvi — bitta brendda</div></div></div>
-            <div class="check-item"><div class="check-ic"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="check-t">Mahalliy Qo'llab-quvvatlash</div><div class="check-d">Toshkentda rasmiy vakillik, tez yetkazib berish va texnik xizmat</div></div></div>
-          </div>
-          <button class="btn-solid" onclick="go('catalog')">Katalogni ko'rish <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-        </div>
-      </div>
     </div>
-  </div>
-  <div class="sw">
-    <div class="sw-inner">
-      <div class="tag reveal">QO'LLANISH SOHALARI</div>
-      <h2 class="reveal d1">Qayerda ishlatiladi</h2>
-      <div class="apps-grid" style="margin-top:36px">
-        <div class="app-tile reveal d1"><span class="icon">🏗️</span><p>Qurilish</p></div>
-        <div class="app-tile reveal d2"><span class="icon">🏭</span><p>Sement zavodi</p></div>
-        <div class="app-tile reveal d3"><span class="icon">⛏️</span><p>Kon sanoati</p></div>
-        <div class="app-tile reveal d4"><span class="icon">🚢</span><p>Kran va lift</p></div>
-        <div class="app-tile reveal d1"><span class="icon">🌾</span><p>Oziq-ovqat</p></div>
-        <div class="app-tile reveal d2"><span class="icon">♻️</span><p>Qog'oz sanoati</p></div>
-        <div class="app-tile reveal d3"><span class="icon">⚙️</span><p>Konveyerlar</p></div>
-        <div class="app-tile reveal d4"><span class="icon">🛢️</span><p>Neft va gaz</p></div>
-        <div class="app-tile reveal d1"><span class="icon">🌊</span><p>Suv tozalash</p></div>
-        <div class="app-tile reveal d2"><span class="icon">🔩</span><p>Metallurgiya</p></div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- ════════════ NEWS ════════════ -->
-<div id="page-news" class="page">
-  <div class="sw sw-gray">
-    <div class="sw-inner">
-      <div class="tag reveal">YANGILIKLAR</div>
-      <h2 class="reveal d1">So'nggi yangiliklar</h2>
-      <div class="news-grid">
-        <div class="news-card reveal d1"><div class="news-img"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--bl)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div><div class="news-body"><div class="news-date">Mart 2025</div><div class="news-title">Yilmaz Reduktor O'zbekistonda yangi omborxona ochdi</div><div class="news-desc">Toshkentdagi yangi omborxona 500 dan ortiq model turini zaxirada ushlab turish imkonini beradi.</div></div></div>
-        <div class="news-card reveal d2"><div class="news-img"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--bl)" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8zM5.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM19.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg></div><div class="news-body"><div class="news-date">Yanvar 2025</div><div class="news-title">IE4 samaradorlik sinfi — yangi elektr motor seriyasi</div><div class="news-desc">Eng yuqori IE4 samaradorlik sinfidagi yangi ELK motor seriyasi mahsulot qatoriga qo'shildi.</div></div></div>
-        <div class="news-card reveal d3"><div class="news-img"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--bl)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div><div class="news-body"><div class="news-date">Noyabr 2024</div><div class="news-title">Hannover Messe 2024 — yangi industrial yechimlar</div><div class="news-desc">Hannover ko'rgazmasida Yilmaz 470,000 Nm gacha bo'lgan yangi industriyal seriyani namoyish etdi.</div></div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════ CONTACT ════════════ -->
-<div id="page-contact" class="page">
-  <div class="sw sw-gray">
-    <div class="sw-inner">
-      <div class="tag reveal">BOG'LANING</div>
-      <h2 class="reveal d1">Kontakt</h2>
-      <div class="contact-grid">
-        <div class="cform-wrap reveal-l">
-          <h3>So'rov yuborish</h3>
-          <form class="cform" onsubmit="submitForm(event)">
-            <div class="form-row">
-              <div><label>Ism va familiya</label><input type="text" placeholder="Abdullayev Jasur" required></div>
-              <div><label>Telefon</label><input type="tel" placeholder="+998 90 000 00 00" required></div>
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">Nega Yilmaz?</h2>
+            <div class="cat-grid" style="margin-top:1.5rem;">
+                <div class="cat-card"><div class="cat-icon">🏭</div><h3>Top-6 jahon ishlab chiqaruvchisi</h3><p>330.000 dona/yil, 100.000 m² zavod</p></div>
+                <div class="cat-card"><div class="cat-icon">🔄</div><h3>To‘liq almashtiriladi</h3><p>SEW, Flender, Bonfiglioli bilan mos</p></div>
+                <div class="cat-card"><div class="cat-icon">⚙️</div><h3>DIN & Niemann standartlari</h3><p>58-62 HRc tishli g‘ildiraklar, IE2/IE3/IE4</p></div>
             </div>
-            <div><label>Email</label><input type="email" placeholder="jasur@company.uz"></div>
-            <div><label>Mahsulot turi</label>
-              <select>
-                <option value="">Kategoriyani tanlang</option>
-                <option>Kompakt Reduktorlar (M, N, E, D, K seriyalari)</option>
-                <option>Industriyal Reduktorlar (Y, H, B seriyalari)</option>
-                <option>Maxsus Reduktorlar (P/R, T seriyalari)</option>
-                <option>Elektr Motorlar (ELK seriyasi)</option>
-                <option>Tezlik boshqaruv drayverlari</option>
-              </select>
-            </div>
-            <div><label>Texnik talablar</label><textarea placeholder="Quvvat (kW), moment (Nm), nisbat, qo'llanish sohasi..."></textarea></div>
-            <button type="submit" class="sub-btn">Yuborish →</button>
-          </form>
         </div>
-        <div class="cinfo reveal-r">
-          <div class="cinfo-card"><div class="cinfo-ic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.02 1.14 2 2 0 012 .05h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg></div><div><div class="cinfo-lbl">Telefon</div><div class="cinfo-val">+998 90 000 00 00</div><div class="cinfo-sub">+7 (495) 543-37-54 (Rossiya)</div></div></div>
-          <div class="cinfo-card"><div class="cinfo-ic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="cinfo-lbl">Email</div><div class="cinfo-val">info@yilmazreduktor.uz</div></div></div>
-          <div class="cinfo-card"><div class="cinfo-ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="cinfo-lbl">Manzil</div><div class="cinfo-val">Toshkent, O'zbekiston</div><div class="cinfo-sub">Yangi Sergeli tumani, Sanoat ko'chasi 45</div></div></div>
-          <div class="cinfo-card"><div class="cinfo-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="cinfo-lbl">Ish vaqti</div><div class="cinfo-val">Dushanba — Juma</div><div class="cinfo-sub">09:00 — 18:00</div></div></div>
-          <div class="map-ph"><div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--bl)" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><br>Google Maps integratsiyasi</div></div>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 
-<!-- FOOTER -->
+<!-- CATALOG PAGE -->
+<div id="catalog-page" class="page">
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">Mahsulot Kategoriyalari</h2>
+            <p class="section-sub">Kategoriyani tanlang va barcha seriyalarni ko‘ring</p>
+            <div class="cat-grid" id="catalog-cats"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PRODUCTS PAGE -->
+<div id="products-page" class="page">
+    <div class="section">
+        <div class="container" id="products-container"></div>
+    </div>
+</div>
+
+<!-- DETAIL PAGE -->
+<div id="detail-page" class="page">
+    <div class="section">
+        <div class="container" id="detail-container"></div>
+    </div>
+</div>
+
+<!-- ABOUT PAGE -->
+<div id="about-page" class="page">
+    <div class="section section-bg">
+        <div class="container">
+            <h2 class="section-title">1958 — dan beri</h2>
+            <div style="display:grid; gap:2rem; grid-template-columns:1fr 1fr; align-items:center; margin-top:2rem;">
+                <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23EEF3FB' rx='20'/%3E%3Ccircle cx='150' cy='100' r='42' fill='none' stroke='%230A3D8F' stroke-width='4'/%3E%3Cpath d='M150 58 L150 35 M150 142 L150 165 M108 100 L85 100 M192 100 L215 100 M120 68 L103 50 M180 132 L197 150 M120 132 L103 150 M180 68 L197 50' stroke='%230A3D8F' stroke-width='3.5'/%3E%3C/svg%3E" style="width:100%; max-width:280px;"></div>
+                <div><p style="line-height:1.7;">1958-yilda asos solingan kompaniya Istanbul, Cerkezkoy va Toshkentda faoliyat yuritadi. Yilmaz – Turkiyada yagona brend ostida reduktor, motor va tezlik boshqaruvini birlashtirgan yetakchi ishlab chiqaruvchi.</p><br/><p>GG20/GG22 monoblok cho‘yan korpus, global standartlarga to‘liq mos va eng og‘ir sanoat sharoitlari uchun mo‘ljallangan.</p><button class="btn-primary" style="margin-top:1.5rem;" onclick="navigateTo('catalog')">Katalogni o‘rganish →</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NEWS PAGE -->
+<div id="news-page" class="page">
+    <div class="section section-bg">
+        <div class="container">
+            <h2 class="section-title">Yangiliklar</h2>
+            <div class="cat-grid" style="margin-top:2rem;">
+                <div class="cat-card"><h3>📢 Mart 2025</h3><p>Yilmaz Reduktor Toshkentda yangi ombor ochdi – 500+ model zaxirada.</p></div>
+                <div class="cat-card"><h3>⚡ Yanvar 2025</h3><p>IE4 samaradorlik sinfidagi yangi ELK motor seriyasi taqdim etildi.</p></div>
+                <div class="cat-card"><h3>🏭 Noyabr 2024</h3><p>Hannover Messe 2024 – 470.000 Nm gacha industrial reduktorlar namoyishi.</p></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTACT PAGE -->
+<div id="contact-page" class="page">
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">Bog‘lanish</h2>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem;">
+                <div class="cat-card"><h3>📍 Manzil</h3><p>Toshkent, Yangi Sergeli tumani, Sanoat ko‘chasi 45</p><h3 style="margin-top:1rem;">📞 Telefon</h3><p>+998 90 000 00 00</p><h3 style="margin-top:1rem;">✉️ Email</h3><p>info@yilmazreduktor.uz</p></div>
+                <div class="cat-card"><form id="contactForm" onsubmit="submitContactForm(event)"><div class="form-group"><input type="text" placeholder="Ism familiya" id="contactName" required></div><div class="form-group"><input type="tel" placeholder="Telefon raqam" id="contactPhone"></div><div class="form-group"><input type="email" placeholder="Email" id="contactEmail"></div><div class="form-group"><select id="contactProduct"><option>Kompakt Reduktorlar</option><option>Industriyal Reduktorlar</option><option>Elektr motorlar</option></select></div><div class="form-group"><textarea rows="3" placeholder="Texnik talablar" id="contactMsg"></textarea></div><button type="submit" class="btn-primary" style="width:100%">Yuborish</button></form></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="f-logo"><div class="f-logo-box"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.93 4.93l1.41 1.41M13.66 13.66l1.41 1.41M4.93 15.07l1.41-1.41M13.66 6.34l1.41-1.41"/></svg></div><div class="f-logo-name">Yilmaz Reduktor</div></div>
-      <p>O'zbekistonda Yilmaz Reduktorning rasmiy vakili. Yuqori sifatli sanoat reduktorlari, motorlar va tezlik boshqaruv yechimlari.</p>
-      <div class="socials">
-        <a href="#" title="Telegram">T</a>
-        <a href="#" title="Instagram">IG</a>
-        <a href="#" title="LinkedIn">in</a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Katalog</h4>
-      <a onclick="showCat('compact')">Kompakt Reduktorlar</a>
-      <a onclick="showCat('industrial')">Industriyal Reduktorlar</a>
-      <a onclick="showCat('special')">Maxsus Reduktorlar</a>
-      <a onclick="showCat('motors')">Elektr Motorlar</a>
-    </div>
-    <div class="footer-col">
-      <h4>Kompaniya</h4>
-      <a onclick="go('about')">Biz haqimizda</a>
-      <a onclick="go('news')">Yangiliklar</a>
-      <a onclick="go('contact')">Kontakt</a>
-    </div>
-    <div class="footer-col">
-      <h4>Bog'lanish</h4>
-      <a>+998 90 000 00 00</a>
-      <a>info@yilmazreduktor.uz</a>
-      <a>Toshkent, O'zbekiston</a>
-      <a onclick="openModal()">So'rov yuborish</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 Yilmaz Reduktor O'zbekiston. Barcha huquqlar himoyalangan.</span>
-    <span>Maxfiylik siyosati</span>
-  </div>
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap;"><span>© 2026 Yilmaz Reduktor O‘zbekiston</span><span>Barcha huquqlar himoyalangan</span></div>
 </footer>
 
-<!-- MODAL -->
-<div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
-  <div class="modal">
-    <button class="modal-x" onclick="closeModal()">✕</button>
-    <h3>Tez so'rov yuborish</h3>
-    <div class="mf">
-      <div><label>Ismingiz</label><input id="mn" type="text" placeholder="Abdullayev Jasur"></div>
-      <div class="form-row">
-        <div><label>Telefon</label><input id="mp" type="tel" placeholder="+998 90..."></div>
-        <div><label>Quvvat (kW)</label><input id="mw" type="text" placeholder="7.5 kW"></div>
-      </div>
-      <div><label>Qo'shimcha ma'lumot</label><textarea id="md" style="height:80px" placeholder="Moment, nisbat, seriya..."></textarea></div>
-      <button class="sub-btn" onclick="submitModal()">Yuborish →</button>
+<div class="modal" id="requestModal">
+    <div class="modal-content">
+        <h3 style="margin-bottom:1rem;">Tez so'rov yuborish</h3>
+        <form id="modalForm" onsubmit="submitModalForm(event)">
+            <div class="form-group"><input type="text" placeholder="Ismingiz" id="modalName" required></div>
+            <div class="form-group"><input type="tel" placeholder="Telefon raqam" id="modalPhone"></div>
+            <div class="form-group"><textarea rows="2" placeholder="Mahsulot va texnik talablar" id="modalMsg"></textarea></div>
+            <div style="display:flex; gap:1rem; margin-top:1rem;"><button type="submit" class="btn-primary">Yuborish</button><button type="button" onclick="closeModal()" class="btn-outline">Yopish</button></div>
+        </form>
     </div>
-  </div>
 </div>
-<div class="toast" id="toast"></div>
+<div id="toastMsg" class="toast"></div>
 
 <script>
-/* ═══════════════════════════════════════════════
-   DATA
-═══════════════════════════════════════════════ */
+    // DATA
+    const categories = [
+        { id: "compact", name: "Kompakt Reduktorlar", desc: "Oyoqli, flanjli, kovak valli", icon: "⚙️", count: 5 },
+        { id: "industrial", name: "Industriyal Reduktorlar", desc: "Og‘ir sanoat, 165.000 Nm gacha", icon: "🏭", count: 3 },
+        { id: "special", name: "Maxsus Reduktorlar", desc: "Planetar va konveyer", icon: "🔄", count: 2 },
+        { id: "motors", name: "Elektr Motorlar", desc: "IE2, IE3, IE4 sinf", icon: "⚡", count: 1 }
+    ];
 
-// FIX: All images hosted on Wikimedia (stable, free, no hotlink issues)
-// Using base64 inline SVG placeholders as reliable fallback
-const IMGS = {
-  M:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Inline_helical_gearbox.jpg/320px-Inline_helical_gearbox.jpg',
-  N:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Inline_helical_gearbox.jpg/320px-Inline_helical_gearbox.jpg',
-  E:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Worm_Gear_and_Pinion.jpg/320px-Worm_Gear_and_Pinion.jpg',
-  D:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Inline_helical_gearbox.jpg/320px-Inline_helical_gearbox.jpg',
-  K:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Inline_helical_gearbox.jpg/320px-Inline_helical_gearbox.jpg',
-  Y:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Inline_helical_gearbox.jpg/320px-Inline_helical_gearbox.jpg',
-  H:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Inline_helical_gearbox.jpg/320px-Inline_helical_gearbox.jpg',
-  B:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Inline_helical_gearbox.jpg/320px-Inline_helical_gearbox.jpg',
-  ELK:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Electric_motor.jpg/320px-Electric_motor.jpg'
-};
-
-const CATS = [
-  {id:'compact',  name:"Kompakt Reduktorlar",   desc:"Oyoqli, flanjli, kovak valli va chervyakli reduktorlar. Kichik va o'rta yuklar uchun.", count:5,
-    svg:`<svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="13" r="5"/><circle cx="13" cy="13" r="2"/><path d="M13 3v3M13 20v3M3 13h3M20 13h3M5.64 5.64l2.12 2.12M18.24 18.24l2.12 2.12M5.64 20.36l2.12-2.12M18.24 7.76l2.12-2.12"/></svg>`},
-  {id:'industrial',name:"Industriyal Reduktorlar",desc:"Og'ir sanoat uchun — sement, kon, metallurgiya. 165,000 Nm gacha.", count:3,
-    svg:`<svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="20" height="12" rx="1"/><path d="M3 11l5-7h10l5 7"/><path d="M8 23v-6M13 23v-6M18 23v-6"/></svg>`},
-  {id:'special',  name:"Maxsus Reduktorlar",     desc:"Planetar va konveyer reduktorlari. Maxsus ilovalar va mobil texnika.", count:2,
-    svg:`<svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="13" r="7"/><circle cx="13" cy="13" r="3"/><circle cx="13" cy="6" r="2"/><circle cx="13" cy="20" r="2"/><circle cx="6" cy="13" r="2"/><circle cx="20" cy="13" r="2"/></svg>`},
-  {id:'motors',   name:"Elektr Motorlar",        desc:"IE2, IE3, IE4 sinfidagi asinxron AC motorlar. ELK seriyasi, 315 ramkagacha.", count:1,
-    svg:`<svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="14" height="10" rx="2"/><path d="M17 11h4l2 2.5L21 16h-4"/><path d="M3 13H1M8 8V6M13 8V6"/></svg>`},
-];
-
-const PRODS = [
-  // ── COMPACT ──
-  {id:'M', cat:'compact',
-   name:'M Seriyasi', sub:'Oyoqli Helisel Reduktorlar',
-   desc:"Oyoqli montaj, monoblok cho'yan korpus. Standart va og'ir yuklar uchun universal yechim. SEW R/F seriyalari bilan to'liq almashtiriladigan.",
-   torque:'50 — 18,000 Nm', speed:'0.1 — 500 min⁻¹', sizes:'13 ta', ratio:'1.25 — 289',
-   subtypes:[{c:'MR',d:'Helisel motor-reduktor, oyoqli montaj'},{c:'MV',d:'IEC B5/B14 flanji bilan, oyoqli'},{c:'MN',d:'IEC B5/B14 flanji bilan, reduktor'},{c:'MT',d:'Qattiq kirish valli bilan'}],
-   feats:["GG20/GG22 cho'yan monoblok korpus","58–62 HRc tishli g'ildiraklar","2 yoki 3 bosqich bir korpusda","Chiqish flanji va val variantlari","Elektromagnit tormoz varianti","Encoder (tezlik sensori) varianti"]},
-
-  {id:'N', cat:'compact',
-   name:'N Seriyasi', sub:'Flanjli Helisel Reduktorlar',
-   desc:"Flanjli montaj, kompakt o'lcham. Vertikal va gorizontal o'rnatish imkoniyati. SEW F seriyasi bilan almashtiriladigan.",
-   torque:'50 — 18,000 Nm', speed:'0.1 — 500 min⁻¹', sizes:'13 ta', ratio:'1.25 — 289',
-   subtypes:[{c:'NR',d:'Helisel motor-reduktor, flanjli'},{c:'NV',d:'IEC B5/B14 flanji bilan, flanjli'},{c:'NN',d:'IEC B5/B14 flanji bilan, reduktor'},{c:'NT',d:'Qattiq kirish valli bilan'}],
-   feats:["Monoblok cho'yan korpus","Uzun umrli podshipniklar","Har tomonlama montaj","Tezlik va moment moslashtirish","Majburiy sovutish varianti","Oziq-ovqat sanoati yog'lari"]},
-
-  {id:'E', cat:'compact',
-   name:'E Seriyasi', sub:"Chervyakli (Worm) Reduktorlar",
-   desc:"Ixcham va jim ishlaydigan. Yuqori nisbat bitta bosqichda. Kichik o'lcham, past shovqin, o'z-o'zidan tormozlanish.",
-   torque:'5 — 1,000 Nm', speed:'0.1 — 400 min⁻¹', sizes:'8 ta', ratio:'7.5 — 100',
-   subtypes:[{c:'EV',d:'Chervyakli motor-reduktor, IEC flanji'},{c:'EN',d:'IEC B5/B14 flanji bilan, reduktor'},{c:'ET',d:'Qattiq kirish valli bilan'}],
-   feats:["7.5 dan 100 gacha nisbat","Yuqori o'z-o'zidan tormozlanish","Chiqish flanji variantlari","Jim va tejamkor ishlash","Juft reduktor bilan yuqori nisbat","Ixcham o'lcham"]},
-
-  {id:'D', cat:'compact',
-   name:'D Seriyasi', sub:"Kovak Valli Helisel Reduktorlar",
-   desc:"To'g'ridan-to'g'ri val bog'lanish. Konveyer va aralashtiruvchilar uchun ideal. SEW KA seriyasi bilan almashtiriladigan.",
-   torque:'130 — 18,000 Nm', speed:'0.1 — 350 min⁻¹', sizes:'10 ta', ratio:'3.55 — 289',
-   subtypes:[{c:'DR',d:"To'g'ridan-to'g'ri flanjli motor-reduktor"},{c:'DV',d:'IEC B5/B14 flanji bilan motor-reduktor'},{c:'DN',d:'IEC B5/B14 flanji bilan, reduktor'},{c:'DT',d:'Qattiq kirish valli bilan'}],
-   feats:["Kovak chiqish valli","Monoblok korpus dizayn","Flans va val variantlari","Har qanday montaj o'rni","Shrink disk varianti","Torque arm varianti"]},
-
-  {id:'K', cat:'compact',
-   name:'K Seriyasi', sub:"Konik-Helisel Reduktorlar",
-   desc:"90° burchak ostida uzatish. Og'ir yuklar va murakkab geometriya uchun optimal. SEW K seriyasi bilan almashtiriladigan.",
-   torque:'80 — 15,000 Nm', speed:'0.1 — 400 min⁻¹', sizes:'10 ta', ratio:'5 — 289',
-   subtypes:[{c:'KR',d:"Konik motor-reduktor, to'g'ridan flanjli"},{c:'KV',d:'IEC B5/B14 flanji bilan motor-reduktor'},{c:'KN',d:'IEC B5/B14 flanji bilan, reduktor'},{c:'KT',d:'Qattiq kirish valli bilan'}],
-   feats:["90° burchakli uzatish","Monoblok korpus","Yuqori moment zichligi","Har tomonlama montaj","Tishli g'ildiraklar grindlangan","2 yoki 3 bosqich"]},
-
-  // ── INDUSTRIAL ──
-  {id:'Y', cat:'industrial',
-   name:'Y Seriyasi', sub:"Gorizontal Industriyal Reduktorlar",
-   desc:"Og'ir sanoat uchun. Sement, kon, metallurgiya sohalarida ishonchli ishlash. 25 ta o'lcham, keng nisbat diapazoni.",
-   torque:'1,200 — 43,000 Nm', speed:'2.6 — 990 min⁻¹', sizes:'25 ta', ratio:'1.25 — 450',
-   subtypes:[{c:'YRM',d:'Qattiq chiqish valli, gorizontal tip'},{c:'YRD',d:'Kovak chiqish valli, gorizontal tip'},{c:'YRE',d:'Ekstruder chiqish varianti'},{c:'YRT',d:'Torque arm montaj varianti'}],
-   feats:["GGG40 nodul po'lat korpus","Tashqi issiqlik almashinuvchisi","Ichki sovutish spirali","Majburiy yog'lash tizimlari","Shrink disk varianti","Har tomondan montaj"]},
-
-  {id:'H', cat:'industrial',
-   name:'H Seriyasi', sub:"Industriyal Helisel Reduktorlar",
-   desc:"14 ta o'lcham, 2,500 dan 165,000 Nm gacha. Eng og'ir sanoat ilovalar uchun ishlab chiqarilgan.",
-   torque:'2,500 — 165,000 Nm', speed:'0.1 — 250 min⁻¹', sizes:'14 ta', ratio:'1.25 — 450',
-   subtypes:[{c:'HT',d:'Qattiq kirish valli'},{c:'HK',d:'IEC B5 kirish flanji'},{c:'HTE',d:'Ekstruder chiqish varianti'},{c:'HF',d:'Oyoqli montaj varianti'}],
-   feats:["Har tomondan montaj mumkin","Majburiy yog'lash","Tashqi va ichki sovutish","Shrink disk varianti","Katta moment zichligi","Grindlangan tishli g'ildiraklar"]},
-
-  {id:'B', cat:'industrial',
-   name:'B Seriyasi', sub:"Industriyal Helisel-Konik Reduktorlar",
-   desc:"Yuqori quvvat zichligi. 90° burchak, og'ir yuk, ishonchli uzoq muddatli ishlash. H seriyasiga parallel.",
-   torque:'2,500 — 165,000 Nm', speed:'0.1 — 115 min⁻¹', sizes:'14 ta', ratio:'5 — 450',
-   subtypes:[{c:'BT',d:'Qattiq kirish valli'},{c:'BK',d:'IEC B5 kirish flanji'},{c:'BTE',d:'Ekstruder chiqish varianti'},{c:'BF',d:'Oyoqli montaj varianti'}],
-   feats:["Barcha yuzadan montaj","Tashqi sovutish almashinuvchisi","Yuqori moment zichligi","Shrink disk varianti","Majburiy yog'lash","Grindlangan tishli g'ildiraklar"]},
-
-  // ── SPECIAL ──
-  {id:'P', cat:'special',
-   name:'P va R Seriyasi', sub:"Planetar Reduktorlar",
-   desc:"Ixcham o'lchamda yuqori moment. Mobil texnika va maxsus sanoat ilovalar uchun. Yuqori quvvat zichligi.",
-   torque:'1,000 — 50,000 Nm', speed:'0.1 — 300 min⁻¹', sizes:"So'rovga ko'ra", ratio:'3.15 — 4000',
-   subtypes:[{c:'PR',d:'Planetar motor-reduktor'},{c:'PN',d:'Planetar reduktor, flanji bilan'},{c:'PT',d:'Qattiq kirish valli bilan'},{c:'PD',d:'Kovak chiqish valli bilan'}],
-   feats:["Yuqori moment zichligi","Modulli konstruktsiya","Quyosh, planet va ichki tishli","Mobil ilovalar uchun ideal","Ixcham va engil","Katta nisbat diapazoni"]},
-
-  {id:'T', cat:'special',
-   name:'T Seriyasi', sub:"Konveyer va Maxsus Reduktorlar",
-   desc:"Vertikal va maxsus o'rnatish. Konveyer tizimlari uchun optimallashtirilgan dizayn. Oziq-ovqat sanoati uchun maxsus versiya.",
-   torque:'200 — 18,000 Nm', speed:'0.1 — 200 min⁻¹', sizes:"So'rovga ko'ra", ratio:'5 — 400',
-   subtypes:[{c:'TR',d:'Konveyer motor-reduktor'},{c:'TN',d:'Konveyer reduktor, flanji bilan'},{c:'TS',d:"Maxsus ilovalar uchun"},{c:'TF',d:'Oziq-ovqat sanoati versiyasi'}],
-   feats:["Vertikal o'rnatish","Konveyer tizimlari uchun","Oziq-ovqat sanoati yog'lari","Maxsus qo'llanishlar","Engil konstruksiya","Kompakt o'lcham"]},
-
-  // ── MOTORS — FIX: was empty, now has real data ──
-  {id:'ELK', cat:'motors',
-   name:'ELK Seriyasi', sub:"Asinxron Elektr Motorlar",
-   desc:"IE2, IE3 va IE4 energiya samaradorligi sinflaridagi uch fazali asinxron AC motorlar. Yilmaz reduktorlar bilan bevosita bog'lanish uchun optimallashtirilgan.",
-   torque:'So\'rovga ko\'ra', speed:'750 — 3000 min⁻¹', sizes:'63–315 ramka', ratio:'—',
-   subtypes:[{c:'ELK2',d:'IE2 samaradorlik sinfi, standart'},{c:'ELK3',d:'IE3 samaradorlik sinfi, yuqori'},{c:'ELK4',d:'IE4 samaradorlik sinfi, premium'},{c:'ELK-EX',d:'Portlovchi muhit uchun (ATEX)'}],
-   feats:["IE2 / IE3 / IE4 sertifikatlangan","63 dan 315 gacha ramka o'lchami","0.09 kW dan 315 kW gacha","Yilmaz reduktorlar bilan to'g'ridan bog'lanish","Aluminiy va cho'yan korpus variantlari","Inverter boshqaruv uchun mos"]},
-];
-
-/* ═══════════════════════════════════════════════
-   NAVIGATION
-═══════════════════════════════════════════════ */
-function go(p){
-  // Close mobile menu on every navigation
-  document.getElementById('mob').style.display='none';
-  document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));
-  const pg=document.getElementById('page-'+p);
-  if(!pg)return;
-  pg.classList.add('on');
-  document.querySelectorAll('.nav-links a').forEach(x=>x.classList.remove('on'));
-  const nl=document.getElementById('nl-'+p);if(nl)nl.classList.add('on');
-  window.scrollTo({top:0,behavior:'smooth'});
-  // Trigger reveals on the new page after it becomes visible
-  setTimeout(triggerReveals,60);
-  // FIX: animate about SVG when about page opens
-  if(p==='about') setTimeout(animateAboutSVG,120);
-}
-
-function toggleMob(){
-  const m=document.getElementById('mob');
-  m.style.display=(m.style.display==='flex'?'none':'flex');
-}
-
-/* ═══════════════════════════════════════════════
-   CATEGORY RENDERING
-═══════════════════════════════════════════════ */
-function renderCats(containerId){
-  const el=document.getElementById(containerId);
-  if(!el)return;
-  el.innerHTML=CATS.map((c,i)=>`
-    <div class="cat-card reveal d${(i%4)+1}" onclick="showCat('${c.id}')">
-      <div class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-      <div class="cat-icon-wrap">${c.svg}</div>
-      <div class="cat-title">${c.name}</div>
-      <div class="cat-desc">${c.desc}</div>
-      <span class="cat-badge">${c.count} seriya</span>
-    </div>`).join('');
-  setTimeout(triggerReveals,80);
-}
-
-/* ═══════════════════════════════════════════════
-   PRODUCT LIST
-═══════════════════════════════════════════════ */
-function showCat(cid){
-  const cat=CATS.find(c=>c.id===cid)||{name:'Mahsulotlar',desc:''};
-  const list=PRODS.filter(p=>p.cat===cid);
-  document.getElementById('pl-header').innerHTML=`
-    <div class="breadcrumb">
-      <span onclick="go('catalog')">Katalog</span>
-      <span class="bc-sep">/</span>
-      <span class="bc-cur">${cat.name}</span>
-    </div>
-    <div class="tag">${cat.name.toUpperCase()}</div>
-    <h2 style="margin-bottom:8px">${cat.name}</h2>
-    <p class="sub" style="margin-bottom:32px">${cat.desc}</p>`;
-  document.getElementById('pl-grid').innerHTML=list.map(p=>`
-    <div class="prod-card" onclick="showDetail('${p.id}','${cid}')">
-      <div class="prod-img-area">
-        ${IMGS[p.id]
-          ? `<img src="${IMGS[p.id]}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`
-          : ''
-        }
-        <div class="prod-img-ph" style="${IMGS[p.id]?'display:none':''}">⚙️</div>
-      </div>
-      <div class="prod-body">
-        <div class="prod-series">${p.id} SERIYASI</div>
-        <div class="prod-name">${p.name}</div>
-        <div class="prod-desc-text">${p.sub}</div>
-        <div class="prod-spec"><span>Moment diapazoni</span><span>${p.torque}</span></div>
-      </div>
-      <button class="view-btn">Batafsil ko'rish →</button>
-    </div>`).join('');
-  go('products');
-}
-
-/* ═══════════════════════════════════════════════
-   PRODUCT DETAIL
-═══════════════════════════════════════════════ */
-function showDetail(pid, cid){
-  const p=PRODS.find(x=>x.id===pid);
-  if(!p)return;
-  const cat=CATS.find(c=>c.id===(cid||p.cat))||{name:'Mahsulotlar'};
-  document.getElementById('pd-content').innerHTML=`
-    <div class="breadcrumb">
-      <span onclick="go('catalog')">Katalog</span><span class="bc-sep">/</span>
-      <span onclick="showCat('${p.cat}')">${cat.name}</span><span class="bc-sep">/</span>
-      <span class="bc-cur">${p.name}</span>
-    </div>
-    <button class="back-btn" onclick="showCat('${p.cat}')">
-      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      ${cat.name}ga qaytish
-    </button>
-    <div class="detail-grid">
-      <div>
-        <div class="detail-vis">
-          ${IMGS[p.id]
-            ? `<img src="${IMGS[p.id]}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`
-            : ''
-          }
-          <div class="detail-vis-ph" style="${IMGS[p.id]?'display:none':''}">⚙️</div>
-        </div>
-        <div class="specs-row">
-          <div class="spec-box"><div class="spec-lbl">Moment</div><div class="spec-val">${p.torque}</div></div>
-          <div class="spec-box"><div class="spec-lbl">Tezlik</div><div class="spec-val">${p.speed}</div></div>
-          <div class="spec-box"><div class="spec-lbl">O'lchamlar</div><div class="spec-val">${p.sizes}</div></div>
-          <div class="spec-box"><div class="spec-lbl">Nisbat</div><div class="spec-val">${p.ratio}</div></div>
-        </div>
-      </div>
-      <div>
-        <div class="detail-tag">${p.id} SERIYASI</div>
-        <div class="detail-h">${p.name}</div>
-        <div class="detail-sub">${p.sub}</div>
-        <p class="detail-p">${p.desc}</p>
-        <span class="blk-lbl">Model variantlari</span>
-        <div class="subtypes">${p.subtypes.map(s=>`<div class="subtype"><strong>${s.c}</strong><span>${s.d}</span></div>`).join('')}</div>
-        <span class="blk-lbl">Asosiy xususiyatlar</span>
-        <div class="feats">${p.feats.map(f=>`<div class="feat"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>${f}</div>`).join('')}</div>
-        <div class="detail-btns">
-          <button class="btn-solid" onclick="openModal()">So'rov yuborish <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-          <button class="btn-outline" onclick="go('contact')">Kontakt</button>
-        </div>
-      </div>
-    </div>`;
-  go('detail');
-}
-
-/* ═══════════════════════════════════════════════
-   MODAL
-═══════════════════════════════════════════════ */
-function openModal(){document.getElementById('modal').classList.add('on')}
-function closeModal(){document.getElementById('modal').classList.remove('on')}
-function submitModal(){
-  const n=document.getElementById('mn').value.trim();
-  if(!n){alert("Ismingizni kiriting!");return;}
-  closeModal();
-  showToast("Rahmat, "+n+"! So'rovingiz qabul qilindi.");
-  ['mn','mp','mw','md'].forEach(id=>document.getElementById(id).value='');
-}
-function submitForm(e){
-  e.preventDefault();
-  showToast("Xabaringiz muvaffaqiyatli yuborildi!");
-  e.target.reset();
-}
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;
-  t.classList.add('on');
-  setTimeout(()=>t.classList.remove('on'),3500);
-}
-
-/* ═══════════════════════════════════════════════
-   SCROLL REVEAL — simple, no flicker
-═══════════════════════════════════════════════ */
-function triggerReveals(){
-  const targets=document.querySelectorAll(
-    '#page-'+currentPage+' .reveal, #page-'+currentPage+' .reveal-l, #page-'+currentPage+' .reveal-r'
-  );
-  if(!targets.length)return;
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}
-    });
-  },{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
-  targets.forEach(el=>io.observe(el));
-}
-let currentPage='home';
-const _go=go;
-// Override go to track currentPage
-(function(){
-  const orig=go;
-  window.go=function(p){
-    currentPage=p;
-    orig(p);
-  }
-})();
-
-/* ═══════════════════════════════════════════════
-   HERO SVG LINE-DRAW ANIMATION
-   FIX: Only uses <path> elements — getTotalLength() 
-   works reliably on all browsers for <path>
-═══════════════════════════════════════════════ */
-function initHeroSVG(){
-  const paths=document.querySelectorAll('#hero-svg .draw-path');
-  paths.forEach(p=>{
-    try{
-      const len=p.getTotalLength();
-      p.style.strokeDasharray=len;
-      p.style.strokeDashoffset=len;
-      p.classList.add('go');
-    }catch(e){
-      // Fallback: just show it
-      p.style.strokeDashoffset='0';
-    }
-  });
-  // Fade in text labels after drawing completes
-  setTimeout(()=>{
-    const l1=document.getElementById('svg-label1');
-    const l2=document.getElementById('svg-label2');
-    if(l1)l1.style.transition='opacity .8s',l1.style.opacity='1';
-    if(l2)l2.style.transition='opacity .8s',l2.style.opacity='1';
-  },2000);
-}
-
-/* ═══════════════════════════════════════════════
-   ABOUT SVG ANIMATION
-   FIX: Runs AFTER page is visible, so 
-   getTotalLength() returns real values
-═══════════════════════════════════════════════ */
-let aboutAnimated=false;
-function animateAboutSVG(){
-  if(aboutAnimated)return;
-  aboutAnimated=true;
-  const paths=document.querySelectorAll('#about-svg .draw-path');
-  paths.forEach(p=>{
-    try{
-      const len=p.getTotalLength();
-      p.style.strokeDasharray=len;
-      p.style.strokeDashoffset=len;
-      p.classList.add('go');
-    }catch(e){
-      p.style.strokeDashoffset='0';
-    }
-  });
-}
-
-/* ═══════════════════════════════════════════════
-   INIT
-═══════════════════════════════════════════════ */
-renderCats('home-cats');
-renderCats('catalog-cats');
-
-// Init hero SVG after fonts/layout ready
-if(document.readyState==='complete'){
-  initHeroSVG();
-  triggerReveals();
-}else{
-  window.addEventListener('load',()=>{
-    initHeroSVG();
-    triggerReveals();
-  });
-}
-</script>
-</body>
-</html>
-</script>
-
-</body>
-</html>
+    const products = [
+        { id: "M", cat: "compact", name: "M Seriyasi", sub: "Oyoqli Helisel", torque: "50–18.000 Nm", speed: "0.1-500 min⁻¹", desc: "SEW R/F seriyalari bilan to‘liq almashtiriladi. GG20 korpus, monoblok dizayn." },
+        { id: "N", cat: "compact", name: "N Seriyasi", sub: "Flanjli Helisel", torque: "50–18.000 Nm", speed: "0.1-500 min⁻¹", desc: "Kompakt flanjli montaj, vertikal va gorizontal o‘rnatish." },
+        { id: "E", cat: "compact", name: "E Seriyasi", sub: "Chervyakli", torque: "5–1.000 Nm", speed: "0.1-400 min⁻¹", desc: "O‘z-o‘zidan tormozlanish, jim ishlash, yuqori nisbat." },
+        { id: "K", cat: "compact", name: "K Seriyasi", sub: "Konik-Helisel", torque: "80–15.000 Nm", speed: "0.1-400 min⁻¹", desc: "90° burchak uzatish, og‘ir yuklar uchun optimal." },
+        { id: "Y", cat: "industrial", name: "Y Seriyasi", sub: "Gorizontal Industriyal", torque: "1.200–43.000 Nm", speed: "2.6-990 min⁻¹", desc: "Sement, kon, metallurgiya uchun og‘ir yuk." },
+        { id: "H", cat: "industrial", name: "H Seriyasi", sub: "Helisel Industriyal", torque: "2.500–165.000 Nm", speed: "0.1-250 min⁻¹", desc: "Eng og‘ir sanoat sharoitlari uchun." },
+        { id: "B", cat: "industrial", name: "B Seriyasi", sub: "Helisel-Konik", torque: "2.500–165.000 Nm", speed: "0.1-115 min⁻¹", desc: "
