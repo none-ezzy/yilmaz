@@ -3,792 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Yilmaz Reduktor — O'zbekistonda rasmiy vakillik. Sanoat reduktorlari, elektr motorlar va tezlik boshqaruv yechimlari.">
-    <title>Yilmaz Reduktor | O'zbekiston | Sanoat yechimlari</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <meta name="description" content="Yilmaz Reduktor — O'zbekistonda rasmiy vakillik.">
+    <title>Yilmaz Reduktor | O'zbekiston</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
             --primary: #0A3D8F;
             --primary-dark: #062A63;
             --primary-light: #EEF3FB;
-            --accent: #00A3E0;
-            --gray-50: #F8FAFE;
             --gray-100: #F1F4F9;
-            --gray-200: #E2E8F0;
             --gray-600: #64748B;
-            --gray-800: #1E293B;
             --gray-900: #0F172A;
             --white: #FFFFFF;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.03);
-            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.02);
-            --radius: 20px;
-            --radius-sm: 12px;
+            --radius: 12px;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--white);
-            color: var(--gray-800);
-            overflow-x: hidden;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--gray-900); line-height: 1.6; }
 
-        /* Animations */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeRight {
-            from {
-                opacity: 0;
-                transform: translateX(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-
-        .animate-up {
-            animation: fadeUp 0.7s ease forwards;
-        }
-
-        .animate-left {
-            animation: fadeLeft 0.7s ease forwards;
-        }
-
-        .animate-right {
-            animation: fadeRight 0.7s ease forwards;
-        }
+        /* --- FIXED ANIMATIONS --- */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         /* Navigation */
         .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            padding: 0.9rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--gray-200);
-            box-shadow: var(--shadow-sm);
+            position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); z-index: 1000; padding: 1rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid #eee;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            font-weight: 800;
-            font-size: 1.35rem;
-            letter-spacing: -0.5px;
-            color: var(--gray-900);
-        }
-
-        .logo span {
-            color: var(--primary);
-        }
-
-        .logo-icon {
-            background: var(--primary);
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 800;
-            font-size: 1.2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .nav-links a {
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            color: var(--gray-600);
-            text-decoration: none;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            background: var(--primary-light);
-            color: var(--primary);
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.6rem 1.5rem;
-            border-radius: 40px;
-            font-weight: 600;
-            transition: all 0.2s;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(10, 61, 143, 0.25);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1.5px solid var(--primary);
-            color: var(--primary);
-            padding: 0.55rem 1.4rem;
-            border-radius: 40px;
-            font-weight: 600;
-            transition: 0.2s;
-            cursor: pointer;
-        }
-
-        .btn-outline:hover {
-            background: var(--primary-light);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-        }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100%;
-            background: white;
-            z-index: 1100;
-            transition: 0.3s;
-            padding: 2rem;
-            box-shadow: var(--shadow-xl);
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .sidebar.open {
-            left: 0;
-        }
-
-        .sidebar a {
-            padding: 0.8rem 0;
-            cursor: pointer;
-            font-weight: 500;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(3px);
-            z-index: 1050;
-            display: none;
-        }
-
-        .overlay.open {
-            display: block;
-        }
-
-        /* Pages */
-        .page {
-            display: none;
-            padding-top: 80px;
-            min-height: 100vh;
-        }
-
-        .page.active {
-            display: block;
-        }
+        .logo { font-weight: 800; font-size: 1.4rem; color: var(--primary); cursor: pointer; }
+        .nav-links a { margin-left: 1.5rem; text-decoration: none; color: var(--gray-600); font-weight: 500; cursor: pointer; }
+        .nav-links a:hover { color: var(--primary); }
 
         /* Hero Section */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            padding: 3rem 5% 4rem;
-            align-items: center;
-        }
+        .hero { padding: 120px 5% 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; background: linear-gradient(to bottom right, #fff, var(--primary-light)); }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
+        .btn-primary { background: var(--primary); color: white; padding: 12px 28px; border-radius: 30px; border: none; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
 
-        .hero-badge {
-            background: var(--primary-light);
-            color: var(--primary);
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
+        /* Catalog Grid */
+        .section { padding: 60px 5%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
+        
+        .card { 
+            background: white; border: 1px solid #eee; border-radius: var(--radius); 
+            padding: 20px; transition: 0.3s; cursor: pointer; position: relative;
         }
+        .card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-color: var(--primary); }
+        .card img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; background: #f9f9f9; border-radius: 8px; }
+        
+        .specs { font-size: 0.85rem; color: var(--gray-600); margin: 10px 0; display: flex; justify-content: space-between; }
+        .badge { background: var(--primary-light); color: var(--primary); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
 
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
-            line-height: 1.2;
-            font-weight: 600;
-            color: var(--gray-900);
-            margin-bottom: 1.2rem;
-        }
+        .page { display: none; min-height: 100vh; }
+        .page.active { display: block; }
 
-        .hero h1 i {
-            color: var(--primary);
-            font-style: italic;
-        }
-
-        .hero p {
-            color: var(--gray-600);
-            max-width: 500px;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .stat h3 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .hero-visual {
-            background: linear-gradient(135deg, var(--primary-light), white);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            aspect-ratio: 1 / 0.9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .floating-gear svg {
-            width: 80%;
-            max-width: 280px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .spinning-inner {
-            transform-origin: center;
-            animation: spin 12s linear infinite;
-        }
-
-        /* Sections */
-        .section {
-            padding: 5rem 5%;
-        }
-
-        .section-bg {
-            background: var(--gray-50);
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-sub {
-            color: var(--gray-600);
-            margin-bottom: 2.5rem;
-        }
-
-        /* Cards */
-        .cat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .cat-card {
-            background: white;
-            border-radius: var(--radius-sm);
-            padding: 1.8rem;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: 1px solid var(--gray-200);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .cat-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--primary);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .cat-icon {
-            background: var(--primary-light);
-            width: 55px;
-            height: 55px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.2rem;
-            font-size: 1.8rem;
-        }
-
-        .cat-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .badge-count {
-            margin-top: 1rem;
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 600;
-            background: var(--primary-light);
-            padding: 0.2rem 0.8rem;
-            border-radius: 40px;
-            color: var(--primary);
-        }
-
-        /* Product Grid */
-        .prods-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.8rem;
-        }
-
-        .prod-card {
-            background: white;
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1px solid var(--gray-200);
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .prod-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--primary);
-        }
-
-        .prod-img {
-            height: 150px;
-            background: linear-gradient(135deg, var(--primary-light), var(--gray-100));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-        }
-
-        .prod-body {
-            padding: 1.2rem;
-        }
-
-        .prod-specs {
-            display: flex;
-            justify-content: space-between;
-            margin: 0.8rem 0;
-            font-size: 0.75rem;
-            color: var(--gray-600);
-        }
-
-        /* Delivery Animation */
-        .delivery-hero {
-            background: var(--gray-900);
-            color: white;
-            border-radius: 28px;
-            margin: 2rem 5% 0;
-            padding: 3rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .truck-svg svg {
-            width: 100%;
-            max-width: 450px;
-        }
-
-        .road-line {
-            stroke-dasharray: 20 30;
-            animation: dashMove 0.8s linear infinite;
-        }
-
-        @keyframes dashMove {
-            to { stroke-dashoffset: -40; }
-        }
-
-        .wheel-moving {
-            transform-origin: center;
-            animation: wheelRotate 0.8s linear infinite;
-        }
-
-        @keyframes wheelRotate {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Modal */
-        .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(5px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-        }
-
-        .modal.open {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            max-width: 460px;
-            width: 90%;
-            border-radius: 28px;
-            padding: 2rem;
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: var(--primary);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 60px;
-            font-weight: 500;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: 0.25s;
-            z-index: 2100;
-        }
-
-        .toast.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px 14px;
-            border-radius: 12px;
-            border: 1px solid var(--gray-200);
-            font-family: inherit;
-            font-size: 0.9rem;
-            outline: none;
-            transition: 0.2s;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(10,61,143,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .breadcrumb {
-            margin-bottom: 1.5rem;
-            font-size: 0.85rem;
-            color: var(--gray-600);
-        }
-
-        .breadcrumb span {
-            cursor: pointer;
-        }
-
-        .breadcrumb span:hover {
-            color: var(--primary);
-        }
-
-        .back-btn {
-            background: none;
-            border: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            cursor: pointer;
-            font-weight: 500;
-        }
-
-        footer {
-            background: var(--gray-900);
-            color: #94a3b8;
-            padding: 3rem 5% 1.5rem;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 780px) {
-            .hero { grid-template-columns: 1fr; }
-            .nav-links, .navbar .btn-primary { display: none; }
-            .mobile-menu { display: block; }
-            .delivery-hero { grid-template-columns: 1fr; }
-        }
+        footer { background: var(--gray-900); color: white; padding: 40px 5%; text-align: center; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
 <nav class="navbar">
-    <div class="logo" onclick="navigateTo('home')">
-        <div class="logo-icon">Y</div>
-        <div>Yilmaz <span>Reduktor</span></div>
-    </div>
+    <div class="logo" onclick="showPage('home')">YILMAZ REDUKTOR</div>
     <div class="nav-links">
-        <a class="nav-link active" data-page="home">Bosh sahifa</a>
-        <a class="nav-link" data-page="catalog">Katalog</a>
-        <a class="nav-link" data-page="about">Biz haqimizda</a>
-        <a class="nav-link" data-page="news">Yangiliklar</a>
-        <a class="nav-link" data-page="contact">Kontakt</a>
+        <a onclick="showPage('home')">Bosh sahifa</a>
+        <a onclick="showPage('catalog')">Katalog</a>
+        <a onclick="showPage('contact')">Kontakt</a>
     </div>
-    <button class="btn-primary" onclick="openModal()">So'rov yuborish</button>
-    <div class="mobile-menu" onclick="toggleSidebar()">☰</div>
 </nav>
 
-<div class="sidebar" id="sidebar">
-    <div style="margin-bottom: 2rem; font-weight: 800; font-size: 1.3rem;">Yilmaz Reduktor</div>
-    <a onclick="navigateTo('home'); closeSidebar()">Bosh sahifa</a>
-    <a onclick="navigateTo('catalog'); closeSidebar()">Katalog</a>
-    <a onclick="navigateTo('about'); closeSidebar()">Biz haqimizda</a>
-    <a onclick="navigateTo('news'); closeSidebar()">Yangiliklar</a>
-    <a onclick="navigateTo('contact'); closeSidebar()">Kontakt</a>
-    <button class="btn-primary" style="margin-top: 1rem;" onclick="openModal(); closeSidebar()">So'rov yuborish</button>
-</div>
-<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
-
-<!-- HOME PAGE -->
-<div id="home-page" class="page active">
-    <div class="hero">
-        <div>
-            <div class="hero-badge">🇹🇷 TURKIYA ISHLAB CHIQARISHI — 1958</div>
-            <h1>Sanoat uchun <i>ishonchli</i> <br>reduktorlar</h1>
-            <p>Yiliga 330.000 dona ishlab chiqarish quvvati va 80 dan ortiq mamlakatga eksport. O'zbekistonda rasmiy vakillik.</p>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                <button class="btn-primary" onclick="navigateTo('catalog')">Katalogni ko'rish →</button>
-                <button class="btn-outline" onclick="openModal()">Buyurtma berish</button>
-            </div>
-            <div class="hero-stats">
-                <div class="stat"><h3>330K+</h3><span>Yillik ishlab chiqarish</span></div>
-                <div class="stat"><h3>60+</h3><span>Yillik tajriba</span></div>
-                <div class="stat"><h3>80+</h3><span>Eksport mamlakati</span></div>
+<div id="home" class="page active">
+    <section class="hero">
+        <div class="fade-in">
+            <span class="badge">TURKIYA TEHNOLOGIYASI</span>
+            <h1>Sanoat Quvvati va Ishonchliligi</h1>
+            <p>1958-yildan beri reduktor ishlab chiqarish bo'yicha dunyoda yetakchi. O'zbekistondagi rasmiy vakildan eng yaxshi yechimlar.</p>
+            <div style="margin-top: 2rem;">
+                <button class="btn-primary" onclick="showPage('catalog')">Katalogni ko'rish</button>
             </div>
         </div>
-        <div class="hero-visual">
-            <div class="floating-gear">
-                <svg viewBox="0 0 300 300" width="100%">
-                    <circle cx="150" cy="150" r="85" fill="none" stroke="#0A3D8F" stroke-width="3" stroke-dasharray="8 6"/>
-                    <circle cx="150" cy="150" r="65" fill="none" stroke="#0A3D8F" stroke-width="2"/>
-                    <circle cx="150" cy="150" r="28" fill="#0A3D8F10" stroke="#0A3D8F" stroke-width="3"/>
-                    <path d="M150 55 L150 38 M150 245 L150 262 M55 150 L38 150 M245 150 L262 150 M80 80 L68 68 M220 220 L232 232 M80 220 L68 232 M220 80 L232 68" stroke="#0A3D8F" stroke-width="3.5" stroke-linecap="round"/>
-                    <circle cx="150" cy="150" r="105" fill="none" stroke="#00A3E0" stroke-width="1.5" stroke-dasharray="10 10" class="spinning-inner"/>
-                </svg>
-            </div>
+        <div class="fade-in">
+            <img src="motorli1.jpg" alt="Yilmaz" style="width: 100%; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));">
         </div>
-    </div>
-
-    <div class="section section-bg">
-        <div class="container">
-            <div><span class="hero-badge">MAHSULOTLAR</span><h2 class="section-title">Kategoriyalar</h2><p class="section-sub">Har qanday sanoat talabi uchun yechimlar</p></div>
-            <div class="cat-grid" id="home-cats"></div>
-        </div>
-    </div>
-
-    <div class="delivery-hero">
-        <div>
-            <h2 style="color:white; margin-bottom:1rem;">Buyurtmadan eshigingizgacha</h2>
-            <div style="display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0;">
-                <div>📞 24 soat ichida texnik maslahat</div>
-                <div>🚚 Toshkent omboridan tez yetkazib berish</div>
-                <div>🛡️ Rasmiy garantiya va texnik xizmat</div>
-            </div>
-            <button class="btn-primary" style="background:white; color:var(--primary);" onclick="openModal()">So'rov yuborish →</button>
-        </div>
-        <div class="truck-svg">
-            <svg viewBox="0 0 480 170">
-                <path d="M0 150 L480 150" stroke="#ffffff60" stroke-width="3" class="road-line"/>
-                <path d="M30 140 L30 150 L440 150 L440 140 L410 110 L300 110 L300 70 L200 55 L80 55 L50 75 L40 140 Z" fill="#1E2A4A" stroke="#ffffff40" stroke-width="1.5"/>
-                <text x="195" y="98" fill="#ffffff90" font-size="13" font-weight="bold">YILMAZ</text>
-                <circle cx="90" cy="150" r="14" fill="#111827" stroke="#ffffff70" stroke-width="2.5" class="wheel-moving"/>
-                <circle cx="340" cy="150" r="14" fill="#111827" stroke="#ffffff70" stroke-width="2.5" class="wheel-moving"/>
-                <circle cx="390" cy="150" r="14" fill="#111827" stroke="#ffffff70" stroke-width="2.5" class="wheel-moving"/>
-                <rect x="410" y="120" width="35" height="18" fill="#0A3D8F" rx="4"/>
-            </svg>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="container">
-            <h2 class="section-title">Nega Yilmaz?</h2>
-            <div class="cat-grid" style="margin-top:1.5rem;">
-                <div class="cat-card"><div class="cat-icon">🏭</div><h3>Top-6 jahon ishlab chiqaruvchisi</h3><p>330.000 dona/yil, 100.000 m² zavod</p></div>
-                <div class="cat-card"><div class="cat-icon">🔄</div><h3>To‘liq almashtiriladi</h3><p>SEW, Flender, Bonfiglioli bilan mos</p></div>
-                <div class="cat-card"><div class="cat-icon">⚙️</div><h3>DIN & Niemann standartlari</h3><p>58-62 HRc tishli g‘ildiraklar, IE2/IE3/IE4</p></div>
-            </div>
-        </div>
-    </div>
+    </section>
 </div>
 
-<!-- CATALOG PAGE -->
-<div id="catalog-page" class="page">
-    <div class="section">
-        <div class="container">
-            <h2 class="section-title">Mahsulot Kategoriyalari</h2>
-            <p class="section-sub">Kategoriyani tanlang va barcha seriyalarni ko‘ring</p>
-            <div class="cat-grid" id="catalog-cats"></div>
-        </div>
-    </div>
-</div>
-
-<!-- PRODUCTS PAGE -->
-<div id="products-page" class="page">
-    <div class="section">
-        <div class="container" id="products-container"></div>
-    </div>
-</div>
-
-<!-- DETAIL PAGE -->
-<div id="detail-page" class="page">
-    <div class="section">
-        <div class="container" id="detail-container"></div>
-    </div>
-</div>
-
-<!-- ABOUT PAGE -->
-<div id="about-page" class="page">
-    <div class="section section-bg">
-        <div class="container">
-            <h2 class="section-title">1958 — dan beri</h2>
-            <div style="display:grid; gap:2rem; grid-template-columns:1fr 1fr; align-items:center; margin-top:2rem;">
-                <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23EEF3FB' rx='20'/%3E%3Ccircle cx='150' cy='100' r='42' fill='none' stroke='%230A3D8F' stroke-width='4'/%3E%3Cpath d='M150 58 L150 35 M150 142 L150 165 M108 100 L85 100 M192 100 L215 100 M120 68 L103 50 M180 132 L197 150 M120 132 L103 150 M180 68 L197 50' stroke='%230A3D8F' stroke-width='3.5'/%3E%3C/svg%3E" style="width:100%; max-width:280px;"></div>
-                <div><p style="line-height:1.7;">1958-yilda asos solingan kompaniya Istanbul, Cerkezkoy va Toshkentda faoliyat yuritadi. Yilmaz – Turkiyada yagona brend ostida reduktor, motor va tezlik boshqaruvini birlashtirgan yetakchi ishlab chiqaruvchi.</p><br/><p>GG20/GG22 monoblok cho‘yan korpus, global standartlarga to‘liq mos va eng og‘ir sanoat sharoitlari uchun mo‘ljallangan.</p><button class="btn-primary" style="margin-top:1.5rem;" onclick="navigateTo('catalog')">Katalogni o‘rganish →</button></div>
+<div id="catalog" class="page">
+    <section class="section">
+        <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem;">Mahsulot Katalogi</h2>
+        <div class="grid" id="product-grid">
             </div>
-        </div>
-    </div>
+    </section>
 </div>
 
-<!-- NEWS PAGE -->
-<div id="news-page" class="page">
-    <div class="section section-bg">
-        <div class="container">
-            <h2 class="section-title">Yangiliklar</h2>
-            <div class="cat-grid" style="margin-top:2rem;">
-                <div class="cat-card"><h3>📢 Mart 2025</h3><p>Yilmaz Reduktor Toshkentda yangi ombor ochdi – 500+ model zaxirada.</p></div>
-                <div class="cat-card"><h3>⚡ Yanvar 2025</h3><p>IE4 samaradorlik sinfidagi yangi ELK motor seriyasi taqdim etildi.</p></div>
-                <div class="cat-card"><h3>🏭 Noyabr 2024</h3><p>Hannover Messe 2024 – 470.000 Nm gacha industrial reduktorlar namoyishi.</p></div>
-            </div>
+<div id="contact" class="page">
+    <section class="section">
+        <div class="card" style="max-width: 600px; margin: 0 auto;">
+            <h2>Bog'lanish</h2>
+            <p>Toshkent, Yangi Sergeli tumani, Sanoat ko'chasi 45</p>
+            <p>Tel: +998 90 000 00 00</p>
         </div>
-    </div>
-</div>
-
-<!-- CONTACT PAGE -->
-<div id="contact-page" class="page">
-    <div class="section">
-        <div class="container">
-            <h2 class="section-title">Bog‘lanish</h2>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem;">
-                <div class="cat-card"><h3>📍 Manzil</h3><p>Toshkent, Yangi Sergeli tumani, Sanoat ko‘chasi 45</p><h3 style="margin-top:1rem;">📞 Telefon</h3><p>+998 90 000 00 00</p><h3 style="margin-top:1rem;">✉️ Email</h3><p>info@yilmazreduktor.uz</p></div>
-                <div class="cat-card"><form id="contactForm" onsubmit="submitContactForm(event)"><div class="form-group"><input type="text" placeholder="Ism familiya" id="contactName" required></div><div class="form-group"><input type="tel" placeholder="Telefon raqam" id="contactPhone"></div><div class="form-group"><input type="email" placeholder="Email" id="contactEmail"></div><div class="form-group"><select id="contactProduct"><option>Kompakt Reduktorlar</option><option>Industriyal Reduktorlar</option><option>Elektr motorlar</option></select></div><div class="form-group"><textarea rows="3" placeholder="Texnik talablar" id="contactMsg"></textarea></div><button type="submit" class="btn-primary" style="width:100%">Yuborish</button></form></div>
-            </div>
-        </div>
-    </div>
+    </section>
 </div>
 
 <footer>
-    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap;"><span>© 2026 Yilmaz Reduktor O‘zbekiston</span><span>Barcha huquqlar himoyalangan</span></div>
+    © 2026 Yilmaz Reduktor O'zbekiston. Barcha huquqlar himoyalangan.
 </footer>
 
-<div class="modal" id="requestModal">
-    <div class="modal-content">
-        <h3 style="margin-bottom:1rem;">Tez so'rov yuborish</h3>
-        <form id="modalForm" onsubmit="submitModalForm(event)">
-            <div class="form-group"><input type="text" placeholder="Ismingiz" id="modalName" required></div>
-            <div class="form-group"><input type="tel" placeholder="Telefon raqam" id="modalPhone"></div>
-            <div class="form-group"><textarea rows="2" placeholder="Mahsulot va texnik talablar" id="modalMsg"></textarea></div>
-            <div style="display:flex; gap:1rem; margin-top:1rem;"><button type="submit" class="btn-primary">Yuborish</button><button type="button" onclick="closeModal()" class="btn-outline">Yopish</button></div>
-        </form>
-    </div>
-</div>
-<div id="toastMsg" class="toast"></div>
-
 <script>
-    // DATA
-    const categories = [
-        { id: "compact", name: "Kompakt Reduktorlar", desc: "Oyoqli, flanjli, kovak valli", icon: "⚙️", count: 5 },
-        { id: "industrial", name: "Industriyal Reduktorlar", desc: "Og‘ir sanoat, 165.000 Nm gacha", icon: "🏭", count: 3 },
-        { id: "special", name: "Maxsus Reduktorlar", desc: "Planetar va konveyer", icon: "🔄", count: 2 },
-        { id: "motors", name: "Elektr Motorlar", desc: "IE2, IE3, IE4 sinf", icon: "⚡", count: 1 }
-    ];
+    // GitHub Image URLs mapping based on your file list and screenshots
+    const imgPath = ""; // Set your GitHub base path here if needed
 
     const products = [
-        { id: "M", cat: "compact", name: "M Seriyasi", sub: "Oyoqli Helisel", torque: "50–18.000 Nm", speed: "0.1-500 min⁻¹", desc: "SEW R/F seriyalari bilan to‘liq almashtiriladi. GG20 korpus, monoblok dizayn." },
-        { id: "N", cat: "compact", name: "N Seriyasi", sub: "Flanjli Helisel", torque: "50–18.000 Nm", speed: "0.1-500 min⁻¹", desc: "Kompakt flanjli montaj, vertikal va gorizontal o‘rnatish." },
-        { id: "E", cat: "compact", name: "E Seriyasi", sub: "Chervyakli", torque: "5–1.000 Nm", speed: "0.1-400 min⁻¹", desc: "O‘z-o‘zidan tormozlanish, jim ishlash, yuqori nisbat." },
-        { id: "K", cat: "compact", name: "K Seriyasi", sub: "Konik-Helisel", torque: "80–15.000 Nm", speed: "0.1-400 min⁻¹", desc: "90° burchak uzatish, og‘ir yuklar uchun optimal." },
-        { id: "Y", cat: "industrial", name: "Y Seriyasi", sub: "Gorizontal Industriyal", torque: "1.200–43.000 Nm", speed: "2.6-990 min⁻¹", desc: "Sement, kon, metallurgiya uchun og‘ir yuk." },
-        { id: "H", cat: "industrial", name: "H Seriyasi", sub: "Helisel Industriyal", torque: "2.500–165.000 Nm", speed: "0.1-250 min⁻¹", desc: "Eng og‘ir sanoat sharoitlari uchun." },
-        { id: "B", cat: "industrial", name: "B Seriyasi", sub: "Helisel-Konik", torque: "2.500–165.000 Nm", speed: "0.1-115 min⁻¹", desc: "
+        { name: "M/N Seriyasi", type: "Motorli", torque: "50 - 18,000 Nm", img: "motorli1.jpg", desc: "Oyoqli/Flanjli Helisel reduktorlar." },
+        { name: "M/N Seriyasi", type: "Motorsiz", torque: "50 - 18,000 Nm", img: "motorsiz1.jpg", desc: "Kirish valli helisel reduktorlar." },
+        { name: "D Seriyasi", type: "Motorli", torque: "130 - 18,000 Nm", img: "motorli2.jpg", desc: "Parallel valli reduktorlar." },
+        { name: "D Seriyasi", type: "Motorsiz", torque: "130 - 18,000 Nm", img: "motorsiz2.jpg", desc: "Yassi korpusli parallel valli." },
+        { name: "K Seriyasi", type: "Motorli", torque: "80 - 20,000 Nm", img: "motorli3.jpg", desc: "Konik-Helisel 90 gradusli." },
+        { name: "K Seriyasi", type: "Motorsiz", torque: "80 - 20,000 Nm", img: "motorsiz3.jpg", desc: "Yuqori samarali konusli uzatma." },
+        { name: "E Seriyasi", type: "Motorli", torque: "5 - 1,000 Nm", img: "motorli4.jpg", desc: "Chervyakli (Worm) reduktorlar." },
+        { name: "P/R Seriyasi", type: "Motorli", torque: "1,000 - 135,000 Nm", img: "motorli5.jpg", desc: "Planetar sanoat reduktorlari." },
+        { name: "H/B Seriyasi", type: "Sanoat", torque: "4,850 - 470,000 Nm", img: "motorsiz4.jpg", desc: "Og'ir sanoat uchun grizontal reduktorlar." }
+    ];
+
+    function renderCatalog() {
+        const grid = document.getElementById('product-grid');
+        grid.innerHTML = products.map(p => `
+            <div class="card fade-in">
+                <span class="badge">${p.type}</span>
+                <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300x200?text=Yilmaz+Gear'">
+                <h3>${p.name}</h3>
+                <div class="specs">
+                    <span>Moment:</span>
+                    <strong>${p.torque}</strong>
+                </div>
+                <p style="font-size: 0.8rem; color: #666;">${p.desc}</p>
+                <button class="btn-primary" style="width:100%; margin-top:15px; padding: 8px;">Batafsil</button>
+            </div>
+        `).join('');
+        observeAnimations();
+    }
+
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        window.scrollTo(0,0);
+        if(pageId === 'catalog') renderCatalog();
+        observeAnimations();
+    }
+
+    function observeAnimations() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    }
+
+    // Initial Load
+    window.onload = () => {
+        renderCatalog();
+        observeAnimations();
+    };
+</script>
+
+</body>
+</html>
